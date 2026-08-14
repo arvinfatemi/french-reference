@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tense Shifts — Discours indirect, si-clauses &amp; every other backshift</title>
+<style>
+:root{
+  --ink:#23201c; --paper:#fbfaf7; --line:#e2ddd2; --soft:#f1eee6;
+  --stem:#0b6e6e; --end:#c0392b; --aux:#6b4fa0; --dim:#8a8377;
+  --chip:#efece4; --warn:#9a6b00; --ca:#1f5fa8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:15px/1.5 "Avenir Next","Segoe UI",system-ui,sans-serif;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+header.hero{padding:34px 0 10px;border-bottom:3px solid var(--ink)}
+h1{font-size:30px;margin:0 0 4px;letter-spacing:-.02em}
+.sub{color:var(--dim);margin:0 0 14px}
+nav.sticky{position:sticky;top:0;background:var(--paper);z-index:30;
+  border-bottom:1px solid var(--line);padding:8px 0;display:flex;flex-wrap:wrap;gap:6px}
+nav.sticky a{font-size:12px;text-decoration:none;color:var(--ink);
+  background:var(--chip);border:1px solid var(--line);border-radius:99px;
+  padding:3px 10px;white-space:nowrap}
+nav.sticky a:hover{background:#e6e1d4}
+nav.sticky a.lit{background:#efe9f7;border-color:#d7c9ee}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 4px;font-size:13.5px}
+.st{color:var(--stem);font-weight:600}
+.en{color:var(--end);font-weight:800}
+.ax{color:var(--aux);font-weight:700}
+section.tense{margin:34px 0 0;border:1px solid var(--line);border-radius:10px;
+  background:#fff;overflow:hidden}
+.thead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding:12px 18px;background:var(--soft);border-bottom:1px solid var(--line)}
+.thead h2{margin:0;font-size:20px}
+.thead .en-name{color:var(--dim);font-size:13.5px}
+.tag{font-size:11px;border-radius:4px;padding:2px 7px;font-weight:700;letter-spacing:.03em}
+.tag.spk{background:#e3f2e6;color:#226b34}
+.tag.wrt{background:#e8eef9;color:#27508f}
+.tag.lit{background:#f3eadf;color:#8a5a13}
+.tag.trap{background:#fbe6e2;color:#9c2f1f}
+.formula{padding:10px 18px;border-bottom:1px dashed var(--line);font-size:15px;
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.formula .box{border:1.5px solid;border-radius:6px;padding:3px 10px;font-weight:700}
+.formula .box.bst{border-color:var(--stem);color:var(--stem)}
+.formula .box.ben{border-color:var(--end);color:var(--end)}
+.formula .box.bax{border-color:var(--aux);color:var(--aux)}
+.formula .plus{font-weight:800;color:var(--dim)}
+.usage{padding:8px 18px;color:#574f44;font-size:13.5px;border-bottom:1px solid var(--line)}
+.note{margin:0 18px 14px;background:var(--soft);border-left:4px solid var(--ink);
+  border-radius:0 6px 6px 0;padding:9px 13px;font-size:13.5px}
+.note.ca{border-left-color:var(--ca)}
+.note.irr{border-left-color:var(--end)}
+.note.warn{border-left-color:var(--warn)}
+.note b{font-weight:700}
+.note i{font-family:Georgia,serif;font-style:italic;font-size:15px}
+table.big{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff}
+table.big th{background:var(--ink);color:#fff;padding:7px 9px;font-size:12px;
+  letter-spacing:.04em;text-align:left}
+table.big td{border:1px solid var(--line);padding:5px 9px;
+  font-family:Georgia,serif;font-size:15.5px;white-space:nowrap}
+table.big td.pr, table.big td.lbl{font-family:"Avenir Next","Segoe UI",sans-serif;
+  font-size:12.5px;color:var(--dim);font-weight:700;background:var(--soft);white-space:nowrap}
+table.big td.w{white-space:normal}
+table.big tr.src td{font-family:"Avenir Next","Segoe UI",sans-serif;font-size:12px;
+  background:#fbf7ec;color:#574f44;white-space:normal}
+table.big tr.bad td{background:#fdf1ef}
+.scrollx{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:14px 18px}
+.callout{border:1.5px solid var(--ink);border-radius:10px;background:#fff;
+  padding:14px 18px;margin:26px 0 0}
+.callout h3{margin:0 0 8px;font-size:16px}
+.pair{font-family:Georgia,serif;font-size:16.5px;margin:3px 0}
+.pair .lab{font-family:"Avenir Next","Segoe UI",sans-serif;font-size:12px;
+  color:var(--dim);font-weight:700;display:inline-block;width:150px}
+.part-h{font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);margin:44px 0 -18px;font-weight:800}
+.chunks{display:flex;flex-wrap:wrap;gap:8px;padding:12px 18px}
+.chunk{flex:1 1 320px;border:1px solid var(--line);border-radius:8px;padding:8px 11px;
+  background:var(--paper)}
+.chunk .fr{font-family:Georgia,serif;font-size:16px}
+.chunk .gl{font-size:12px;color:var(--dim);margin-top:2px}
+footer{margin-top:50px;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line);padding-top:12px}
+@media print{nav.sticky{display:none}.scrollx{overflow:visible}body{font-size:13px}}
+</style></head><body><div class="wrap">
+
+<header class="hero">
+<h1>Tense Shifts — the complete map</h1>
+<p class="sub">Discours indirect · si-clauses · time conjunctions · depuis · subjonctif · and every other place French moves a tense where English doesn't. Scope: F1–F6 (B1.2 ceiling). Companion files: <b>01 Tenses Reference</b> · <b>02 Master Comparison Tables</b>.</p>
+<div class="legend">
+  <span><b class="ax">shifted form</b> — what the tense becomes</span>
+  <span><b class="en">forbidden</b> — never produce this</span>
+  <span>🇨🇦 = Canadian/Québécois note</span>
+  <span>📚 = recognition only</span>
+</div>
+</header>
+
+<nav class="sticky">
+<a href="#principle">The one principle</a>
+<a href="#indirect">Discours indirect</a>
+<a href="#questions">Reported questions</a>
+<a href="#markers">Time &amp; place markers</a>
+<a href="#si">Si-clauses</a>
+<a href="#cousins">Si's cousins</a>
+<a href="#quand">Quand / dès que</a>
+<a href="#depuis">Depuis</a>
+<a href="#subj">Subjonctif</a>
+<a href="#infinitif">Infinitive shortcuts</a>
+<a href="#journal">Conditionnel journalistique</a>
+<a href="#traps" class="lit">EN→FR traps</a>
+<a href="#chunks">Chunk bank</a>
+</nav>
+
+<section class="tense" id="principle" style="margin-top:24px">
+  <div class="thead"><h2>The one principle behind all of it</h2>
+  <span class="en-name">every "shift" is the same move, applied from a different anchor</span></div>
+  <div class="usage">French tenses are chosen <b>relative to an anchor point</b>, not relative to now. Move the anchor into the past and every tense slides down one step. That single slide is what produces discours indirect, and its logic reappears in si-clauses, subjunctive sequence, and depuis.</div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Anchor = NOW</th><th>same idea, anchor = PAST</th><th>relation expressed</th></tr>
+    <tr><td class="lbl">présent</td><td><span class="ax">imparfait</span></td><td class="w">simultaneous with the anchor</td></tr>
+    <tr><td class="lbl">passé composé</td><td><span class="ax">plus-que-parfait</span></td><td class="w">before the anchor</td></tr>
+    <tr><td class="lbl">futur simple</td><td><span class="ax">conditionnel présent</span></td><td class="w">after the anchor</td></tr>
+    <tr><td class="lbl">futur antérieur</td><td><span class="ax">conditionnel passé</span></td><td class="w">after the anchor, but finished</td></tr>
+  </table></div>
+  <div class="note"><b>Read the right column properly:</b> the conditionnel here is <u>not</u> "would" in the hypothetical sense. It is simply <i>the future seen from a past vantage point</i>. Same form, two jobs — this is the single biggest source of confusion, and knowing the two jobs are separate is most of the battle.</div>
+</section>
+
+<p class="part-h">Part 1 — Discours indirect</p>
+
+<section class="tense" id="indirect">
+  <div class="thead"><h2>Discours indirect — the backshift table</h2>
+  <span class="en-name">reported speech at every tense</span>
+  <span class="tag wrt">✍️ F6 Ch.10</span></div>
+  <div class="formula"><span class="box bax">verb of speech in a PAST tense</span><span class="plus">→</span><span class="box bst">everything inside <i>que</i> slides down one step</span></div>
+  <div class="usage"><b>Trigger check first.</b> If the reporting verb is <i>présent</i> or <i>futur</i> (<i>il dit que…</i>, <i>elle dira que…</i>), <b>nothing shifts</b>. Only <i>a dit / disait / avait dit / a demandé / a expliqué</i> etc. trigger the backshift.</div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Direct speech</th><th>→ after a past reporting verb</th><th>Example</th></tr>
+    <tr><td class="lbl">présent</td><td><span class="ax">imparfait</span></td><td>« Je <i>travaille</i> » → Il a dit qu'il <b>travaillait</b>.</td></tr>
+    <tr><td class="lbl">passé composé</td><td><span class="ax">plus-que-parfait</span></td><td>« J'<i>ai fini</i> » → Il a dit qu'il <b>avait fini</b>.</td></tr>
+    <tr><td class="lbl">imparfait</td><td>imparfait <span style="color:var(--dim)">(no change)</span></td><td>« Je <i>dormais</i> » → Il a dit qu'il <b>dormait</b>.</td></tr>
+    <tr><td class="lbl">plus-que-parfait</td><td>plus-que-parfait <span style="color:var(--dim)">(no change)</span></td><td>« J'<i>étais parti</i> » → Il a dit qu'il <b>était parti</b>.</td></tr>
+    <tr><td class="lbl">futur simple</td><td><span class="ax">conditionnel présent</span></td><td>« Je <i>viendrai</i> » → Il a dit qu'il <b>viendrait</b>.</td></tr>
+    <tr><td class="lbl">futur antérieur</td><td><span class="ax">conditionnel passé</span></td><td>« J'<i>aurai fini</i> » → Il a dit qu'il <b>aurait fini</b>.</td></tr>
+    <tr><td class="lbl">futur proche</td><td><span class="ax">allais + infinitif</span></td><td>« Je <i>vais partir</i> » → Il a dit qu'il <b>allait partir</b>.</td></tr>
+    <tr><td class="lbl">passé récent</td><td><span class="ax">venais de + infinitif</span></td><td>« Je <i>viens d'arriver</i> » → Il a dit qu'il <b>venait d'arriver</b>.</td></tr>
+    <tr><td class="lbl">conditionnel prés.</td><td>conditionnel présent <span style="color:var(--dim)">(no change)</span></td><td>« J'<i>aimerais</i> venir » → Il a dit qu'il <b>aimerait</b> venir.</td></tr>
+    <tr><td class="lbl">conditionnel passé</td><td>conditionnel passé <span style="color:var(--dim)">(no change)</span></td><td>« J'<i>aurais voulu</i> » → Il a dit qu'il <b>aurait voulu</b>.</td></tr>
+    <tr><td class="lbl">subjonctif présent</td><td>subjonctif présent <span style="color:var(--dim)">(no change)</span></td><td>« Il faut qu'il <i>parte</i> » → Elle a dit qu'il fallait qu'il <b>parte</b>.</td></tr>
+    <tr><td class="lbl">impératif</td><td><span class="ax">de + infinitif</span></td><td>« <i>Attendez</i> ! » → Il m'a demandé <b>d'attendre</b>.</td></tr>
+  </table></div>
+  <div class="note irr"><b>The three that never move:</b> imparfait, plus-que-parfait, conditionnel. They are already at the bottom of the slide — there is nowhere further down to go. If you find yourself hunting for a "past imparfait", stop: it doesn't exist.</div>
+  <div class="note"><b>Optional exception — general truths.</b> Standing facts may stay in the présent: <i>Le professeur a dit que la Terre <b>tourne</b> autour du Soleil.</i> Backshifting it (<i>tournait</i>) is also correct. On the TEF, pick one and be consistent; the shifted version is never wrong.</div>
+  <div class="note"><b>Reporting verbs worth owning (they raise your lexical score).</b><br>
+  <i>dire que · expliquer que · ajouter que · préciser que · annoncer que · affirmer que · souligner que · faire remarquer que · reconnaître que · avouer que · prétendre que · répondre que · rappeler que</i><br>
+  With an infinitive (orders/advice): <i>demander de · conseiller de · proposer de · suggérer de · ordonner de · interdire de · promettre de · refuser de</i>.</div>
+  <div class="note ca">🇨🇦 In spoken Québécois the backshift is frequently dropped: <i>« Il a dit qu'il va venir. »</i> You will hear this constantly on Radio-Canada street interviews. Recognition only — <b>Expression écrite requires the shifted form</b>, and dropping it reads as a level error.</div>
+</section>
+
+<section class="tense" id="questions">
+  <div class="thead"><h2>Reported questions — the word changes too</h2>
+  <span class="en-name">interrogative → subordinate</span>
+  <span class="tag trap">⚠ high-frequency error</span></div>
+  <div class="usage">Three things happen at once: the tense backshifts (table above), the question word converts, and the <b>question structure disappears</b> — no inversion, no <i>est-ce que</i>, no question mark.</div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Direct question</th><th>→ becomes</th><th>Example</th></tr>
+    <tr><td class="lbl">Yes/no · est-ce que</td><td><span class="ax">si</span></td><td>« Tu viens ? » → Il a demandé <b>si</b> je venais.</td></tr>
+    <tr><td class="lbl">Qu'est-ce que / Que</td><td><span class="ax">ce que</span></td><td>« Qu'est-ce que tu fais ? » → Il a demandé <b>ce que</b> je faisais.</td></tr>
+    <tr><td class="lbl">Qu'est-ce qui</td><td><span class="ax">ce qui</span></td><td>« Qu'est-ce qui se passe ? » → Il a demandé <b>ce qui</b> se passait.</td></tr>
+    <tr><td class="lbl">Qui / Qui est-ce qui</td><td>qui <span style="color:var(--dim)">(no change)</span></td><td>« Qui a appelé ? » → Il a demandé <b>qui</b> avait appelé.</td></tr>
+    <tr><td class="lbl">Où · Quand · Comment · Pourquoi · Combien · Quel</td><td>unchanged</td><td>« Où habites-tu ? » → Il a demandé <b>où</b> j'habitais.</td></tr>
+    <tr class="bad"><td class="lbl">❌ never</td><td colspan="2" class="w"><span class="en">Il a demandé où est-ce que j'habitais</span> · <span class="en">Il a demandé où habitais-je</span> · <span class="en">Il a demandé qu'est-ce que je faisais</span></td></tr>
+  </table></div>
+  <div class="note warn"><b>The <i>si</i> collision.</b> This <i>si</i> means <b>whether</b>, not <b>if</b>. It is a completely different word from conditional <i>si</i> — and crucially, <b>it accepts the futur and the conditionnel</b>: <i>Je ne sais pas s'il <b>viendra</b>.</i> / <i>Il m'a demandé si je <b>pourrais</b> l'aider.</i> Conditional <i>si</i> never can. See the si-clause section.</div>
+</section>
+
+<section class="tense" id="markers">
+  <div class="thead"><h2>Time, place &amp; person markers</h2>
+  <span class="en-name">the second half of the shift, routinely forgotten</span></div>
+  <div class="usage">When the anchor moves into the past, deictic words ("today", "here", "I") no longer point anywhere. They shift with the tense. Skipping this is the most common way a technically-correct backshift still reads wrong.</div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Direct</th><th>Reported</th><th>Direct</th><th>Reported</th></tr>
+    <tr><td>aujourd'hui</td><td><span class="ax">ce jour-là</span></td><td>ce matin</td><td><span class="ax">ce matin-là</span></td></tr>
+    <tr><td>hier</td><td><span class="ax">la veille</span></td><td>avant-hier</td><td><span class="ax">l'avant-veille</span></td></tr>
+    <tr><td>demain</td><td><span class="ax">le lendemain</span></td><td>après-demain</td><td><span class="ax">le surlendemain</span></td></tr>
+    <tr><td>maintenant</td><td><span class="ax">à ce moment-là / alors</span></td><td>en ce moment</td><td><span class="ax">à ce moment-là</span></td></tr>
+    <tr><td>la semaine dernière</td><td><span class="ax">la semaine précédente</span></td><td>la semaine prochaine</td><td><span class="ax">la semaine suivante</span></td></tr>
+    <tr><td>lundi prochain</td><td><span class="ax">le lundi suivant</span></td><td>lundi dernier</td><td><span class="ax">le lundi précédent</span></td></tr>
+    <tr><td>il y a trois jours</td><td><span class="ax">trois jours plus tôt</span></td><td>dans trois jours</td><td><span class="ax">trois jours plus tard</span></td></tr>
+    <tr><td>ici</td><td><span class="ax">là</span></td><td>ce livre-ci</td><td><span class="ax">ce livre-là</span></td></tr>
+  </table></div>
+  <div class="note"><b>Also shift the person.</b> Subject pronouns, object pronouns and possessives all re-anchor to the reporter: « <i>Je</i> vais chercher <i>mes</i> clés » → Il a dit qu'<b>il</b> allait chercher <b>ses</b> clés. Run this check separately from the tense check — doing both in one pass is where errors slip through.</div>
+  <div class="note irr"><b>Worked example, all layers at once.</b><br>
+  Direct: « <i>Je ne peux pas venir demain parce que j'ai promis à mon frère de l'aider.</i> »<br>
+  Reported: <i>Elle m'a expliqué qu'<b>elle</b> ne <b>pouvait</b> pas venir <b>le lendemain</b> parce qu'<b>elle avait promis</b> à <b>son</b> frère de l'aider.</i></div>
+</section>
+
+<p class="part-h">Part 2 — Si and the conditional systems</p>
+
+<section class="tense" id="si">
+  <div class="thead"><h2>Si-clauses — three fixed pairs</h2>
+  <span class="en-name">l'hypothèse</span>
+  <span class="tag spk">🗣️ TEF Section B core</span></div>
+  <div class="formula"><span class="box bst">SI + [tense A]</span><span class="plus">,</span><span class="box bax">[tense B]</span>
+  <span style="color:var(--dim);font-size:13px">— the pairs are fixed; you never choose them independently</span></div>
+  <div class="usage">Learn these as three welded chunks, not as two free choices. The order of the clauses can be swapped (<i>Je viendrai si j'ai le temps</i>) without changing anything.</div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Type</th><th>si-clause</th><th>Main clause</th><th>Example</th></tr>
+    <tr><td class="lbl">① Réel<br>likely / real</td><td>si + <b>présent</b></td><td>présent · futur simple · futur proche · impératif</td><td class="w">S'il <i>fait</i> beau, j'<b>irai</b> au lac.<br>Si tu <i>as</i> froid, <b>ferme</b> la fenêtre.</td></tr>
+    <tr><td class="lbl">② Irréel du présent<br>hypothetical now</td><td>si + <b>imparfait</b></td><td><span class="ax">conditionnel présent</span></td><td class="w">Si j'<i>avais</i> plus de temps, je <b>prendrais</b> des cours du soir.</td></tr>
+    <tr><td class="lbl">③ Irréel du passé<br>regret / counterfactual</td><td>si + <b>plus-que-parfait</b></td><td><span class="ax">conditionnel passé</span></td><td class="w">Si j'<i>avais su</i>, je ne <b>serais</b> pas <b>venu</b>.</td></tr>
+    <tr><td class="lbl">④ Mixte A<br>past cause → present result</td><td>si + <b>plus-que-parfait</b></td><td><span class="ax">conditionnel présent</span></td><td class="w">Si j'<i>avais accepté</i> ce poste, je <b>vivrais</b> à Montréal aujourd'hui.</td></tr>
+    <tr><td class="lbl">⑤ Mixte B<br>standing trait → past result</td><td>si + <b>imparfait</b></td><td><span class="ax">conditionnel passé</span></td><td class="w">Si j'<i>étais</i> plus organisé, je n'<b>aurais</b> pas <b>manqué</b> mon vol.</td></tr>
+    <tr class="bad"><td class="lbl">❌ after conditional si</td><td colspan="3" class="w"><span class="en">si je viendrai</span> · <span class="en">si j'aurai fini</span> · <span class="en">si je viendrais</span> · <span class="en">si j'aurais su</span> — the futur and the conditionnel <b>never</b> follow a conditional <i>si</i>.</td></tr>
+  </table></div>
+  <div class="note warn"><b>Memory hook:</b> the letter <b>R</b> never appears on both sides. <i>Si</i> takes présent / imparfait / plus-que-parfait — none of which carry the future-conditional <b>-r-</b>. The <b>-r-</b> lives only in the other clause.</div>
+  <div class="note ca">🇨🇦 <i>« Si j'aurais su, j'aurais pas venu »</i> is extremely common in casual Québécois (and casual France French). Recognition only — it is a marked error in every TEF section. Also common orally: <i>« Si j'aurais eu le temps… »</i>. Never produce.</div>
+  <div class="note irr"><b>Two <i>si</i>, one spelling — the disambiguation test.</b><br>
+  <span class="pair"><span class="lab">condition (if)</span> <i>Si tu <b>viens</b>, préviens-moi.</i> → replaceable by <i>à condition que / au cas où</i>. Tense-restricted.</span>
+  <span class="pair"><span class="lab">indirect question (whether)</span> <i>Je me demande si tu <b>viendras</b>.</i> → follows <i>demander, savoir, se demander, ignorer, dire</i>. No tense restriction at all.</span>
+  If you can insert "whether" in English, the tense rules above do not apply.</div>
+</section>
+
+<section class="tense" id="cousins">
+  <div class="thead"><h2>Si's cousins — same family, different rules</h2>
+  <span class="en-name">comme si · même si · sauf si · au cas où · à condition que</span>
+  <span class="tag trap">⚠ each one behaves differently</span></div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Connector</th><th>Takes</th><th>Example</th></tr>
+    <tr><td class="lbl">comme si<br><span style="font-weight:400">as if</span></td><td><b>imparfait</b> (simultaneous)<br><b>plus-que-parfait</b> (earlier)</td><td class="w">Il parle comme s'il <i>connaissait</i> tout le monde.<br>Elle avait l'air fatiguée, comme si elle n'<i>avait</i> pas <i>dormi</i>.</td></tr>
+    <tr class="bad"><td class="lbl">❌</td><td colspan="2" class="w"><span class="en">comme s'il connaît</span> · <span class="en">comme s'il connaîtrait</span> — présent and conditionnel are impossible after <i>comme si</i>.</td></tr>
+    <tr><td class="lbl">même si<br><span style="font-weight:400">even if / even though</span></td><td><b>indicatif</b> (never subjunctive)</td><td class="w">Même s'il <i>pleut</i>, je <b>partirai</b>.<br>Même si j'<i>avais</i> le choix, je <b>resterais</b> ici.</td></tr>
+    <tr><td class="lbl">sauf si · excepté si</td><td><b>indicatif</b>, same pairs as <i>si</i></td><td class="w">J'y vais demain, sauf s'il <i>neige</i>.</td></tr>
+    <tr><td class="lbl">au cas où · dans le cas où</td><td><span class="ax">conditionnel</span> (prés. or passé)</td><td class="w">Prends un parapluie <b>au cas où il pleuvrait</b>.<br>Au cas où vous <b>auriez oublié</b>, la réunion est à 14 h.</td></tr>
+    <tr><td class="lbl">à condition que · pourvu que · à moins que</td><td><b>subjonctif</b></td><td class="w">Je viendrai à condition qu'il <i>fasse</i> beau.<br>Nous partirons à moins qu'il <i>y ait</i> une tempête.</td></tr>
+    <tr><td class="lbl">à condition de · à moins de</td><td><b>infinitif</b> (same subject)</td><td class="w">Je viendrai à condition d'<i>avoir</i> fini mon travail.</td></tr>
+    <tr><td class="lbl">si jamais</td><td>présent or imparfait</td><td class="w">Si jamais tu <i>changes</i> d'avis, appelle-moi.</td></tr>
+  </table></div>
+  <div class="note warn"><b>The two that trip everyone:</b> <i>au cas où</i> is the <b>only</b> conditional connector that <u>requires</u> the conditionnel — the exact opposite of <i>si</i>. And <i>même si</i> looks concessive like <i>bien que</i> but takes the <b>indicative</b>, not the subjunctive. Drill these as a contrasting pair.</div>
+</section>
+
+<p class="part-h">Part 3 — Where French uses a future and English doesn't</p>
+
+<section class="tense" id="quand">
+  <div class="thead"><h2>Quand · dès que · tant que + futur</h2>
+  <span class="en-name">the future-for-present shift</span>
+  <span class="tag trap">⚠ near-universal English-speaker error</span></div>
+  <div class="formula"><span class="box bst">time conjunction</span><span class="plus">+</span><span class="box bax">FUTUR SIMPLE / FUTUR ANTÉRIEUR</span>
+  <span style="color:var(--dim);font-size:13px">— where English uses the present</span></div>
+  <div class="usage">English says <i>"When I <u>arrive</u>, I'll call you."</i> French refuses: if the action is in the future, the verb is in the future — <b>in both clauses</b>.</div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Conjunction</th><th>French</th><th>English</th></tr>
+    <tr><td class="lbl">quand · lorsque</td><td>Quand j'<b>arriverai</b>, je t'appellerai.</td><td class="w">When I arrive…</td></tr>
+    <tr><td class="lbl">dès que · aussitôt que</td><td>Dès que tu <b>auras fini</b>, préviens-moi.</td><td class="w">As soon as you've finished…</td></tr>
+    <tr><td class="lbl">une fois que</td><td>Une fois que nous <b>serons installés</b>, on t'invitera.</td><td class="w">Once we've settled in…</td></tr>
+    <tr><td class="lbl">tant que · aussi longtemps que</td><td>Tant qu'il <b>fera</b> froid, je resterai à Calgary.</td><td class="w">As long as it stays cold…</td></tr>
+    <tr><td class="lbl">pendant que</td><td>Pendant que tu <b>prépareras</b> le dîner, je rangerai.</td><td class="w">While you make dinner…</td></tr>
+    <tr><td class="lbl">après que</td><td>Après qu'il <b>sera parti</b>, nous discuterons.</td><td class="w">After he leaves…</td></tr>
+    <tr class="bad"><td class="lbl">❌</td><td colspan="2" class="w"><span class="en">Quand j'arrive, je t'appellerai</span> — grammatical only if you mean a repeated habit, not a single future event.</td></tr>
+  </table></div>
+  <div class="note"><b>Simple vs antérieur — the choice is anteriority.</b><br>
+  <span class="pair"><span class="lab">simultaneous</span> <i>Quand je <b>serai</b> à Banff, je te ferai signe.</i></span>
+  <span class="pair"><span class="lab">finished first</span> <i>Quand j'<b>aurai terminé</b> mes cours, je passerai le TEF.</i></span>
+  If English would use "have + participle" ("when I have finished"), French uses the <b>futur antérieur</b>.</div>
+  <div class="note irr"><b>Backshifted version</b> (inside reported speech, per Part 1): <i>Il a dit que quand il <b>arriverait</b>, il nous <b>appellerait</b>.</i> Both futures become conditionals.</div>
+  <div class="note warn"><b>avant que ≠ après que.</b> <i>avant que</i> + <b>subjonctif</b> (<i>avant qu'il <b>parte</b></i>) — no future ever. <i>après que</i> officially takes the <b>indicatif</b>, though the subjunctive is very widespread in real usage. On the TEF, the safe move is to avoid the collision entirely: use <b>avant de / après + infinitif</b> when the subject is the same (see next section).</div>
+  <div class="note lit" style="border-left-color:#8a5a13;background:#f9f4ec">📚 <b>Recognition only:</b> <i>passé antérieur</i> (<i>Quand il <b>eut fini</b>, il sortit</i>) in literature, and <i>passé surcomposé</i> (<i>Quand j'<b>ai eu fini</b>, je suis sorti</i>) in speech. Never produce either.</div>
+</section>
+
+<section class="tense" id="depuis">
+  <div class="thead"><h2>Depuis · ça fait… que · il y a… que</h2>
+  <span class="en-name">the ongoing-duration shift</span>
+  <span class="tag spk">🗣️ appears in every TEF Section A</span></div>
+  <div class="formula"><span class="box bst">PRÉSENT</span><span class="plus">+</span><span class="box bax">depuis</span>
+  <span style="color:var(--dim);font-size:13px">= English present perfect ("I have been…")</span></div>
+  <div class="usage">The action started earlier and <b>is still going</b>. English marks that with a perfect; French marks it with a plain present. Using the passé composé here is the single most recognisable anglophone error.</div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Anchor</th><th>French</th><th>English</th></tr>
+    <tr><td class="lbl">still true now</td><td>J'<b>habite</b> à Calgary <i>depuis</i> cinq ans.</td><td class="w">I <u>have lived</u> in Calgary for five years.</td></tr>
+    <tr><td class="lbl">variants</td><td><i>Ça fait</i> cinq ans que j'<b>habite</b> ici.<br><i>Il y a</i> cinq ans que j'<b>habite</b> ici.</td><td class="w">same meaning, freer word order</td></tr>
+    <tr><td class="lbl">still true at a past point</td><td>J'<b>habitais</b> là <i>depuis</i> deux ans quand j'ai déménagé.</td><td class="w">I <u>had been living</u> there for two years when…</td></tr>
+    <tr><td class="lbl">negative / non-event</td><td>Je <b>n'ai pas vu</b> ce film <i>depuis</i> longtemps.</td><td class="w">I haven't seen it in ages. <span style="color:var(--dim)">(negation flips it to passé composé)</span></td></tr>
+    <tr><td class="lbl">finished duration</td><td>J'<b>ai travaillé</b> là <i>pendant</i> trois ans.</td><td class="w">over and done → <i>pendant</i> + passé composé</td></tr>
+    <tr><td class="lbl">time before now</td><td>Je suis arrivé <i>il y a</i> cinq ans.</td><td class="w"><i>il y a</i> alone = "ago" — different word, same shape</td></tr>
+    <tr class="bad"><td class="lbl">❌</td><td colspan="2" class="w"><span class="en">J'ai habité à Calgary depuis cinq ans</span> — only correct if you no longer live there, which contradicts <i>depuis</i>.</td></tr>
+  </table></div>
+  <div class="note"><b>depuis que + clause</b> follows the same anchoring: <i>Depuis que j'<b>étudie</b> le français, je <b>comprends</b> mieux les nouvelles.</i> / <i>Depuis qu'il <b>est parti</b>, tout <b>a changé</b>.</i></div>
+</section>
+
+<p class="part-h">Part 4 — Where the shift does NOT happen</p>
+
+<section class="tense" id="subj">
+  <div class="thead"><h2>Subjonctif — the sequence that refuses to shift</h2>
+  <span class="en-name">concordance des temps au subjonctif</span>
+  <span class="tag wrt">✍️ F6 Ch.2, 3, 7, 8, 11</span></div>
+  <div class="usage">Modern French has only <b>two</b> living subjunctives, and the choice between them <u>ignores the main clause tense entirely</u>. This is the exact opposite of the indicative rule in Part 1 — and knowing that saves you from inventing forms that don't exist.</div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Relation to the main verb</th><th>Use</th><th>Example — main verb présent</th><th>Example — main verb passé</th></tr>
+    <tr><td class="lbl">same time or later</td><td><b>subjonctif présent</b></td><td>Je <i>veux</i> qu'il <b>vienne</b>.</td><td>Je <i>voulais</i> qu'il <b>vienne</b>.</td></tr>
+    <tr><td class="lbl">earlier</td><td><b>subjonctif passé</b></td><td>Je <i>suis</i> content qu'il <b>soit venu</b>.</td><td>J'<i>étais</i> content qu'il <b>soit venu</b>.</td></tr>
+  </table></div>
+  <div class="note irr"><b>There is no future subjunctive.</b> Future meaning is carried by the subjonctif présent: <i>Bien qu'il <b>parte</b> demain, il n'a rien préparé.</i> Writing <span class="en">bien qu'il partira</span> is an error.</div>
+  <div class="note lit" style="border-left-color:#8a5a13;background:#f9f4ec">📚 <b>Recognition only:</b> <i>imparfait du subjonctif</i> (<i>qu'il vînt</i>) and <i>plus-que-parfait du subjonctif</i> (<i>qu'il fût venu</i>). You will meet them in 19th-century texts and nowhere else. Never produce them.</div>
+  <div class="note warn"><b>Indicative look-alikes that take no subjunctive:</b><br>
+  <span class="pair"><span class="lab">espérer que</span> <i>J'espère qu'il <b>viendra</b>.</i> — indicative, and typically futur</span>
+  <span class="pair"><span class="lab">souhaiter que</span> <i>Je souhaite qu'il <b>vienne</b>.</i> — subjunctive</span>
+  <span class="pair"><span class="lab">penser / croire que</span> <i>Je pense qu'il <b>a</b> raison.</i> — indicative</span>
+  <span class="pair"><span class="lab">ne pas penser que</span> <i>Je ne pense pas qu'il <b>ait</b> raison.</i> — subjunctive in careful register</span>
+  <span class="pair"><span class="lab">après que</span> indicative · <span class="lab" style="width:auto">avant que</span> subjunctive</span></div>
+</section>
+
+<section class="tense" id="infinitif">
+  <div class="thead"><h2>Infinitive shortcuts — the shift you can dodge</h2>
+  <span class="en-name">same subject → no subordinate clause needed</span>
+  <span class="tag spk">🗣️ exam-safe</span></div>
+  <div class="usage">When both verbs share a subject, French strongly prefers an infinitive over a <i>que</i>-clause. This sidesteps the tense-sequence question entirely — a useful safety valve under exam pressure, and it reads as <b>more</b> native, not less.</div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Structure</th><th>Timing</th><th>Example</th></tr>
+    <tr><td class="lbl">avant de + infinitif</td><td>before</td><td>Avant <b>de partir</b>, j'ai fermé les fenêtres.</td></tr>
+    <tr><td class="lbl">après + infinitif passé</td><td>after (already done)</td><td>Après <b>avoir fini</b> mon travail, je suis sorti.<br>Après <b>être arrivé</b> à Banff, j'ai appelé mes parents.</td></tr>
+    <tr><td class="lbl">sans + infinitif</td><td>simultaneous</td><td>Il est parti <b>sans dire</b> au revoir.</td></tr>
+    <tr><td class="lbl">en + participe présent</td><td>simultaneous</td><td><b>En arrivant</b>, j'ai vu qu'il neigeait.</td></tr>
+    <tr><td class="lbl">pour / afin de + infinitif</td><td>purpose</td><td>J'étudie <b>pour réussir</b> le TEF.</td></tr>
+    <tr class="bad"><td class="lbl">❌</td><td colspan="2" class="w"><span class="en">Après finir mon travail</span> — <i>après</i> requires the <b>infinitif passé</b> (avoir/être + participe), never the plain infinitive.</td></tr>
+  </table></div>
+  <div class="note"><b>Same rule for reported orders:</b> <i>Il m'a demandé <b>de venir</b></i>, not <span class="en">il m'a demandé que je vienne</span>. The infinitive is the default for <i>demander, conseiller, dire, proposer, promettre, refuser, décider</i>.</div>
+</section>
+
+<section class="tense" id="journal">
+  <div class="thead"><h2>Conditionnel journalistique</h2>
+  <span class="en-name">the "reportedly" conditional</span>
+  <span class="tag lit">🎧 Compréhension orale</span></div>
+  <div class="usage">A conditionnel with no <i>si</i> anywhere signals <b>unverified information</b> — "allegedly / reportedly". It is everywhere in radio news, which makes it a listening comprehension item as much as a grammar point.</div>
+  <div class="scrollx"><table class="big">
+    <tr><th>Form</th><th>French</th><th>Reading</th></tr>
+    <tr><td class="lbl">conditionnel présent</td><td>L'entreprise <b>envisagerait</b> de fermer l'usine.</td><td class="w">is reportedly considering — not confirmed</td></tr>
+    <tr><td class="lbl">conditionnel passé</td><td>Une vingtaine de personnes <b>auraient été</b> blessées.</td><td class="w">around twenty are reported injured</td></tr>
+    <tr><td class="lbl">reinforced</td><td><b>Selon</b> nos sources, le ministre <b>aurait démissionné</b>.</td><td class="w">source markers: <i>selon, d'après, il semblerait que</i></td></tr>
+  </table></div>
+  <div class="note ca">🇨🇦 Extremely frequent on Radio-Canada and in TEF listening items drawn from news bulletins. If a question asks whether something is <b>certain</b> or <b>alleged</b>, the conditionnel is the answer key. Train yourself to hear the <b>-rait / -raient</b> ending as a certainty flag.</div>
+</section>
+
+<p class="part-h">Part 5 — Quick reference</p>
+
+<section class="tense" id="traps">
+  <div class="thead"><h2>English → French mismatch table</h2>
+  <span class="en-name">translate the relation, not the words</span>
+  <span class="tag trap">⚠ print this one</span></div>
+  <div class="scrollx"><table class="big">
+    <tr><th>English</th><th>Tempting (wrong)</th><th>Correct</th></tr>
+    <tr><td class="w">I've lived here for 5 years</td><td><span class="en">j'ai habité… depuis</span></td><td>j'<b>habite</b> ici depuis cinq ans</td></tr>
+    <tr><td class="w">I had been waiting an hour</td><td><span class="en">j'avais attendu</span></td><td>j'<b>attendais</b> depuis une heure</td></tr>
+    <tr><td class="w">When I arrive, I'll call</td><td><span class="en">quand j'arrive</span></td><td>quand j'<b>arriverai</b>, je t'appellerai</td></tr>
+    <tr><td class="w">As soon as you've finished</td><td><span class="en">dès que tu as fini</span></td><td>dès que tu <b>auras fini</b></td></tr>
+    <tr><td class="w">He said he would come</td><td><span class="en">il a dit qu'il viendra</span></td><td>il a dit qu'il <b>viendrait</b></td></tr>
+    <tr><td class="w">If I have time, I'll come</td><td><span class="en">si j'aurai le temps</span></td><td>si j'<b>ai</b> le temps, je viendrai</td></tr>
+    <tr><td class="w">If I had known…</td><td><span class="en">si j'aurais su</span></td><td>si j'<b>avais su</b>, je serais…</td></tr>
+    <tr><td class="w">In case it rains</td><td><span class="en">au cas où il pleut</span></td><td>au cas où il <b>pleuvrait</b></td></tr>
+    <tr><td class="w">Even if it rains</td><td><span class="en">même s'il pleuve</span></td><td>même s'il <b>pleut</b> <span style="color:var(--dim)">(indicatif)</span></td></tr>
+    <tr><td class="w">as if he knew</td><td><span class="en">comme s'il sait</span></td><td>comme s'il <b>savait</b></td></tr>
+    <tr><td class="w">I hope he comes</td><td><span class="en">j'espère qu'il vienne</span></td><td>j'espère qu'il <b>viendra</b></td></tr>
+    <tr><td class="w">After finishing, I left</td><td><span class="en">après finir</span></td><td>après <b>avoir fini</b>, je suis parti</td></tr>
+    <tr><td class="w">He asked what I was doing</td><td><span class="en">il a demandé qu'est-ce que je faisais</span></td><td>il a demandé <b>ce que</b> je faisais</td></tr>
+    <tr><td class="w">He asked where I lived</td><td><span class="en">il a demandé où est-ce que j'habitais</span></td><td>il a demandé <b>où j'habitais</b></td></tr>
+    <tr><td class="w">He told me to wait</td><td><span class="en">il m'a dit que j'attende</span></td><td>il m'a dit <b>d'attendre</b></td></tr>
+  </table></div>
+</section>
+
+<section class="tense" id="chunks">
+  <div class="thead"><h2>Chunk bank — ready to recombine</h2>
+  <span class="en-name">memorise whole; swap one element at a time</span>
+  <span class="tag spk">🗣️ + ✍️</span></div>
+  <div class="usage"><b>Expression écrite / orale.</b> Each frame is complete and grammatically self-contained — you only fill the blank. These carry the tense-shift markers that separate NCLC 7 from NCLC 6.</div>
+  <div class="chunks">
+    <div class="chunk"><div class="fr">Si j'avais le choix, je <b>préférerais</b> …</div><div class="gl">irréel du présent — opinion softener, Section B</div></div>
+    <div class="chunk"><div class="fr">Si nous avions su plus tôt, nous <b>aurions pu</b> …</div><div class="gl">irréel du passé — complaint / regret letter</div></div>
+    <div class="chunk"><div class="fr">Au cas où vous <b>seriez</b> disponible, je …</div><div class="gl">formal email, conditionnel obligatoire</div></div>
+    <div class="chunk"><div class="fr">Dès que j'<b>aurai reçu</b> votre réponse, je …</div><div class="gl">futur antérieur — professional register</div></div>
+    <div class="chunk"><div class="fr">Tant que la situation ne <b>changera</b> pas, il faudra …</div><div class="gl">futur after <i>tant que</i></div></div>
+    <div class="chunk"><div class="fr">On m'a expliqué que je <b>devais</b> d'abord …</div><div class="gl">discours indirect, présent → imparfait</div></div>
+    <div class="chunk"><div class="fr">Le responsable m'a assuré que le problème <b>serait</b> réglé.</div><div class="gl">futur → conditionnel, réclamation</div></div>
+    <div class="chunk"><div class="fr">Je vous avais précisé que j'<b>avais déjà réglé</b> la facture.</div><div class="gl">passé composé → plus-que-parfait</div></div>
+    <div class="chunk"><div class="fr">J'aimerais savoir si vous <b>pourriez</b> …</div><div class="gl"><i>si</i> = whether → conditionnel allowed</div></div>
+    <div class="chunk"><div class="fr">Même si cela <b>demande</b> plus de temps, je pense que …</div><div class="gl"><i>même si</i> + indicatif — concession</div></div>
+    <div class="chunk"><div class="fr">Après avoir <b>examiné</b> les deux options, j'ai choisi …</div><div class="gl">infinitif passé — clean transition</div></div>
+    <div class="chunk"><div class="fr">J'habite à Calgary depuis …, et je <b>travaille</b> dans …</div><div class="gl">présent + depuis — Section A self-presentation</div></div>
+  </div>
+  <div class="note"><b>Drill method (imitation-with-variation):</b> take one frame, hold the structure fixed, and swap only the content word — five times. <i>Si j'avais le choix, je préférerais <u>partir plus tôt</u> / <u>travailler à distance</u> / <u>habiter plus près du centre</u>…</i> The goal is that the tense pair fires automatically before you've decided what to say.</div>
+</section>
+
+<footer>
+Scope: Berlitz F1–F6 (CEFR A1–B1.2). Literary tenses (passé simple, passé antérieur, imparfait/plus-que-parfait du subjonctif) marked 📚 recognition-only. 🇨🇦 items are for comprehension of Canadian speech; TEF written and formal oral production uses the standard forms throughout. Reference 07. Companion files: 01 Tenses Reference · 02 Master Comparison Tables · 03 Irregular Verbs · 04 TEF Expression Orale Section A · 05 TEF Listening Chunk Banks · 06 Production Inventory.
+</footer>
+
+</div></body></html>

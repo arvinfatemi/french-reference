@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TEF Canada — Expression Orale, Section A</title>
+<style>
+:root{
+  --ink:#23201c; --paper:#fbfaf7; --line:#e2ddd2; --soft:#f1eee6;
+  --stem:#0b6e6e; --end:#c0392b; --aux:#6b4fa0; --dim:#8a8377;
+  --chip:#efece4; --warn:#9a6b00; --ca:#1f5fa8; --ok:#226b34;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:15px/1.55 "Avenir Next","Segoe UI",system-ui,sans-serif;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+header.hero{padding:34px 0 10px;border-bottom:3px solid var(--ink)}
+h1{font-size:30px;margin:0 0 4px;letter-spacing:-.02em}
+.sub{color:var(--dim);margin:0 0 14px}
+nav.sticky{position:sticky;top:0;background:var(--paper);z-index:30;
+  border-bottom:1px solid var(--line);padding:8px 0;display:flex;flex-wrap:wrap;gap:6px}
+nav.sticky a{font-size:12px;text-decoration:none;color:var(--ink);
+  background:var(--chip);border:1px solid var(--line);border-radius:99px;
+  padding:3px 10px;white-space:nowrap}
+nav.sticky a:hover{background:#e6e1d4}
+.part-h{font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);margin:44px 0 8px;font-weight:800}
+section.card{margin:14px 0 0;border:1px solid var(--line);border-radius:10px;
+  background:#fff;overflow:hidden}
+.thead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding:12px 18px;background:var(--soft);border-bottom:1px solid var(--line)}
+.thead h2{margin:0;font-size:20px}
+.thead .en-name{color:var(--dim);font-size:13.5px}
+.body{padding:14px 18px}
+.tag{font-size:11px;border-radius:4px;padding:2px 7px;font-weight:700;letter-spacing:.03em}
+.tag.spk{background:#e3f2e6;color:#226b34}
+.tag.wrt{background:#e8eef9;color:#27508f}
+.tag.lit{background:#f3eadf;color:#8a5a13}
+table.big{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff}
+table.big th{background:var(--soft);text-align:left;padding:7px 10px;
+  border-bottom:2px solid var(--ink);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+table.big td{padding:7px 10px;border-bottom:1px solid var(--soft);vertical-align:top}
+table.big td.fr{font-family:Georgia,"Times New Roman",serif;font-size:16px}
+table.big td.lab{color:var(--dim);font-size:13px;font-weight:700;white-space:nowrap}
+table.big tr:nth-child(even) td{background:#fcfbf8}
+.fr{font-family:Georgia,"Times New Roman",serif}
+.gl{color:var(--dim);font-size:13px;font-style:italic}
+.note{margin:12px 0 2px;background:var(--soft);border-left:4px solid var(--ink);
+  border-radius:0 6px 6px 0;padding:9px 13px;font-size:13.5px}
+.note.ca{border-left-color:var(--ca);background:#eef3fa}
+.note.warn{border-left-color:var(--warn);background:#faf4e6}
+.note.ok{border-left-color:var(--ok);background:#eef6ef}
+.script{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:10px 0}
+.script p{margin:0 0 8px}
+.script p:last-child{margin-bottom:0}
+.who{display:inline-block;min-width:74px;font-size:11.5px;font-weight:800;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--dim);vertical-align:top}
+.who.you{color:var(--stem)}
+.who.ex{color:var(--aux)}
+.line{font-family:Georgia,serif;font-size:16px}
+.qnum{display:inline-block;min-width:30px;font-weight:800;color:var(--end);font-size:12px}
+ul.tight{margin:6px 0 0;padding-left:20px}
+ul.tight li{margin:3px 0}
+.two{display:flex;gap:16px;flex-wrap:wrap}
+.two > div{flex:1 1 320px;min-width:290px}
+.chipline{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chipline span{background:var(--chip);border:1px solid var(--line);border-radius:99px;
+  padding:2px 10px;font-size:13px;font-family:Georgia,serif}
+.timeline{border-left:3px solid var(--line);margin:8px 0 0 8px;padding-left:16px}
+.timeline .step{margin:0 0 14px;position:relative}
+.timeline .step::before{content:"";position:absolute;left:-24px;top:5px;width:11px;height:11px;
+  border-radius:50%;background:var(--stem);border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.timeline .t{font-size:12px;font-weight:800;letter-spacing:.05em;color:var(--dim)}
+.bad{color:var(--end)}
+.good{color:var(--ok)}
+footer{margin-top:50px;padding-top:14px;border-top:1px solid var(--line);
+  color:var(--dim);font-size:12.5px}
+a{color:var(--ca)}
+</style></head>
+<body><div class="wrap">
+
+<header class="hero">
+<h1>TEF Canada — Expression Orale, <span style="color:var(--stem)">Section A</span></h1>
+<p class="sub">Obtenir des renseignements · 5 minutes · formal role-play · ~10 questions<br>
+Strategy, scripts, question banks and 🇨🇦 Canadian variants. Level: F6 / B1.2 and below.</p>
+</header>
+
+<nav class="sticky">
+<a href="#format">1 · Format</a>
+<a href="#grid">2 · What's scored</a>
+<a href="#timing">3 · The 5 minutes</a>
+<a href="#open">4 · Opening</a>
+<a href="#ten">5 · The 10 categories</a>
+<a href="#forms">6 · Question forms</a>
+<a href="#relance">7 · Relances</a>
+<a href="#close">8 · Closing</a>
+<a href="#banks">9 · Topic banks</a>
+<a href="#worked">10 · Worked examples</a>
+<a href="#upgrade">11 · Weak → strong</a>
+<a href="#ca">12 · 🇨🇦 Canadian</a>
+<a href="#errors">13 · Errors</a>
+<a href="#drill">14 · Drill plan</a>
+</nav>
+
+<!-- ============ 1 ============ -->
+<p class="part-h">Part 1 — The task itself</p>
+<section class="card" id="format">
+<div class="thead"><h2>1 · Format (official)</h2><span class="en-name">CCI Paris Île-de-France / Le français des affaires</span></div>
+<div class="body">
+<table class="big">
+<tr><td class="lab">Duration</td><td>5 minutes (Section B follows, 10 minutes; 15 min total, 450 points)</td></tr>
+<tr><td class="lab">Document</td><td>A short everyday ad: <span class="fr">une offre d'emploi, une offre de services, une annonce de loisirs, une annonce de logement, une petite annonce</span> (item for sale)</td></tr>
+<tr><td class="lab">Consigne</td><td class="fr">Vous avez lu une annonce pour XXX et vous êtes intéressé(e). Vous téléphonez pour avoir plus d'informations. → Posez une dizaine de questions. → Votre examinateur(trice) joue le rôle de votre interlocuteur(trice).</td></tr>
+<tr><td class="lab">Your role</td><td>A member of the public phoning a stranger at a business/organisation. <b>Vouvoiement obligatoire.</b></td></tr>
+<tr><td class="lab">Examiner's role</td><td>The person who placed the ad. They answer — sometimes vaguely or incompletely, on purpose.</td></tr>
+<tr><td class="lab">Target</td><td>"Une dizaine de questions" — roughly 10, plus follow-ups. This is an <b>order of magnitude, not a quota</b>.</td></tr>
+<tr><td class="lab">Recording</td><td>Systematically recorded so at least two trained assessors can double-mark it.</td></tr>
+<tr><td class="lab">Notes</td><td>Current official test-day instructions state <b>no scratch paper or notes</b> during the speaking test. Verify with your centre before test day.</td></tr>
+</table>
+<div class="note warn"><b>The one structural fact that changes everything:</b> Section A is not a monologue and not an interview. It is <i>you</i> driving a phone call. If you go silent, nothing happens — the examiner will not rescue you. Conversely, everything you say is a question or a reaction to an answer. There is no "presentation" phase.</div>
+</div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section class="card" id="grid">
+<div class="thead"><h2>2 · What the two assessors are actually marking</h2></div>
+<div class="body">
+<div class="two">
+<div>
+<p style="margin:0 0 6px"><b>A. Qualité et efficacité du discours</b> — Section A specifics:</p>
+<ul class="tight">
+<li><span class="fr">s'informer</span> — do you actually obtain information?</li>
+<li><span class="fr">faire préciser ou clarifier les réponses obtenues</span> — do you push for detail?</li>
+<li><span class="fr">tenir une conversation formelle</span> — is the register right and sustained?</li>
+</ul>
+<p class="gl" style="margin-top:8px">Guiding questions on the marking grid: Is the discourse adapted to the situation? Are the points summary/vague, or precise/detailed? Are reactions to the examiner adapted, spontaneous, natural? Is the discourse clear or confused?</p>
+</div>
+<div>
+<p style="margin:0 0 6px"><b>B. Richesse et maîtrise de la langue orale</b></p>
+<ul class="tight">
+<li><b>Lexique</b> — juste, précis, adéquat</li>
+<li><b>Syntaxe</b> — sentences simple or complex, but <i>mastered</i>; tenses and moods used correctly</li>
+<li><b>Prononciation</b> — claire, naturelle</li>
+</ul>
+<div class="note ok" style="margin-top:10px"><b>Practical read of this:</b> two of the three "efficacité" criteria (<i>faire préciser</i>, <i>tenir une conversation</i>) can only be earned by <b>reacting</b>. A candidate who fires 10 perfect memorised questions and never reacts caps out low. A candidate who asks 7 questions but clarifies, reformulates and reacts scores higher.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section class="card" id="timing">
+<div class="thead"><h2>3 · How the 5 minutes actually unfold</h2></div>
+<div class="body">
+<div class="timeline">
+<div class="step"><div class="t">BEFORE — ~1 min with the document</div>
+Read the ad. Do <b>not</b> try to invent sentences. Instead, tick off which of the 10 categories (§5) the ad has <i>already answered</i> — those are the ones you must <b>not</b> ask. Everything unanswered is your question list. This is the single highest-value minute of the task.</div>
+<div class="step"><div class="t">0:00–0:20 — Opening</div>
+Greeting + why you are calling + name the ad + announce that you have questions. Fixed script (§4). Say it the same way every time.</div>
+<div class="step"><div class="t">0:20–0:50 — One broad opener</div>
+<span class="fr">Pourriez-vous d'abord me donner un peu plus de renseignements sur…?</span> Their answer is free material: it will contain 2–3 things you can follow up on, which is exactly what "faire préciser" is scored on.</div>
+<div class="step"><div class="t">0:50–4:20 — Question cycles</div>
+Roughly <b>10–14 turns</b>. One cycle = <span class="good">react (2 words) → question (1 sentence) → listen</span>. Budget ~15–20 seconds per cycle. Interleave 2–3 clarification/reformulation moves.</div>
+<div class="step"><div class="t">4:20–5:00 — Closing</div>
+Thank + summarise one key fact back to them + state next step + polite sign-off (§8). Never stop mid-air.</div>
+</div>
+<div class="note"><b>Rhythm target:</b> you speak roughly 40% of the time, they speak 60%. If you are talking more than they are, you are monologuing — that is Section B behaviour, not Section A.</div>
+</div>
+</section>
+
+<!-- ============ 4 ============ -->
+<p class="part-h">Part 2 — Fixed chunks to memorise</p>
+<section class="card" id="open">
+<div class="thead"><h2>4 · Opening block</h2><span class="en-name">memorise one, verbatim</span></div>
+<div class="body">
+<div class="script">
+<p><span class="who you">Vous</span><span class="line">Bonjour madame / monsieur. Je vous appelle au sujet de votre annonce pour <b>[le poste / le cours / l'appartement / les meubles]</b>.</span></p>
+<p><span class="who you">&nbsp;</span><span class="line">Je l'ai vue <b>[dans le journal / sur Internet / sur votre site]</b> et je suis très intéressé.</span></p>
+<p><span class="who you">&nbsp;</span><span class="line">Est-ce que vous auriez quelques minutes ? J'aimerais vous poser quelques questions.</span></p>
+<p><span class="who ex">Examinateur</span><span class="line">Oui, bien sûr, je vous écoute.</span></p>
+<p><span class="who you">Vous</span><span class="line">Merci. Pourriez-vous d'abord me donner un peu plus de renseignements sur <b>[…]</b> ? Parce que l'annonce ne donne pas beaucoup de détails.</span></p>
+</div>
+<p class="gl">Interchangeable variants — swap freely, they all fit the same slot:</p>
+<div class="chipline">
+<span>Je vous téléphone au sujet de…</span>
+<span>C'est bien vous qui avez publié l'annonce pour… ?</span>
+<span>Je vous contacte à propos de votre annonce.</span>
+<span>J'aimerais obtenir quelques renseignements, s'il vous plaît.</span>
+<span>J'aurais quelques questions à vous poser.</span>
+<span>Je voudrais avoir plus de précisions sur votre offre.</span>
+</div>
+<div class="note warn"><b>Do not skip the frame.</b> Candidates who dive straight into <span class="fr bad">« Quel est le prix ? »</span> lose the <span class="fr">tenir une conversation formelle</span> credit in the first ten seconds and rarely recover the register afterwards.</div>
+<div class="note ca">🇨🇦 In Québec/Canada, <span class="fr">Bonjour</span> works all day (no <span class="fr">Bonsoir</span> anxiety) and is also used on leaving. Still close with <span class="fr">Bonne journée</span> — it is the safest, most natural Canadian sign-off.</div>
+</div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section class="card" id="ten">
+<div class="thead"><h2>5 · The 10 universal categories</h2><span class="en-name">works on every Section A document ever set</span></div>
+<div class="body">
+<p class="gl">Memorise the <b>ten category names</b>, not ten sentences. On exam day you scan the ad, cross out the categories it already answers, and ask the rest. Two ready-made phrasings per category so you always have a fallback.</p>
+<table class="big">
+<tr><th style="width:20px"></th><th style="width:150px">Category</th><th>Ready-made questions</th></tr>
+<tr><td class="qnum">1</td><td class="lab">Nature<br>what exactly is it</td><td class="fr">En quoi consiste exactement <b>[ce travail / cette activité]</b> ?<br>Pourriez-vous me décrire <b>[le poste / le déroulement d'une séance]</b> ?</td></tr>
+<tr><td class="qnum">2</td><td class="lab">Lieu<br>where</td><td class="fr">Où est-ce que ça se passe exactement ?<br>Pourriez-vous me préciser l'adresse ? C'est facile d'accès en transport en commun ?</td></tr>
+<tr><td class="qnum">3</td><td class="lab">Dates &amp; horaires<br>when</td><td class="fr">Quand est-ce que ça commence ?<br>Quels sont les horaires ? Est-ce que c'est possible le soir ou la fin de semaine ?</td></tr>
+<tr><td class="qnum">4</td><td class="lab">Durée &amp; fréquence<br>how long, how often</td><td class="fr">Combien de temps est-ce que ça dure ?<br>À quelle fréquence est-ce qu'on doit y aller ?</td></tr>
+<tr><td class="qnum">5</td><td class="lab">Prix &amp; paiement<br>how much</td><td class="fr">Quel est le tarif ? / Quel serait le salaire ?<br>Qu'est-ce qui est compris dans ce prix ? Est-ce qu'il y a des frais supplémentaires ?</td></tr>
+<tr><td class="qnum">6</td><td class="lab">Conditions<br>requirements</td><td class="fr">Est-ce qu'il faut avoir de l'expérience ?<br>Quelles sont les conditions pour participer ? Y a-t-il un âge minimum ?</td></tr>
+<tr><td class="qnum">7</td><td class="lab">Public &amp; niveau<br>who it's for</td><td class="fr">Est-ce que c'est ouvert aux débutants ?<br>Combien de personnes y a-t-il dans chaque groupe ?</td></tr>
+<tr><td class="qnum">8</td><td class="lab">Matériel<br>what to bring</td><td class="fr">Est-ce que le matériel est fourni, ou faut-il apporter le sien ?<br>Qu'est-ce que je dois prévoir ?</td></tr>
+<tr><td class="qnum">9</td><td class="lab">Inscription<br>how to sign up</td><td class="fr">Comment est-ce qu'on s'inscrit ?<br>Quels documents faut-il fournir ? Est-ce qu'il reste des places ?</td></tr>
+<tr><td class="qnum">10</td><td class="lab">Annulation &amp; suite<br>what if / next step</td><td class="fr">Qu'est-ce qui se passe si je dois annuler ?<br>Quelle serait la prochaine étape ?</td></tr>
+</table>
+<div class="note ok"><b>Coverage beats volume.</b> Ten questions spread over ten different categories reads as "précis, détaillé". Ten questions all about money reads as "sommaire". <span class="fr">Combien ça coûte ?</span> and <span class="fr">Quel est le prix ?</span> count as <b>one</b> question, not two.</div>
+</div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section class="card" id="forms">
+<div class="thead"><h2>6 · Question forms — the variety layer</h2><span class="en-name">syntaxe = a scored criterion</span></div>
+<div class="body">
+<p class="gl">Ten questions all built on <span class="fr">Est-ce que…</span> is grammatically flawless and scores poorly on <b>syntaxe</b>. Rotate through these five. Aim for at least three different forms across the exchange.</p>
+<table class="big">
+<tr><th style="width:170px">Form</th><th>Pattern &amp; example</th><th style="width:120px">Register</th></tr>
+<tr><td class="lab">1 · Est-ce que</td><td class="fr">Est-ce que le matériel est fourni ?<br>Comment est-ce qu'on s'inscrit ?</td><td>Neutral — safe default, use ~4×</td></tr>
+<tr><td class="lab">2 · Quel / Quelle</td><td class="fr">Quel est le tarif ? · Quels sont les horaires ?<br>Quelle est la durée du contrat ?</td><td>Neutral, very efficient</td></tr>
+<tr><td class="lab">3 · Inversion</td><td class="fr">Faut-il apporter quelque chose ?<br>Y a-t-il un stationnement sur place ?<br>Le prix comprend-il l'hébergement ?</td><td>Formal — <b>2–3 max</b>, only ones you can produce cleanly</td></tr>
+<tr><td class="lab">4 · Conditionnel de politesse</td><td class="fr">Pourriez-vous me préciser… ?<br>Est-ce qu'il serait possible de… ?<br>J'aimerais savoir si…<br>Serait-il envisageable de… ?</td><td>Formal, high-value — use 3–4×</td></tr>
+<tr><td class="lab">5 · Question indirecte</td><td class="fr">Je voudrais savoir <b>si</b> les cours ont lieu toute l'année.<br>J'aimerais savoir <b>comment</b> se déroule une séance.<br>Je me demandais <b>ce que</b> le prix comprend exactement.</td><td>Formal, shows syntactic range</td></tr>
+</table>
+<div class="note warn"><b>Inversion trap.</b> With a noun subject the pronoun is doubled: <span class="fr good">Le prix comprend-<b>il</b> le matériel ?</span> — not <span class="fr bad">✗ Comprend le prix le matériel ?</span> If that construction wobbles under pressure, skip inversion and lean on forms 4 and 5, which are just as formal and much safer.</div>
+<div class="note"><b>Indirect questions:</b> word order goes back to normal — no inversion, no <span class="fr">est-ce que</span>. <span class="fr good">Je voudrais savoir <b>où se trouve</b> le centre.</span> / <span class="fr bad">✗ Je voudrais savoir où est-ce que le centre se trouve.</span></div>
+</div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section class="card" id="relance">
+<div class="thead"><h2>7 · Relances — the part that separates B1 from B2</h2></div>
+<div class="body">
+<p class="gl">The marking grid explicitly rewards <span class="fr">faire préciser ou clarifier les réponses obtenues</span>. The examiner will sometimes answer vaguely on purpose. Every vague answer is a free point if you push. Plan to use <b>3–4 of these</b>.</p>
+<div class="two">
+<div>
+<p><b>a · Micro-reactions</b> <span class="gl">(before each new question — 1 second, huge naturalness payoff)</span></p>
+<div class="chipline"><span>D'accord.</span><span>Je vois.</span><span>Ah, très bien.</span><span>Parfait.</span><span>C'est noté.</span><span>Intéressant.</span><span>Tout à fait.</span></div>
+
+<p style="margin-top:14px"><b>b · Ask for precision</b></p>
+<div class="chipline"><span>Pourriez-vous préciser ce point ?</span><span>Vous avez mentionné… ; pourriez-vous m'en dire un peu plus ?</span><span>Et concrètement, comment ça se passe ?</span><span>C'est-à-dire ?</span><span>Qu'entendez-vous par « … » ?</span></div>
+
+<p style="margin-top:14px"><b>c · Pin down a vague answer</b></p>
+<div class="chipline"><span>Est-ce que vous pourriez me donner un ordre d'idée ?</span><span>Approximativement, ça représente combien ?</span><span>Vous voulez dire environ combien par mois ?</span></div>
+</div>
+<div>
+<p><b>d · Reformulate</b> <span class="gl">(the single most valuable move — do this at least twice)</span></p>
+<div class="chipline"><span>Donc, si j'ai bien compris, … c'est bien ça ?</span><span>Autrement dit, …</span><span>Vous voulez dire que… ?</span><span>Si je résume, …</span></div>
+
+<p style="margin-top:14px"><b>e · Ask them to repeat</b> <span class="gl">(never a weakness — it is scored behaviour)</span></p>
+<div class="chipline"><span>Pardon, je n'ai pas bien saisi. Pourriez-vous répéter, s'il vous plaît ?</span><span>Excusez-moi, vous pourriez parler un peu plus lentement ?</span><span>Vous avez dit trente ou treize ?</span></div>
+
+<p style="margin-top:14px"><b>f · React to a surprise</b> <span class="gl">(if they announce something unexpected, chase it)</span></p>
+<div class="chipline"><span>Ah, je ne le savais pas. Est-ce que ça veut dire que… ?</span><span>C'est-à-dire qu'il faudrait que je… ?</span><span>Dans ce cas, comment est-ce qu'on procède ?</span></div>
+</div>
+</div>
+<div class="note ok"><b>Gold-standard cycle</b> — this is what a high-scoring 20 seconds sounds like:<br>
+<span class="fr">— Et le prix, il comprend quoi exactement ?</span><br>
+<span class="fr" style="color:var(--aux)">— Le matériel est inclus, mais pas le transport.</span><br>
+<span class="fr">— D'accord, je vois. Donc si je comprends bien, je dois prévoir mes propres déplacements, c'est bien ça ? Et est-ce qu'il y a un stationnement sur place ?</span><br>
+<span class="gl">One micro-reaction + one reformulation + one new question, in a single turn. Repeat this shape 8 times and the task is done.</span></div>
+</div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section class="card" id="close">
+<div class="thead"><h2>8 · Closing block</h2><span class="en-name">memorise verbatim</span></div>
+<div class="body">
+<div class="script">
+<p><span class="who you">Vous</span><span class="line">Écoutez, je vous remercie beaucoup pour toutes ces informations, elles me sont très utiles.</span></p>
+<p><span class="who you">&nbsp;</span><span class="line">Donc, si je résume : <b>[one concrete fact you were told]</b>. C'est bien ça ?</span></p>
+<p><span class="who you">&nbsp;</span><span class="line">Je vais y réfléchir et je vous recontacte <b>[d'ici la fin de la semaine / dès que possible]</b>.</span></p>
+<p><span class="who you">&nbsp;</span><span class="line">Est-ce que je peux vous joindre à ce numéro ? … Parfait. Merci encore, bonne journée. Au revoir.</span></p>
+</div>
+<div class="note">The <b>résumé line</b> is doing double duty: it is a final reformulation (scored) and it buys you three seconds to land the ending cleanly. Never end on <span class="fr bad">« C'est tout, merci. »</span></div>
+<div class="note ca">🇨🇦 If they say <span class="fr">Bienvenue !</span> after your <span class="fr">merci</span>, that is the standard Québécois "you're welcome" — not a mistake. You should still produce <span class="fr">Je vous en prie</span> or <span class="fr">Merci à vous</span>, which is safe in both varieties.</div>
+</div>
+</section>
+
+<!-- ============ 9 ============ -->
+<p class="part-h">Part 3 — Topic-specific banks</p>
+<section class="card" id="banks">
+<div class="thead"><h2>9 · Question banks by document type</h2><span class="en-name">the five ad types that actually appear</span></div>
+<div class="body">
+
+<p style="margin:0 0 4px"><b>A · Offre d'emploi</b> <span class="gl">— the most frequent Section A document</span></p>
+<table class="big">
+<tr><td class="fr">En quoi consisteraient exactement mes tâches ?</td><td class="fr">Est-ce que le poste est à temps plein ou à temps partiel ?</td></tr>
+<tr><td class="fr">Quel serait le salaire, ou le taux horaire ?</td><td class="fr">S'agit-il d'un contrat permanent ou temporaire ?</td></tr>
+<tr><td class="fr">Quels sont les horaires ? Faut-il travailler la fin de semaine ?</td><td class="fr">Est-ce qu'une expérience est exigée pour ce poste ?</td></tr>
+<tr><td class="fr">Y a-t-il une formation prévue au début ?</td><td class="fr">Est-ce que vous offrez des avantages sociaux ?</td></tr>
+<tr><td class="fr">Combien de personnes travaillent dans l'équipe ?</td><td class="fr">Quand est-ce que le poste serait à pourvoir ?</td></tr>
+<tr><td class="fr">Comment faut-il postuler ? Faut-il envoyer un CV ?</td><td class="fr">Est-ce qu'il y aurait un entretien ? Quand aurait-il lieu ?</td></tr>
+</table>
+
+<p style="margin:18px 0 4px"><b>B · Loisirs, cours, activité</b> <span class="gl">— sport, ateliers, sorties, voyages organisés</span></p>
+<table class="big">
+<tr><td class="fr">Comment se déroule une séance type ?</td><td class="fr">Est-ce que c'est accessible aux débutants ?</td></tr>
+<tr><td class="fr">Combien de participants y a-t-il par groupe ?</td><td class="fr">Qui encadre l'activité ? Est-ce qu'il y a un moniteur ?</td></tr>
+<tr><td class="fr">Combien de temps dure chaque séance ?</td><td class="fr">Est-ce que l'équipement est fourni, ou faut-il apporter le sien ?</td></tr>
+<tr><td class="fr">Quel est le tarif ? Est-ce qu'il y a un abonnement à l'année ?</td><td class="fr">Est-ce qu'on peut faire une séance d'essai avant de s'engager ?</td></tr>
+<tr><td class="fr">Que se passe-t-il en cas de mauvais temps ?</td><td class="fr">Est-ce qu'il faut une assurance particulière ?</td></tr>
+<tr><td class="fr">Est-ce qu'il reste des places pour la prochaine session ?</td><td class="fr">Si je manque une séance, est-ce que je peux la reprendre ?</td></tr>
+</table>
+
+<p style="margin:18px 0 4px"><b>C · Logement / appartement à louer</b></p>
+<table class="big">
+<tr><td class="fr">Quelle est la superficie du logement ?</td><td class="fr">Combien de pièces est-ce qu'il y a exactement ?</td></tr>
+<tr><td class="fr">Est-ce que le loyer comprend le chauffage et l'électricité ?</td><td class="fr">Y a-t-il un stationnement inclus ?</td></tr>
+<tr><td class="fr">L'appartement est-il meublé ?</td><td class="fr">À quel étage se trouve-t-il ? Y a-t-il un ascenseur ?</td></tr>
+<tr><td class="fr">À partir de quand est-il disponible ?</td><td class="fr">Quelle est la durée du bail ?</td></tr>
+<tr><td class="fr">Est-ce que le quartier est bien desservi par les transports ?</td><td class="fr">Est-ce que les animaux sont acceptés ?</td></tr>
+<tr><td class="fr">Faut-il verser un dépôt de garantie ?</td><td class="fr">Serait-il possible de visiter cette semaine ?</td></tr>
+</table>
+
+<p style="margin:18px 0 4px"><b>D · Petite annonce — objet à vendre</b> <span class="gl">(meubles, voiture, vélo, électroménager)</span></p>
+<table class="big">
+<tr><td class="fr">Pourriez-vous me décrire l'état général de <b>[l'objet]</b> ?</td><td class="fr">Depuis combien de temps est-ce que vous l'avez ?</td></tr>
+<tr><td class="fr">Quelles sont les dimensions exactes ?</td><td class="fr">Est-ce qu'il y a des défauts, des rayures ?</td></tr>
+<tr><td class="fr">Quel prix en demandez-vous ?</td><td class="fr">Est-ce que le prix est négociable ?</td></tr>
+<tr><td class="fr">Est-ce que vous vendez d'autres articles en même temps ?</td><td class="fr">Est-ce que vous assurez la livraison, ou faut-il venir le chercher ?</td></tr>
+<tr><td class="fr">Comment est-ce que je peux vous payer ?</td><td class="fr">Quand est-ce que je pourrais venir le voir ?</td></tr>
+</table>
+
+<p style="margin:18px 0 4px"><b>E · Offre de services</b> <span class="gl">(garde d'enfants, aide à domicile, déménagement, réparations)</span></p>
+<table class="big">
+<tr><td class="fr">Quels services proposez-vous exactement ?</td><td class="fr">Est-ce que vous intervenez dans mon secteur ?</td></tr>
+<tr><td class="fr">Comment est-ce que vos tarifs sont calculés — à l'heure ou au forfait ?</td><td class="fr">Est-ce qu'un devis est gratuit ?</td></tr>
+<tr><td class="fr">Dans quels délais est-ce que vous pourriez intervenir ?</td><td class="fr">Est-ce que vos employés sont assurés ?</td></tr>
+<tr><td class="fr">Est-ce qu'il y a une garantie sur le travail effectué ?</td><td class="fr">Quels sont vos modes de paiement ?</td></tr>
+</table>
+
+<div class="note"><b>Scope note:</b> everything above sits inside F1–F6. <span class="fr">avantages sociaux, dépôt de garantie, devis, forfait, superficie, à pourvoir</span> are TEF-register additions beyond the Berlitz key-vocabulary lists — flagged so you can decide whether to activate them. Everything else is recombination of covered material.</div>
+</div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section class="card" id="worked">
+<div class="thead"><h2>10 · Two worked runs</h2><span class="en-name">full 5-minute shape, Canadian contexts</span></div>
+<div class="body">
+
+<p><b>Run 1 — <span class="fr">Cours de ski, station des Rocheuses</span></b></p>
+<p class="gl fr" style="border:1px dashed var(--line);padding:8px 12px;border-radius:6px;background:#fcfbf8">
+ÉCOLE DE SKI DES MONTAGNES — Cours collectifs et privés · Tous niveaux · Matériel disponible · Forfaits fin de semaine · Tél. 403-555-0184</p>
+<div class="script">
+<p><span class="who you">Vous</span><span class="line">Bonjour madame. Je vous appelle au sujet de votre annonce pour les cours de ski. Je suis très intéressé et j'aurais quelques questions, si vous avez un moment.</span></p>
+<p><span class="who you">1</span><span class="line">Pourriez-vous d'abord m'expliquer la différence entre les cours collectifs et les cours privés ?</span></p>
+<p><span class="who ex">Ex.</span><span class="line">Les cours collectifs se font en petits groupes, les cours privés sont individuels.</span></p>
+<p><span class="who you">2</span><span class="line">D'accord. Et combien de personnes y a-t-il dans un groupe, en général ?</span></p>
+<p><span class="who you">3</span><span class="line">Combien de temps dure une séance ?</span></p>
+<p><span class="who you">4</span><span class="line">Est-ce que les cours ont lieu toute la fin de semaine, ou seulement le matin ?</span></p>
+<p><span class="who you">5</span><span class="line">Quel est le tarif pour un forfait de deux jours ? Et qu'est-ce qui est compris dedans ?</span></p>
+<p><span class="who ex">Ex.</span><span class="line">Le forfait comprend les cours, mais pas le billet de remontée.</span></p>
+<p><span class="who you">→</span><span class="line">Ah, je ne le savais pas. Donc si je comprends bien, je dois acheter le billet séparément, c'est bien ça ? Il coûte combien, à peu près ?</span></p>
+<p><span class="who you">6</span><span class="line">Vous avez mentionné que le matériel est disponible. Est-ce qu'il est inclus ou est-ce qu'il faut le louer en plus ?</span></p>
+<p><span class="who you">7</span><span class="line">Est-ce que c'est vraiment accessible aux débutants ? Je n'ai jamais fait de ski.</span></p>
+<p><span class="who you">8</span><span class="line">Est-ce que les moniteurs parlent français ?</span></p>
+<p><span class="who you">9</span><span class="line">Comment est-ce qu'on s'inscrit ? Est-ce qu'il faut réserver longtemps à l'avance ?</span></p>
+<p><span class="who you">10</span><span class="line">Et s'il fait mauvais temps, ou si je dois annuler, est-ce que vous remboursez ?</span></p>
+<p><span class="who you">Fin</span><span class="line">Écoutez, je vous remercie beaucoup, c'est très clair. Donc je réserve en ligne et je prévois le billet de remontée en plus. Je vais en parler à ma femme et je vous rappelle cette semaine. Bonne journée !</span></p>
+</div>
+
+<p style="margin-top:22px"><b>Run 2 — <span class="fr">Location de kayaks au bord d'un lac</span></b></p>
+<p class="gl fr" style="border:1px dashed var(--line);padding:8px 12px;border-radius:6px;background:#fcfbf8">
+LOCATION KAYAKS &amp; CANOTS — Au bord du lac · À l'heure ou à la journée · Gilets de sauvetage fournis · Ouvert tous les jours de mai à septembre</p>
+<div class="script">
+<p><span class="who you">Vous</span><span class="line">Bonjour. Je vous téléphone à propos de votre annonce pour la location de kayaks. J'aimerais obtenir quelques renseignements, s'il vous plaît.</span></p>
+<p><span class="who you">1</span><span class="line">Pourriez-vous me préciser où vous vous trouvez exactement ? C'est directement au bord du lac ?</span></p>
+<p><span class="who you">2</span><span class="line">Quels sont vos horaires d'ouverture ?</span></p>
+<p><span class="who you">3</span><span class="line">Quels sont vos tarifs, à l'heure et à la journée ?</span></p>
+<p><span class="who you">4</span><span class="line">Est-ce qu'il faut réserver, ou est-ce qu'on peut venir directement ?</span></p>
+<p><span class="who ex">Ex.</span><span class="line">C'est préférable de réserver, surtout la fin de semaine.</span></p>
+<p><span class="who you">→</span><span class="line">Je vois. Et combien de temps à l'avance faudrait-il réserver, à votre avis ?</span></p>
+<p><span class="who you">5</span><span class="line">Est-ce qu'il y a des kayaks pour deux personnes ?</span></p>
+<p><span class="who you">6</span><span class="line">Vous dites que les gilets de sauvetage sont fournis. Est-ce qu'il y a autre chose à apporter ?</span></p>
+<p><span class="who you">7</span><span class="line">Est-ce qu'il faut de l'expérience, ou est-ce que vous donnez des explications au départ ?</span></p>
+<p><span class="who you">8</span><span class="line">Y a-t-il un stationnement sur place ?</span></p>
+<p><span class="who you">9</span><span class="line">Est-ce qu'on peut payer par carte ?</span></p>
+<p><span class="who you">10</span><span class="line">Et s'il pleut le jour de ma réservation, qu'est-ce qui se passe ?</span></p>
+<p><span class="who you">Fin</span><span class="line">Parfait, je vous remercie pour toutes ces informations. Donc je réserve à l'avance pour samedi et je prévois de quoi payer par carte. Merci encore, bonne journée.</span></p>
+</div>
+<div class="note ok"><b>Pattern to internalise from both runs:</b> the two <span class="fr">→</span> turns are not extra questions — they are follow-ups <i>generated from the examiner's answer</i>. On the day, you will not know where they land. That is fine: the trigger is simply "they said something I didn't already know" → reformulate → ask one more.</div>
+</div>
+</section>
+
+<!-- ============ 11 ============ -->
+<p class="part-h">Part 4 — Quality control</p>
+<section class="card" id="upgrade">
+<div class="thead"><h2>11 · Weak → strong, same information</h2></div>
+<div class="body">
+<table class="big">
+<tr><th style="width:38%">Weak <span class="bad">✗</span></th><th>Strong <span class="good">✓</span></th><th style="width:26%">Why</th></tr>
+<tr><td class="fr bad">Le prix ?</td><td class="fr good">Pourriez-vous m'indiquer le tarif, s'il vous plaît ?</td><td>Fragments give the assessors nothing to mark</td></tr>
+<tr><td class="fr bad">Tu ouvres à quelle heure ?</td><td class="fr good">Quels sont vos horaires d'ouverture ?</td><td>Register break — fatal in Section A</td></tr>
+<tr><td class="fr bad">Je veux savoir le prix.</td><td class="fr good">J'aimerais savoir quel est le tarif.</td><td><span class="fr">vouloir</span> → conditionnel de politesse</td></tr>
+<tr><td class="fr bad">C'est combien ? C'est où ? C'est quand ?</td><td class="fr good">Quel est le tarif ? · Où est-ce que ça se passe ? · Quand est-ce que ça commence ?</td><td>Full clauses, varied forms</td></tr>
+<tr><td class="fr bad">[silence, then next memorised question]</td><td class="fr good">D'accord, je vois. Et est-ce que…</td><td>Micro-reaction = "réactions spontanées, naturelles"</td></tr>
+<tr><td class="fr bad">Répétez.</td><td class="fr good">Pardon, je n'ai pas bien saisi. Pourriez-vous répéter, s'il vous plaît ?</td><td>Bare imperative sounds rude in French</td></tr>
+<tr><td class="fr bad">Ok. Ok. Ok.</td><td class="fr good">D'accord. · Je vois. · Très bien. · C'est noté.</td><td>Lexical variety on a criterion that is scored</td></tr>
+<tr><td class="fr bad">Combien ça coûte ? … Et le prix c'est combien ?</td><td class="fr good">Quel est le tarif ? … Et qu'est-ce qui est compris dans ce prix ?</td><td>Duplicate questions waste one of your ten</td></tr>
+<tr><td class="fr bad">C'est tout. Merci.</td><td class="fr good">Je vous remercie pour ces informations. Je vais y réfléchir et je vous recontacte. Bonne journée.</td><td>A closing is part of "tenir une conversation"</td></tr>
+</table>
+</div>
+</section>
+
+<!-- ============ 12 ============ -->
+<section class="card" id="ca">
+<div class="thead"><h2>12 · 🇨🇦 Canadian French — Section A specifics</h2></div>
+<div class="body">
+<p class="gl">Your examiner may well be Québécois, and half the ads in circulation use Canadian vocabulary. Both columns are accepted on the TEF — but recognising the Canadian term when it comes at you is what matters, because you cannot ask a follow-up about a word you didn't parse.</p>
+<table class="big">
+<tr><th style="width:34%">🇨🇦 Canada / Québec</th><th style="width:34%">🇫🇷 France</th><th>Note</th></tr>
+<tr><td class="fr">la fin de semaine</td><td class="fr">le week-end</td><td>Very common in Canadian job/leisure ads</td></tr>
+<tr><td class="fr">le cellulaire</td><td class="fr">le portable</td><td>⚠ In Québec <span class="fr">un portable</span> = a laptop</td></tr>
+<tr><td class="fr">un courriel</td><td class="fr">un mail / un e-mail</td><td>Use <span class="fr">courriel</span> — always safe in Canada</td></tr>
+<tr><td class="fr">le stationnement</td><td class="fr">le parking</td><td>Comes up constantly in Section A</td></tr>
+<tr><td class="fr">dispendieux</td><td class="fr">cher</td><td>Recognise it; <span class="fr">cher</span> is fine to produce</td></tr>
+<tr><td class="fr">une lettre de présentation</td><td class="fr">une lettre de motivation</td><td>Job-ad context</td></tr>
+<tr><td class="fr">un emploi à temps plein / partiel</td><td class="fr">un travail à plein temps</td><td>Both understood</td></tr>
+<tr><td class="fr">les avantages sociaux</td><td class="fr">les avantages / la mutuelle</td><td>Health insurance, pension etc.</td></tr>
+<tr><td class="fr">le taux horaire · l'heure</td><td class="fr">le salaire horaire</td><td class="fr">Quel est le taux horaire ?</td></tr>
+<tr><td class="fr">taxes en sus / plus les taxes</td><td class="fr">TTC / HT</td><td>Prices in ads are often pre-tax in Canada — a legitimate question: <span class="fr">Est-ce que les taxes sont incluses ?</span></td></tr>
+<tr><td class="fr">magasiner</td><td class="fr">faire les courses / du shopping</td><td>Recognition only</td></tr>
+<tr><td class="fr">un breuvage</td><td class="fr">une boisson</td><td>Recognition only</td></tr>
+<tr><td class="fr">Bienvenue !</td><td class="fr">De rien / Je vous en prie</td><td>Response to <span class="fr">merci</span>. Produce <span class="fr">Je vous en prie</span></td></tr>
+<tr><td class="fr">Bonjour (arriving <i>and</i> leaving)</td><td class="fr">Bonjour / Au revoir</td><td>Close with <span class="fr">Bonne journée</span></td></tr>
+</table>
+<div class="note ca">🇨🇦 <b>Register caution:</b> spoken Québécois drops <span class="fr">ne</span>, uses <span class="fr">tu</span> as a question particle (<span class="fr">Ça coûte-tu cher ?</span>), and says <span class="fr">c'est-tu</span>, <span class="fr">pantoute</span>, <span class="fr">t'sais</span>. <b>Recognise these; produce none of them in Section A.</b> The task is explicitly a formal conversation and the assessors are marking register adaptation.</div>
+</div>
+</section>
+
+<!-- ============ 13 ============ -->
+<section class="card" id="errors">
+<div class="thead"><h2>13 · The eight things that actually lose points</h2></div>
+<div class="body">
+<table class="big">
+<tr><td class="qnum">1</td><td><b>Reciting a memorised list.</b> It stops being a conversation. The assessors hear it instantly, and it forfeits two of the three "efficacité" criteria.</td></tr>
+<tr><td class="qnum">2</td><td><b>Asking something the ad already answered.</b> The ad says "Groupes de 8–12 personnes" and you ask <span class="fr bad">Combien de personnes par groupe ?</span> — that reads as not having read the document.</td></tr>
+<tr><td class="qnum">3</td><td><b>Slipping into <span class="fr">tu</span>.</b> One slip is recoverable; sustained tutoiement is a register failure. Watch the possessives too: <span class="fr">votre annonce</span>, not <span class="fr bad">ton annonce</span>.</td></tr>
+<tr><td class="qnum">4</td><td><b>Ignoring the answer.</b> If they mention an extra cost, a condition or a restriction and you move straight to your next prepared question, you skipped a free follow-up.</td></tr>
+<tr><td class="qnum">5</td><td><b>Every question the same shape.</b> Ten <span class="fr">Est-ce que…</span> in a row is a syntaxe ceiling.</td></tr>
+<tr><td class="qnum">6</td><td><b>Reaching for complex structures you can't land.</b> A clean simple sentence beats a subjunctive that collapses mid-clause. Save your complexity budget for Section B.</td></tr>
+<tr><td class="qnum">7</td><td><b>Long silences while hunting for the perfect word.</b> Say <span class="fr">Attendez, comment dire…</span> or <span class="fr">Une petite question encore :</span> and keep moving. Fluency is scored; a self-corrected error is not.</td></tr>
+<tr><td class="qnum">8</td><td><b>Running out of questions at 3 minutes.</b> This is what the 10-category grid is insurance against. If you genuinely exhaust the ad, pivot to hypotheticals: <span class="fr">Et si je devais annuler…? Et dans le cas où je viendrais avec quelqu'un…?</span></td></tr>
+</table>
+</div>
+</section>
+
+<!-- ============ 14 ============ -->
+<section class="card" id="drill">
+<div class="thead"><h2>14 · Drill plan &amp; resources</h2></div>
+<div class="body">
+<p><b>Daily drill (15 min), speaking aloud, timed, recorded:</b></p>
+<table class="big">
+<tr><td class="lab">Min 0–1</td><td>Read one ad. Tick which of the 10 categories it already answers.</td></tr>
+<tr><td class="lab">Min 1–6</td><td>Run the full call out loud against a timer — opening, 10 questions, closing. No script visible.</td></tr>
+<tr><td class="lab">Min 6–10</td><td>Play the recording back. Count: how many distinct categories? how many distinct question forms? how many relances? how many seconds of silence?</td></tr>
+<tr><td class="lab">Min 10–15</td><td>Re-run the <b>same</b> ad, fixing the one weakest metric. Repetition on identical material is where automaticity comes from.</td></tr>
+</table>
+<div class="note"><b>Praktika angle:</b> tell the AI partner explicitly — "You placed a classified ad for X. Answer my questions, but give short and sometimes vague answers, and never volunteer information." Vague answers are what force relances, and relances are the scored behaviour you can't drill alone.</div>
+
+<p style="margin-top:18px"><b>Resources — official first:</b></p>
+<ul class="tight">
+<li><b>Official sample subjects (PDF)</b> — the four real Section A ads (offre d'emploi, randonnée, figuration, meubles) plus the marking-grid wording: <span class="gl">lefrancaisdesaffaires.fr → « exemples de sujets » expression orale</span></li>
+<li><b>Official TEF EO tutorial</b> (interactive walkthrough of the exam format) — on the same site</li>
+<li><b>Official full simulation video</b>, TEF Canada speaking, both sections, with a real candidate (Aigerim) — YouTube, produced by PrepMyFuture + CCI Paris Île-de-France. Watch the Section A half three times: once for content, once for the relances only, once shadowing her intonation.</li>
+<li><b>Official preparation workshop</b> — « Préparer l'épreuve d'Expression orale du TEF », CCI Facebook Live recording on YouTube</li>
+<li><b>tefaq-preparation.ca</b> — free bank of Section A and B subjects, Québec-based, still current</li>
+<li><b>Mauril</b> (CBC/Radio-Canada) — for the input side: Canadian accents and service-encounter registers, which is exactly the listening load of Section A</li>
+</ul>
+<div class="note warn">Your <i>TEF Livre d'entraînement</i> (Hachette, nouvelle édition) has its own Section A subjects. Use those as the primary bank and this sheet as the layer on top — the book supplies documents, this supplies the reusable machinery.</div>
+</div>
+</section>
+
+<footer>
+TEF Canada · Expression Orale Section A · Format and assessment criteria per Le français des affaires (CCI Paris Île-de-France) official documentation.
+French content sits within F1–F6 (B1.2); TEF-register additions flagged in §9. 🇨🇦 Canadian variants marked throughout.
+Verify test-day rules with your centre before the exam.
+</footer>
+
+</div></body></html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>French Verb Tenses — Stem + Ending Reference</title>
+<style>
+:root{
+  --ink:#23201c; --paper:#fbfaf7; --line:#e2ddd2; --soft:#f1eee6;
+  --stem:#0b6e6e; --end:#c0392b; --aux:#6b4fa0; --dim:#8a8377;
+  --chip:#efece4; --warn:#9a6b00; --ca:#1f5fa8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:15px/1.5 "Avenir Next","Segoe UI",system-ui,sans-serif;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+header.hero{padding:34px 0 10px;border-bottom:3px solid var(--ink)}
+h1{font-size:30px;margin:0 0 4px;letter-spacing:-.02em}
+.sub{color:var(--dim);margin:0 0 14px}
+nav.sticky{position:sticky;top:0;background:var(--paper);z-index:30;
+  border-bottom:1px solid var(--line);padding:8px 0;display:flex;flex-wrap:wrap;gap:6px}
+nav.sticky a{font-size:12px;text-decoration:none;color:var(--ink);
+  background:var(--chip);border:1px solid var(--line);border-radius:99px;
+  padding:3px 10px;white-space:nowrap}
+nav.sticky a:hover{background:#e6e1d4}
+nav.sticky a.lit{background:#efe9f7;border-color:#d7c9ee}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 4px;font-size:13.5px}
+.legend span b{font-weight:700}
+.st{color:var(--stem);font-weight:600}
+.en{color:var(--end);font-weight:800}
+.en.zero{color:var(--dim);font-weight:600}
+.ax{color:var(--aux);font-weight:700}
+section.tense{margin:34px 0 0;border:1px solid var(--line);border-radius:10px;
+  background:#fff;overflow:hidden}
+.thead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding:12px 18px;background:var(--soft);border-bottom:1px solid var(--line)}
+.thead h2{margin:0;font-size:20px}
+.thead .en-name{color:var(--dim);font-size:13.5px}
+.tag{font-size:11px;border-radius:4px;padding:2px 7px;font-weight:700;letter-spacing:.03em}
+.tag.spk{background:#e3f2e6;color:#226b34}
+.tag.wrt{background:#e8eef9;color:#27508f}
+.tag.lit{background:#f3eadf;color:#8a5a13}
+.formula{padding:10px 18px;border-bottom:1px dashed var(--line);font-size:15px;
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.formula .box{border:1.5px solid;border-radius:6px;padding:3px 10px;font-weight:700}
+.formula .box.bst{border-color:var(--stem);color:var(--stem)}
+.formula .box.ben{border-color:var(--end);color:var(--end)}
+.formula .box.bax{border-color:var(--aux);color:var(--aux)}
+.formula .plus{font-weight:800;color:var(--dim)}
+.usage{padding:8px 18px;color:#574f44;font-size:13.5px;border-bottom:1px solid var(--line)}
+.cols{display:flex;gap:0;flex-wrap:wrap;padding:8px 8px 14px}
+.vcol{flex:1 1 280px;min-width:250px;padding:8px 10px}
+.vhead{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:2px solid var(--ink);padding-bottom:4px;margin-bottom:4px}
+.inf{font-weight:800;font-size:16px}
+.grp{font-size:11.5px;color:var(--dim);font-weight:700}
+table.ct{width:100%;border-collapse:collapse;font-size:16px}
+table.ct td{padding:3.5px 6px;border-bottom:1px solid var(--soft)}
+table.ct td.pr{color:var(--dim);font-size:13px;width:88px;text-align:right;padding-right:10px}
+table.ct td.fm{font-family:Georgia,"Times New Roman",serif;font-size:17px}
+.note{margin:0 18px 14px;background:var(--soft);border-left:4px solid var(--ink);
+  border-radius:0 6px 6px 0;padding:9px 13px;font-size:13.5px}
+.note.ca{border-left-color:var(--ca)}
+.note.irr{border-left-color:var(--end)}
+.note b{font-weight:700}
+.irrlist{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px}
+.irrlist span{white-space:nowrap;font-family:Georgia,serif;font-size:15px}
+.irrlist span i{font-style:normal;color:var(--dim);font-family:"Avenir Next","Segoe UI",sans-serif;font-size:12.5px}
+h1.part, .part-h{font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);margin:44px 0 -18px;font-weight:800}
+table.big{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff}
+table.big th{background:var(--ink);color:#fff;padding:7px 9px;font-size:12px;
+  letter-spacing:.04em;text-align:left}
+table.big td{border:1px solid var(--line);padding:5px 9px;
+  font-family:Georgia,serif;font-size:15.5px;white-space:nowrap}
+table.big td.pr, table.big td.lbl{font-family:"Avenir Next","Segoe UI",sans-serif;
+  font-size:12.5px;color:var(--dim);font-weight:700;background:var(--soft)}
+table.big tr.src td{font-family:"Avenir Next","Segoe UI",sans-serif;font-size:12px;
+  background:#fbf7ec;color:#574f44;white-space:normal}
+.scrollx{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin-top:24px}
+.callout{border:1.5px solid var(--ink);border-radius:10px;background:#fff;
+  padding:14px 18px;margin:26px 0 0}
+.callout h3{margin:0 0 8px;font-size:16px}
+.pair{font-family:Georgia,serif;font-size:16.5px;margin:3px 0}
+.pair .lab{font-family:"Avenir Next","Segoe UI",sans-serif;font-size:12px;
+  color:var(--dim);font-weight:700;display:inline-block;width:150px}
+footer{margin-top:50px;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line);padding-top:12px}
+@media print{nav.sticky{display:none}.scrollx{overflow:visible}body{font-size:13px}}
+</style></head><body><div class="wrap">
+<header class="hero">
+<h1>French Verb Tenses — Stem + Ending Reference</h1>
+<p class="sub">Every form split into <span class="st">stem</span> + <span class="en">ending</span> · regular cores: parler / finir / vendre (irregulars learned individually) · companion file: <b>Master Comparison Tables</b></p>
+
+<div class="legend">
+  <span><b class="st">stem</b> — the part that carries the meaning</span>
+  <span><b class="en">ending</b> — the part that changes with person/tense</span>
+  <span><b class="ax">auxiliary</b> — avoir/être in compound tenses</span>
+  <span><span class="en zero">&empty;</span> = no ending</span>
+</div>
+
+</header>
+
+<nav class="sticky">
+<a href="#stems">4 stems</a>
+<a href="#borrow" class="lit">Who borrows what</a>
+<a href="#howto">How verbs sort</a>
+<a href="#present">Présent</a>
+<a href="#imparfait">Imparfait</a>
+<a href="#futur">Futur</a>
+<a href="#conditionnel">Conditionnel</a>
+<a href="#subjonctif">Subjonctif</a>
+<a href="#imperatif">Impératif</a>
+<a href="#composes">Temps composés</a>
+<a href="#passe-compose">Passé composé</a>
+<a href="#pqp">Plus-que-parfait</a>
+<a href="#cond-passe">Conditionnel passé</a>
+<a href="#futur-ant">Futur antérieur</a>
+<a href="#periphrase">Futur proche &amp; co.</a>
+<a href="#nonfini">Participe / gérondif</a>
+<a href="#litteraire" class="lit">Passé simple 📚</a>
+<a href="#orthographe">Spelling changes</a>
+</nav>
+
+
+<section class="tense" id="stems" style="margin-top:24px">
+  <div class="thead"><h2>Start here — 4 stems unlock everything</h2>
+  <span class="en-name">every tense below borrows one of these</span></div>
+  <div class="scrollx" style="margin:10px 18px 14px"><table class="big">
+  <tr><th>Stem</th><th>How to get it</th><th>parler / finir / vendre</th><th>Feeds these tenses</th></tr>
+  <tr><td class="lbl">① Present stem</td><td class="lbl">infinitive − er/ir/re</td>
+  <td><span class="st">parl</span>- · <span class="st">fin</span>- · <span class="st">vend</span>-</td>
+  <td class="lbl">présent, impératif</td></tr>
+  <tr><td class="lbl">② Nous stem</td><td class="lbl">present <i>nous</i> form − ons</td>
+  <td><span class="st">parl</span>- · <span class="st">finiss</span>- · <span class="st">vend</span>-</td>
+  <td class="lbl">imparfait, participe présent, subjonctif (nous/vous)</td></tr>
+  <tr><td class="lbl">③ Future stem</td><td class="lbl">full infinitive (−e for -re) — always ends in <b>r</b></td>
+  <td><span class="st">parler</span>- · <span class="st">finir</span>- · <span class="st">vendr</span>-</td>
+  <td class="lbl">futur simple, conditionnel</td></tr>
+  <tr><td class="lbl">④ Ils stem</td><td class="lbl">present <i>ils</i> form − ent</td>
+  <td><span class="st">parl</span>- · <span class="st">finiss</span>- · <span class="st">vend</span>-</td>
+  <td class="lbl">subjonctif (je/tu/il/ils)</td></tr>
+  <tr><td class="lbl">+ Participe passé</td><td class="lbl">-er→é · -ir→i · -re→u</td>
+  <td><span class="st">parl</span><span class="en">é</span> · <span class="st">fin</span><span class="en">i</span> · <span class="st">vend</span><span class="en">u</span></td>
+  <td class="lbl">all 6 compound tenses</td></tr>
+  </table></div>
+  <div class="note">For regular verbs, stems ①②④ look identical for -er and -re verbs — they only split apart in -ir verbs (<span class="st">fin</span>- vs <span class="st">finiss</span>-) and irregular verbs (<i>boire</i>: <span class="st">boi</span>- / <span class="st">buv</span>- / <span class="st">boir</span>- / <span class="st">boiv</span>-). When a verb is irregular, it's almost always the <b>stem</b> that misbehaves — the endings stay loyal.</div>
+</section>
+
+<section class="tense" id="borrow" style="margin-top:24px">
+  <div class="thead"><h2>Who borrows from whom — the mnemonic map</h2>
+  <span class="en-name">no tense is built from scratch</span></div>
+  <div class="usage">Almost every tense borrows its stem from one place and its endings from another. Learn the loans and half the system stops needing memorization.</div>
+  <div class="scrollx" style="margin:10px 18px 14px"><table class="big">
+  <tr><th>Tense</th><th>Gets its <span style="color:#0b6e6e">stem</span> from…</th><th>Gets its <span style="color:#c0392b">endings</span> from…</th><th>Mnemonic</th></tr>
+  <tr><td class="lbl">Imparfait</td><td class="lbl">présent <i>nous</i>-form − ons</td><td class="lbl">its own set (-ais…)</td>
+  <td class="lbl">The only stem that's ever irregular is <i>être → ét-</i>.</td></tr>
+  <tr><td class="lbl">Subjonctif</td><td class="lbl">présent <i>ils</i>-form − ent</td><td class="lbl">présent <b>-er</b> endings (+ -ions/-iez)</td>
+  <td class="lbl">For -er verbs the je/tu/il/ils forms look <b>identical</b> to the présent.</td></tr>
+  <tr><td class="lbl">Futur</td><td class="lbl">the full infinitive — always ends in <b>-r</b></td><td class="lbl"><b>avoir</b> in the présent</td>
+  <td class="lbl"><i>ai · as · a · ons · ez · ont</i> = avoir with the <b>av-</b> dropped in nous/vous.</td></tr>
+  <tr><td class="lbl" style="background:#efe9f7"><b>Conditionnel</b><br><span style="font-weight:400;color:#574f44">owns nothing</span></td>
+  <td class="lbl" style="background:#efe9f7">the <b>futur</b> stem (every irregular included)</td>
+  <td class="lbl" style="background:#efe9f7">the <b>imparfait</b> endings</td>
+  <td class="lbl" style="background:#efe9f7">The merge point: <i>futur stem + imparfait endings</i>. Nothing new to learn.</td></tr>
+  <tr><td class="lbl">All compound tenses</td><td class="lbl">the participe passé (fixed)</td><td class="lbl">— the <b>auxiliary</b> carries the tense</td>
+  <td class="lbl">Only the auxiliary moves; the participle never changes.</td></tr>
+  </table></div>
+  <div class="note"><b>The three loans worth reciting:</b><br>
+  ① <b>Futur &amp; conditionnel <span class="st">always share a stem</span></b> — including every irregular (<i>ser-, aur-, ir-, voudr-, pourr-</i>). Learn the list once, use it twice.<br>
+  ② <b>Imparfait &amp; conditionnel <span class="en">always share endings</span></b> — <i>-ais · -ais · -ait · -ions · -iez · -aient</i>.<br>
+  ③ <b>Futur endings = <i>avoir</i> in the présent</b> — <i>ai, as, a, (av)ons, (av)ez, ont</i>.</div>
+  <div class="note irr"><b>So the confusable four sort themselves out:</b>
+  je <span class="st">parl</span><span class="en">ai</span> 📚 (p. simple) · je <span class="st">parl</span><span class="en">ais</span> (imparfait) · je <span class="st">parler</span><span class="en">ai</span> (futur) · je <span class="st">parler</span><span class="en">ais</span> (conditionnel).
+  <b>Hear an /r/ before the ending → future family. Ending in -s → the “was/would” family.</b></div>
+</section>
+
+<section class="tense" id="howto" style="margin-top:24px">
+  <div class="thead"><h2>How verbs actually sort — read this first</h2>
+  <span class="en-name">why neither “3 groups” nor “-er/-ir/-re” is the real map</span></div>
+  <div class="usage">The two systems you'll see in textbooks both leak. <b>Endings</b> (-er/-ir/-re) sort by infinitive spelling — but <i>finir</i> and <i>partir</i> both end in -ir and conjugate nothing alike. The <b>three groups</b> sort by behavior — but the 3<sup>e</sup> groupe is a junk drawer: <i>avoir</i> and <i>pouvoir</i> land in it together while sharing only the label “irregular”. The honest axis isn't the four letters at the end of the infinitive — it's <b>what the stem does in the plural</b>. Sort by that:</div>
+  <div class="scrollx" style="margin:10px 18px 14px"><table class="big">
+  <tr><th>Bucket</th><th>Model</th><th>Predictable?</th><th>How to learn it</th></tr>
+  <tr><td class="lbl">Regular -ER<br><span style="font-weight:400;color:#574f44">~90% of all verbs</span></td>
+  <td><span class="st">parler</span></td><td class="lbl">✓ fully</td>
+  <td class="lbl">Learn the one pattern. New verbs entering French join here (<i>googler, zoomer</i>).</td></tr>
+  <tr><td class="lbl">Regular -IR (-iss-)</td>
+  <td><span class="st">finir</span></td><td class="lbl">✓ fully</td>
+  <td class="lbl">Recognizable by the <b>-iss-</b> in the plural. <i>grandir, choisir, réussir</i>.</td></tr>
+  <tr><td class="lbl">Regular -RE<br><span style="font-weight:400;color:#574f44">only the <i>-dre</i> that keep their d</span></td>
+  <td><span class="st">vendre</span></td><td class="lbl">✓ fully</td>
+  <td class="lbl">Narrow: <b>-andre, -endre, -ondre, -erdre, -ordre</b> only. <i>attendre, perdre, répondre, rendre</i>. The moment the spelling is <i>-indre / -ire / -uire / -aître / -ttre / -vre</i>, it's NOT here.</td></tr>
+  <tr><td class="lbl">Loose -IR family<br><span style="font-weight:400;color:#574f44">irregular, but rhyme together</span></td>
+  <td><span class="st">partir</span></td><td class="lbl">~ partly</td>
+  <td class="lbl">Singular drops the final consonant: <i>je pars, il part / nous partons</i>. <i>sortir, dormir, servir, sentir</i>.</td></tr>
+  <tr><td class="lbl">Loose -OIR family</td>
+  <td><span class="st">pouvoir</span></td><td class="lbl">~ partly</td>
+  <td class="lbl">Stem shifts singular→plural: <i>je peux / nous pouvons</i>. <i>devoir, vouloir, recevoir</i>. Memorize each, but expect the family resemblance.</td></tr>
+  <tr><td class="lbl">Loose -RE family<br><span style="font-weight:400;color:#574f44">the plural inserts a consonant</span></td>
+  <td><span class="st">prendre · lire</span></td><td class="lbl">~ partly</td>
+  <td class="lbl">Short singular stem, then the <b>plural adds a consonant</b>: <i>je prends / nous <b>pren</b>ons</i>, <i>je lis / nous <b>lis</b>ons</i>, <i>j'écris / nous écri<b>v</b>ons</i>. This is where <i>prendre, lire, écrire, dire, conduire, mettre, connaître, craindre</i> live — see the breakdown below.</td></tr>
+  <tr><td class="lbl">True oddballs<br><span style="font-weight:400;color:#574f44">a pattern of one, each</span></td>
+  <td><span class="st">être · avoir · aller · faire</span></td><td class="lbl">✗ no</td>
+  <td class="lbl">No shared pattern at all — <i>aller</i> is spelled -ER but behaves nothing like <i>parler</i>. Memorize whole, full stop.</td></tr>
+  </table></div>
+  <div class="note"><b>The takeaway:</b> the three model verbs below (<i>parler / finir / vendre</i>) are the three <b>regular cores</b> — not three exhaustive “groups”. Everything else is an irregular you learn one at a time, and the irregular banks throughout this doc are where they live. Don't try to derive <i>avoir</i> from a rule; there isn't one.</div>
+
+  <div class="thead" style="border-top:1px solid var(--line)"><h2 style="font-size:17px">Inside the loose families — sort by the plural mutation, not the spelling</h2>
+  <span class="en-name">the real unit of categorization</span></div>
+  <div class="usage">Every “loose” verb runs the <b>same mechanical move</b>: a <b>short singular stem</b> (+ s·s·t) and a <b>longer plural stem</b>. The only question is <i>which consonant appears in the plural</i> — and that, not the infinitive ending, is the real category. The test for a genuine family: <i>knowing the family + the <b>je</b> form, can you produce <b>nous / ils</b> and the participle?</i> Where the infinitive shape maps 1:1 to one mutation, the spelling <b>is</b> a reliable behavioral label — conjugate a new one on sight. Where it doesn't (<i>-ire</i>), it's only a spelling rhyme.</div>
+  <div class="note"><b>Proof the ending doesn't decide:</b> <i>servir</i> (-ir) and <i>suivre</i> (-vre) run the identical move — <i>je ser<b>s</b> → nous ser<b>v</b>ons</i>, <i>je sui<b>s</b> → nous sui<b>v</b>ons</i>, both participles in <i>-i</i>. Meanwhile <i>rire</i>, which <b>shares</b> the -re ending with <i>suivre</i>, does something else entirely (no consonant at all). Ending predicts nothing; the mutation predicts everything.</div>
+  <div class="scrollx" style="margin:10px 18px 14px"><table class="big">
+  <tr><th>Sub-family</th><th>Plural mutation</th><th>je → nous</th><th>Predictable?</th><th>Participe passé</th></tr>
+  <tr><td class="lbl">-indre<br><span style="font-weight:400;color:#574f44">craindre, peindre, joindre, éteindre</span></td>
+  <td>-in/-ein/-oin → <b><span class="st">-ign-</span></b></td>
+  <td>je crain<span class="en">s</span> / nous <span class="st">craign</span><span class="en">ons</span></td>
+  <td class="lbl">✓ rock-solid, productive</td>
+  <td><span class="st">craint · peint · joint</span></td></tr>
+  <tr><td class="lbl">-uire<br><span style="font-weight:400;color:#574f44">conduire, construire, traduire, produire</span></td>
+  <td>insert <b><span class="st">-s-</span></b></td>
+  <td>je condui<span class="en">s</span> / nous <span class="st">conduis</span><span class="en">ons</span></td>
+  <td class="lbl">✓ rock-solid</td>
+  <td><span class="st">conduit</span> (≈ always -uit)</td></tr>
+  <tr><td class="lbl">-aître<br><span style="font-weight:400;color:#574f44">connaître, paraître, disparaître</span></td>
+  <td>insert <b><span class="st">-ss-</span></b></td>
+  <td>je connai<span class="en">s</span> / nous <span class="st">connaiss</span><span class="en">ons</span></td>
+  <td class="lbl">✓ solid <span style="color:#9a6b00">(naître is an impostor → né, naquis)</span></td>
+  <td><span class="st">connu</span></td></tr>
+  <tr><td class="lbl">-prendre<br><span style="font-weight:400;color:#574f44">apprendre, comprendre, surprendre</span></td>
+  <td>-end → <b><span class="st">-en-</span></b> (3pl <span class="st">-enn-</span>)</td>
+  <td>je prend<span class="en">s</span> / nous <span class="st">pren</span><span class="en">ons</span></td>
+  <td class="lbl">✓ (trivially — all <i>prendre</i> + a prefix)</td>
+  <td><span class="st">pris</span></td></tr>
+  <tr><td class="lbl">-ttre<br><span style="font-weight:400;color:#574f44">mettre, permettre, promettre, battre</span></td>
+  <td>single-t → <b><span class="st">-tt-</span></b></td>
+  <td>je met<span class="en">s</span> / nous <span class="st">mett</span><span class="en">ons</span></td>
+  <td class="lbl">⚠️ present yes; participle forks</td>
+  <td><span class="st">mis</span> / battre→<span class="st">battu</span></td></tr>
+  <tr><td class="lbl">-vre<br><span style="font-weight:400;color:#574f44">suivre, vivre</span></td>
+  <td>restore the <b><span class="st">-v-</span></b></td>
+  <td>je sui<span class="en">s</span> / nous <span class="st">suiv</span><span class="en">ons</span></td>
+  <td class="lbl">✓ solid (only two verbs)</td>
+  <td><span class="st">suivi</span> · vivre→<span class="st">vécu</span></td></tr>
+  <tr><td class="lbl">-ire ⚠️<br><span style="font-weight:400;color:#574f44">lire, dire, écrire, rire — a spelling rhyme, NOT one verb</span></td>
+  <td><b>varies per cluster</b> — see below</td>
+  <td>splits 3 ways</td>
+  <td class="lbl">✗ spelling does NOT predict it</td>
+  <td><span class="st">lu · dit · écrit · ri</span></td></tr>
+  <tr style="border-top:2px solid var(--ink)"><td class="lbl">Loose <b>-IR</b><br><span style="font-weight:400;color:#574f44">partir, sortir, dormir, servir, sentir, mentir</span></td>
+  <td>singular <b>drops</b> the consonant, plural restores it</td>
+  <td>je ser<span class="en">s</span> / nous <span class="st">serv</span><span class="en">ons</span></td>
+  <td class="lbl">✓ solid</td>
+  <td><span class="st">-i</span> (servi, parti, dormi)</td></tr>
+  <tr><td class="lbl">Loose <b>-OIR</b><br><span style="font-weight:400;color:#574f44">pouvoir, vouloir, devoir, recevoir, savoir</span></td>
+  <td>stem <b>shifts</b> singular→plural (often a 3rd stem for <i>ils</i>)</td>
+  <td>je peu<span class="en">x</span> / nous <span class="st">pouv</span><span class="en">ons</span> / ils <span class="st">peuv</span><span class="en">ent</span></td>
+  <td class="lbl">~ partly — memorize each, expect the resemblance</td>
+  <td><span class="st">pu · voulu · dû · reçu · su</span></td></tr>
+  </table></div>
+  <div class="note irr"><b>Why -ire is the leaky one</b> — identical infinitive shape, different inserted consonant per cluster:
+  <div class="irrlist" style="font-size:15px">
+  <span>lire, élire <i>→</i> je li<span class="en">s</span> / nous <span class="st">lis</span>ons <i>·</i> insert <span class="st">-s-</span> <i>·</i> pp <span class="st">lu</span></span>
+  <span>dire, suffire <i>→</i> je di<span class="en">s</span> / nous <span class="st">dis</span>ons <i>·</i> <span class="st">-s-</span> <i>·</i> pp <span class="st">dit</span> <span style="color:#9a6b00">(vous <b>dites</b>!)</span></span>
+  <span>écrire, décrire <i>→</i> j'écri<span class="en">s</span> / nous écri<span class="st">v</span>ons <i>·</i> insert <span class="st">-v-</span> <i>·</i> pp <span class="st">écrit</span></span>
+  <span>rire, sourire <i>→</i> je ri<span class="en">s</span> / nous <span class="st">ri</span>ons <i>·</i> <span class="st">nothing</span> inserted <i>·</i> pp <span class="st">ri</span></span>
+  </div>
+  <div style="margin-top:8px"><b>rire breaks its own family's rule</b> — the whole point of “loose -RE” is that the plural inserts a consonant, and rire inserts none. Stem is just <i>ri-</i> everywhere, which ironically makes it one of the easiest verbs in French. ⚠️ One trap: imparfait <i>nous ri<b>i</b>ons</i> / subjonctif <i>que nous ri<b>i</b>ons</i> — double-i, because stem <i>ri-</i> + ending <i>-ions</i>.</div></div>
+  <div class="note"><b>One move to internalize for all of them:</b> singular = <span class="st">short stem</span> + <span class="en">s · s · t</span>; plural = <span class="st">stem + the inserted consonant</span> + regular endings. Hear it as a rhythm — <i>lis / lisons</i>, <i>écris / écrivons</i>, <i>conduis / conduisons</i>, <i>crains / craignons</i>. The participle still has to be memorized per verb.</div>
+</section>
+
+
+<section class="tense" id="present">
+  <div class="thead"><h2>Présent</h2><span class="en-name">I speak / I am speaking</span>
+    <span class="tag spk">🗣️ spoken core</span></div>
+  <div class="formula"><span class="box bst">INFINITIVE − er/ir/re</span><span class="plus">+</span><span class="box ben">PRESENT ENDINGS</span></div>
+  <div class="usage">Facts, habits, actions happening now. Also replaces English “present perfect continuous” with <i>depuis</i>: <i>j'habite ici depuis deux ans</i> = I <b>have been living</b> here for two years.</div>
+  <div class="cols"><div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">regular -ER</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">parl</span><span class="en">e</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">parl</span><span class="en">es</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">parl</span><span class="en">e</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">parl</span><span class="en">ons</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">parl</span><span class="en">ez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">parl</span><span class="en">ent</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">finir</span><span class="grp">regular -IR (-iss-)</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">fin</span><span class="en">is</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">fin</span><span class="en">is</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">fin</span><span class="en">it</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">fin</span><span class="en">issons</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">fin</span><span class="en">issez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">fin</span><span class="en">issent</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">vendre</span><span class="grp">regular -RE</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">vend</span><span class="en">s</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">vend</span><span class="en">s</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">vend</span><span class="en zero">&empty;</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">vend</span><span class="en">ons</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">vend</span><span class="en">ez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">vend</span><span class="en">ent</span></td></tr></table></div></div>
+  
+<div class="note irr"><b>Irregular but essential — memorize whole:</b>
+<div class="irrlist">
+<span>être <i>→</i> suis, es, est, sommes, êtes, sont</span>
+<span>avoir <i>→</i> ai, as, a, avons, avez, ont</span>
+<span>aller <i>→</i> vais, vas, va, allons, allez, vont</span>
+<span>faire <i>→</i> fais, fais, fait, faisons, faites, font</span>
+<span>pouvoir <i>→</i> peux, peux, peut, pouvons, pouvez, peuvent</span>
+<span>vouloir <i>→</i> veux, veux, veut, voulons, voulez, veulent</span>
+<span>venir <i>→</i> viens, viens, vient, venons, venez, viennent</span>
+<span>prendre <i>→</i> prends, prends, prend, prenons, prenez, prennent</span>
+<span>devoir <i>→</i> dois, dois, doit, devons, devez, doivent</span>
+<span>savoir <i>→</i> sais, sais, sait, savons, savez, savent</span>
+</div></div>
+<div class="note"><b>-IR verbs that behave like -RE verbs</b> (no -iss-): partir, sortir, dormir, servir, sentir
+→ <span class="st">par</span><span class="en">s</span>, <span class="st">par</span><span class="en">s</span>, <span class="st">par</span><span class="en">t</span>, <span class="st">part</span><span class="en">ons</span>, <span class="st">part</span><span class="en">ez</span>, <span class="st">part</span><span class="en">ent</span> — singular stem loses its final consonant.</div>
+
+</section>
+<section class="tense" id="imparfait">
+  <div class="thead"><h2>Imparfait</h2><span class="en-name">I was speaking / I used to speak</span>
+    <span class="tag spk">🗣️ spoken core</span></div>
+  <div class="formula"><span class="box bst">NOUS-FORM − ons</span><span class="plus">+</span><span class="box ben">-ais -ais -ait -ions -iez -aient</span></div>
+  <div class="usage">Take the present-tense <i>nous</i> form, drop <b>-ons</b> — that's your stem. 100% regular except <i>être</i>.</div>
+  <div class="cols"><div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">nous parl<u>ons</u></span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">parl</span><span class="en">ais</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">parl</span><span class="en">ais</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">parl</span><span class="en">ait</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">parl</span><span class="en">ions</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">parl</span><span class="en">iez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">parl</span><span class="en">aient</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">finir</span><span class="grp">nous finiss<u>ons</u></span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">finiss</span><span class="en">ais</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">finiss</span><span class="en">ais</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">finiss</span><span class="en">ait</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">finiss</span><span class="en">ions</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">finiss</span><span class="en">iez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">finiss</span><span class="en">aient</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">vendre</span><span class="grp">nous vend<u>ons</u></span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">vend</span><span class="en">ais</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">vend</span><span class="en">ais</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">vend</span><span class="en">ait</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">vend</span><span class="en">ions</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">vend</span><span class="en">iez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">vend</span><span class="en">aient</span></td></tr></table></div></div>
+  
+<div class="note irr"><b>Only one irregular stem in the whole tense:</b> être → <span class="st">ét</span>- :
+<i>j'</i><span class="st">ét</span><span class="en">ais</span>, <i>tu</i> <span class="st">ét</span><span class="en">ais</span>, <i>il</i> <span class="st">ét</span><span class="en">ait</span>, <i>nous</i> <span class="st">ét</span><span class="en">ions</span>, <i>vous</i> <span class="st">ét</span><span class="en">iez</span>, <i>ils</i> <span class="st">ét</span><span class="en">aient</span></div>
+<div class="note"><b>Usage anchor:</b> states, descriptions, habits, background scenery (<i>c'était, il y avait, je voulais</i>). Completed one-time events → passé composé.</div>
+
+</section>
+<section class="tense" id="futur">
+  <div class="thead"><h2>Futur simple</h2><span class="en-name">I will speak</span>
+    <span class="tag wrt">✍️ written / formal</span></div>
+  <div class="formula"><span class="box bst">INFINITIVE (−e for -re)</span><span class="plus">+</span><span class="box ben">-ai -as -a -ons -ez -ont</span></div>
+  <div class="usage">Predictions, plans, formal promises. Default future for TEF <b>writing</b>.</div>
+  <div class="cols"><div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">full infinitive</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">parler</span><span class="en">ai</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">parler</span><span class="en">as</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">parler</span><span class="en">a</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">parler</span><span class="en">ons</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">parler</span><span class="en">ez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">parler</span><span class="en">ont</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">finir</span><span class="grp">full infinitive</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">finir</span><span class="en">ai</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">finir</span><span class="en">as</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">finir</span><span class="en">a</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">finir</span><span class="en">ons</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">finir</span><span class="en">ez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">finir</span><span class="en">ont</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">vendre</span><span class="grp">infinitive − e</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">vendr</span><span class="en">ai</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">vendr</span><span class="en">as</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">vendr</span><span class="en">a</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">vendr</span><span class="en">ons</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">vendr</span><span class="en">ez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">vendr</span><span class="en">ont</span></td></tr></table></div></div>
+  
+<div class="note"><b>Mnemonic:</b> the endings are the present tense of <i>avoir</i> (ai, as, a, ons, ez, ont — with av- dropped in plural). The stem <b>always ends in -r</b> — if you can't hear an /r/ before the ending, it's not the future.</div>
+<div class="note irr"><b>Irregular stems (same stems serve the conditionnel):</b>
+<div class="irrlist">
+<span>être <i>→</i> <span class="st">ser</span>-</span><span>avoir <i>→</i> <span class="st">aur</span>-</span>
+<span>aller <i>→</i> <span class="st">ir</span>-</span><span>faire <i>→</i> <span class="st">fer</span>-</span>
+<span>pouvoir <i>→</i> <span class="st">pourr</span>-</span><span>vouloir <i>→</i> <span class="st">voudr</span>-</span>
+<span>venir <i>→</i> <span class="st">viendr</span>-</span><span>tenir <i>→</i> <span class="st">tiendr</span>-</span>
+<span>voir <i>→</i> <span class="st">verr</span>-</span><span>envoyer <i>→</i> <span class="st">enverr</span>-</span>
+<span>savoir <i>→</i> <span class="st">saur</span>-</span><span>devoir <i>→</i> <span class="st">devr</span>-</span>
+<span>recevoir <i>→</i> <span class="st">recevr</span>-</span><span>courir <i>→</i> <span class="st">courr</span>-</span>
+<span>mourir <i>→</i> <span class="st">mourr</span>-</span><span>falloir <i>→</i> il <span class="st">faudr</span>a</span>
+<span>valoir <i>→</i> <span class="st">vaudr</span>-</span><span>pleuvoir <i>→</i> il <span class="st">pleuvr</span>a</span>
+</div></div>
+<div class="note ca">🇨🇦 In spoken Québécois the <b>futur proche</b> dominates; futur simple sounds more formal/written. But futur simple is <b>required after <i>quand</i></b> for future meaning: <i>quand j'arriverai…</i> (never <i>quand j'arrive</i> for the future on the TEF written tasks).</div>
+
+</section>
+<section class="tense" id="conditionnel">
+  <div class="thead"><h2>Conditionnel présent</h2><span class="en-name">I would speak</span>
+    <span class="tag spk">🗣️ spoken core</span></div>
+  <div class="formula"><span class="box bst">FUTUR STEM</span><span class="plus">+</span><span class="box ben">-ais -ais -ait -ions -iez -aient</span></div>
+  <div class="usage">Same stem as the future, same endings as the imparfait. Nothing new to learn — only a new combination.</div>
+  <div class="cols"><div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">futur stem</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">parler</span><span class="en">ais</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">parler</span><span class="en">ais</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">parler</span><span class="en">ait</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">parler</span><span class="en">ions</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">parler</span><span class="en">iez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">parler</span><span class="en">aient</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">finir</span><span class="grp">futur stem</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">finir</span><span class="en">ais</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">finir</span><span class="en">ais</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">finir</span><span class="en">ait</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">finir</span><span class="en">ions</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">finir</span><span class="en">iez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">finir</span><span class="en">aient</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">vendre</span><span class="grp">futur stem</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">vendr</span><span class="en">ais</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">vendr</span><span class="en">ais</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">vendr</span><span class="en">ait</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">vendr</span><span class="en">ions</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">vendr</span><span class="en">iez</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">vendr</span><span class="en">aient</span></td></tr></table></div></div>
+  
+<div class="note"><b>Formula in one line:</b> FUTUR STEM + IMPARFAIT ENDINGS. All futur irregular stems apply: <i>je <span class="st">ser</span><span class="en">ais</span>, j'<span class="st">aur</span><span class="en">ais</span>, je <span class="st">voudr</span><span class="en">ais</span>, je <span class="st">pourr</span><span class="en">ais</span>, j'<span class="st">ir</span><span class="en">ais</span></i>.</div>
+<div class="note"><b>Uses:</b> politeness (<i>je voudrais…</i>), hypotheticals with <i>si + imparfait</i> (<i>si j'avais le temps, je voyagerais</i>), advice (<i>tu devrais…</i>), unconfirmed information. High-value for TEF oral Section B (suggesting, persuading).</div>
+
+</section>
+<section class="tense" id="subjonctif">
+  <div class="thead"><h2>Subjonctif présent</h2><span class="en-name">(that) I speak</span>
+    <span class="tag wrt">✍️ written / formal</span></div>
+  <div class="formula"><span class="box bst">ILS-FORM − ent</span><span class="plus">+</span><span class="box ben">-e -es -e -ions -iez -ent</span></div>
+  <div class="usage">Take the present-tense <i>ils</i> form, drop <b>-ent</b>. Triggered by expressions of will, necessity, emotion, doubt — never used alone.</div>
+  <div class="cols"><div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">ils parl<u>ent</u></span></div><table class="ct"><tr><td class="pr">que je </td><td class="fm"><span class="st">parl</span><span class="en">e</span></td></tr><tr><td class="pr">que tu </td><td class="fm"><span class="st">parl</span><span class="en">es</span></td></tr><tr><td class="pr">qu'il/elle </td><td class="fm"><span class="st">parl</span><span class="en">e</span></td></tr><tr><td class="pr">que nous </td><td class="fm"><span class="st">parl</span><span class="en">ions</span></td></tr><tr><td class="pr">que vous </td><td class="fm"><span class="st">parl</span><span class="en">iez</span></td></tr><tr><td class="pr">qu'ils/elles </td><td class="fm"><span class="st">parl</span><span class="en">ent</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">finir</span><span class="grp">ils finiss<u>ent</u></span></div><table class="ct"><tr><td class="pr">que je </td><td class="fm"><span class="st">finiss</span><span class="en">e</span></td></tr><tr><td class="pr">que tu </td><td class="fm"><span class="st">finiss</span><span class="en">es</span></td></tr><tr><td class="pr">qu'il/elle </td><td class="fm"><span class="st">finiss</span><span class="en">e</span></td></tr><tr><td class="pr">que nous </td><td class="fm"><span class="st">finiss</span><span class="en">ions</span></td></tr><tr><td class="pr">que vous </td><td class="fm"><span class="st">finiss</span><span class="en">iez</span></td></tr><tr><td class="pr">qu'ils/elles </td><td class="fm"><span class="st">finiss</span><span class="en">ent</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">vendre</span><span class="grp">ils vend<u>ent</u></span></div><table class="ct"><tr><td class="pr">que je </td><td class="fm"><span class="st">vend</span><span class="en">e</span></td></tr><tr><td class="pr">que tu </td><td class="fm"><span class="st">vend</span><span class="en">es</span></td></tr><tr><td class="pr">qu'il/elle </td><td class="fm"><span class="st">vend</span><span class="en">e</span></td></tr><tr><td class="pr">que nous </td><td class="fm"><span class="st">vend</span><span class="en">ions</span></td></tr><tr><td class="pr">que vous </td><td class="fm"><span class="st">vend</span><span class="en">iez</span></td></tr><tr><td class="pr">qu'ils/elles </td><td class="fm"><span class="st">vend</span><span class="en">ent</span></td></tr></table></div></div>
+  
+<div class="note"><b>Two-stem verbs:</b> <i>nous/vous</i> switch to the <i>nous</i>-stem (= identical to imparfait forms):
+<div class="irrlist">
+<span>boire <i>→</i> que je boive / que nous buvions</span>
+<span>prendre <i>→</i> que je prenne / que nous prenions</span>
+<span>venir <i>→</i> que je vienne / que nous venions</span>
+<span>voir <i>→</i> que je voie / que nous voyions</span>
+<span>devoir <i>→</i> que je doive / que nous devions</span>
+</div></div>
+<div class="note irr"><b>Fully irregular stems:</b>
+<div class="irrlist">
+<span>être <i>→</i> sois, sois, soit, soyons, soyez, soient</span>
+<span>avoir <i>→</i> aie, aies, ait, ayons, ayez, aient</span>
+<span>faire <i>→</i> <span class="st">fass</span>-</span>
+<span>pouvoir <i>→</i> <span class="st">puiss</span>-</span>
+<span>savoir <i>→</i> <span class="st">sach</span>-</span>
+<span>aller <i>→</i> <span class="st">aill</span>- / nous <span class="st">all</span>ions</span>
+<span>vouloir <i>→</i> <span class="st">veuill</span>- / nous <span class="st">voul</span>ions</span>
+<span>falloir <i>→</i> il faille</span>
+</div></div>
+<div class="note"><b>Trigger phrases worth memorizing as chunks:</b> <i>il faut que, je veux que, bien que, avant que, pour que, je ne pense pas que, c'est important que</i> + subjonctif. After <i>je pense que / j'espère que</i> (affirmative) → indicative, not subjunctive.</div>
+
+</section>
+<section class="tense" id="imperatif">
+  <div class="thead"><h2>Impératif</h2><span class="en-name">Speak! Let's speak!</span>
+    <span class="tag spk">🗣️ spoken core</span></div>
+  <div class="formula"><span class="box bst">PRESENT TENSE FORMS</span><span class="plus">+</span><span class="box ben">tu / nous / vous — no pronoun</span></div>
+  <div class="usage">Commands and suggestions. Identical to the present tense, minus the pronoun — with one twist: -ER verbs (and <i>aller</i>: <i>va&nbsp;!</i>) drop the final <b>-s</b> in the <i>tu</i> form.</div>
+  <div class="cols">
+<div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">-ER: tu drops -s</span></div>
+<table class="ct">
+<tr><td class="pr">(tu)</td><td class="fm"><span class="st">parl</span><span class="en">e</span></td></tr>
+<tr><td class="pr">(nous)</td><td class="fm"><span class="st">parl</span><span class="en">ons</span></td></tr>
+<tr><td class="pr">(vous)</td><td class="fm"><span class="st">parl</span><span class="en">ez</span></td></tr>
+</table></div>
+<div class="vcol"><div class="vhead"><span class="inf">finir</span><span class="grp">= présent forms</span></div>
+<table class="ct">
+<tr><td class="pr">(tu)</td><td class="fm"><span class="st">fin</span><span class="en">is</span></td></tr>
+<tr><td class="pr">(nous)</td><td class="fm"><span class="st">fin</span><span class="en">issons</span></td></tr>
+<tr><td class="pr">(vous)</td><td class="fm"><span class="st">fin</span><span class="en">issez</span></td></tr>
+</table></div>
+<div class="vcol"><div class="vhead"><span class="inf">vendre</span><span class="grp">= présent forms</span></div>
+<table class="ct">
+<tr><td class="pr">(tu)</td><td class="fm"><span class="st">vend</span><span class="en">s</span></td></tr>
+<tr><td class="pr">(nous)</td><td class="fm"><span class="st">vend</span><span class="en">ons</span></td></tr>
+<tr><td class="pr">(vous)</td><td class="fm"><span class="st">vend</span><span class="en">ez</span></td></tr>
+</table></div>
+</div>
+  
+<div class="note irr"><b>Irregulars:</b>
+<div class="irrlist">
+<span>être <i>→</i> sois, soyons, soyez</span>
+<span>avoir <i>→</i> aie, ayons, ayez</span>
+<span>savoir <i>→</i> sache, sachons, sachez</span>
+<span>vouloir <i>→</i> veuillez (<i>veuillez patienter</i>)</span>
+</div></div>
+<div class="note"><b>The dropped -s comes back</b> before <i>y</i> / <i>en</i>: <i>vas-y&nbsp;!</i> <i>parles-en&nbsp;!</i> — Pronouns attach after with a hyphen: <i>donne-moi, lève-toi</i>; in the negative they return to the front: <i>ne me donne pas</i>.</div>
+
+</section>
+<section class="tense" id="composes">
+  <div class="thead"><h2>Les temps composés — one machine, six tenses</h2>
+    <span class="en-name">passé composé, plus-que-parfait, futur antérieur, conditionnel passé, subjonctif passé</span>
+    <span class="tag spk">🗣️ passé composé = spoken core</span></div>
+  <div class="formula"><span class="box bax">AVOIR or ÊTRE (conjugated)</span><span class="plus">+</span><span class="box bst">PARTICIPE PASSÉ</span>
+    <span style="color:var(--dim);font-size:13px">— the tense of the <b>auxiliary</b> is the only thing that changes</span></div>
+  <div class="usage">Learn the machine once. Every compound tense is just the auxiliary moved into a different simple tense. If you know your simple tenses + the participle, you get six tenses for free.</div>
+  
+<div class="scrollx" style="margin:10px 18px 14px"><table class="big">
+<tr><th>Compound tense</th><th>Auxiliary in…</th><th>with AVOIR</th><th>with ÊTRE</th><th>Meaning</th></tr>
+<tr>
+<td class="lbl">Passé composé</td>
+<td class="lbl">présent</td>
+<td><span class="ax">j'ai</span> <span class="st">parlé</span></td>
+<td><span class="ax">je suis</span> <span class="st">allé(e)</span></td>
+<td class="lbl">I spoke / have spoken</td></tr>
+<tr>
+<td class="lbl">Plus-que-parfait</td>
+<td class="lbl">imparfait</td>
+<td><span class="ax">j'avais</span> <span class="st">parlé</span></td>
+<td><span class="ax">j'étais</span> <span class="st">allé(e)</span></td>
+<td class="lbl">I had spoken</td></tr>
+<tr>
+<td class="lbl">Futur antérieur</td>
+<td class="lbl">futur</td>
+<td><span class="ax">j'aurai</span> <span class="st">parlé</span></td>
+<td><span class="ax">je serai</span> <span class="st">allé(e)</span></td>
+<td class="lbl">I will have spoken</td></tr>
+<tr>
+<td class="lbl">Conditionnel passé</td>
+<td class="lbl">conditionnel</td>
+<td><span class="ax">j'aurais</span> <span class="st">parlé</span></td>
+<td><span class="ax">je serais</span> <span class="st">allé(e)</span></td>
+<td class="lbl">I would have spoken</td></tr>
+<tr>
+<td class="lbl">Subjonctif passé</td>
+<td class="lbl">subjonctif</td>
+<td><span class="ax">que j'aie</span> <span class="st">parlé</span></td>
+<td><span class="ax">que je sois</span> <span class="st">allé(e)</span></td>
+<td class="lbl">(that) I spoke</td></tr>
+<tr>
+<td class="lbl">Passé antérieur 📚</td>
+<td class="lbl">passé simple</td>
+<td><span class="ax">j'eus</span> <span class="st">parlé</span></td>
+<td><span class="ax">je fus</span> <span class="st">allé(e)</span></td>
+<td class="lbl">literary only</td></tr>
+</table></div>
+
+  
+<div class="note"><b>Participe passé formation:</b>
+-er → <span class="st">parl</span><span class="en">é</span> &nbsp;•&nbsp;
+-ir → <span class="st">fin</span><span class="en">i</span> &nbsp;•&nbsp;
+-re → <span class="st">vend</span><span class="en">u</span></div>
+<div class="note irr"><b>Irregular participles, grouped by sound:</b>
+<div class="irrlist">
+<span><b>-u&nbsp;:</b></span>
+<span>avoir <i>→</i> eu</span><span>boire <i>→</i> bu</span><span>lire <i>→</i> lu</span>
+<span>voir <i>→</i> vu</span><span>savoir <i>→</i> su</span><span>pouvoir <i>→</i> pu</span>
+<span>devoir <i>→</i> dû</span><span>vouloir <i>→</i> voulu</span><span>connaître <i>→</i> connu</span>
+<span>venir <i>→</i> venu</span><span>tenir <i>→</i> tenu</span><span>courir <i>→</i> couru</span>
+<span>recevoir <i>→</i> reçu</span><span>vivre <i>→</i> vécu</span><span>pleuvoir <i>→</i> plu</span><span>falloir <i>→</i> fallu</span>
+</div>
+<div class="irrlist">
+<span><b>-is / -it&nbsp;:</b></span>
+<span>mettre <i>→</i> mis</span><span>prendre <i>→</i> pris</span><span>s'asseoir <i>→</i> assis</span>
+<span>dire <i>→</i> dit</span><span>écrire <i>→</i> écrit</span><span>conduire <i>→</i> conduit</span>
+</div>
+<div class="irrlist">
+<span><b>-t / other&nbsp;:</b></span>
+<span>faire <i>→</i> fait</span><span>ouvrir <i>→</i> ouvert</span><span>offrir <i>→</i> offert</span>
+<span>mourir <i>→</i> mort</span><span>craindre <i>→</i> craint</span><span>peindre <i>→</i> peint</span>
+<span>être <i>→</i> été</span><span>naître <i>→</i> né</span><span>rire <i>→</i> ri</span><span>suivre <i>→</i> suivi</span>
+</div></div>
+<div class="note"><b>Which auxiliary?</b> ÊTRE for the 17 movement/state verbs (<b>DR & MRS VANDERTRAMP</b>: Devenir, Revenir, Monter, Rester, Sortir, Venir, Aller, Naître, Descendre, Entrer, Rentrer, Tomber, Retourner, Arriver, Mourir, Partir, Passer) and <b>all pronominal verbs</b> (<i>se lever, s'amuser…</i>). Everything else → AVOIR. ⚠️ <i>monter, descendre, sortir, passer, rentrer, retourner</i> switch to AVOIR when they take a direct object: <i>j'ai sorti la poubelle</i> vs <i>je suis sorti</i>.</div>
+<div class="note irr"><b>Agreement rules (applies to every compound tense):</b><br>
+① <b>ÊTRE</b> → participle agrees with the <b>subject</b>: <i>elle est allé<span class="en">e</span>, ils sont parti<span class="en">s</span>, elles sont resté<span class="en">es</span></i>.<br>
+② <b>AVOIR</b> → no agreement… <b>unless a direct object comes before the verb</b>: <i>j'ai vu la maison</i> → <i>je <b>l'</b>ai vu<span class="en">e</span></i> ; <i>les pommes que j'ai acheté<span class="en">es</span></i>.<br>
+③ <b>Pronominal verbs</b> → agree with the reflexive pronoun if it is the direct object: <i>elle s'est lavé<span class="en">e</span></i>, but <i>elle s'est lavé les mains</i> (no agreement — <i>les mains</i> is the direct object and comes after).</div>
+
+</section>
+
+<section class="tense" id="passe-compose">
+  <div class="thead"><h2>Passé composé</h2><span class="en-name">I spoke / I have spoken</span>
+  <span class="tag spk">🗣️ spoken core</span></div>
+  <div class="formula"><span class="box bax">AVOIR / ÊTRE in the <b>présent</b></span><span class="plus">+</span><span class="box bst">PARTICIPE PASSÉ</span></div>
+  <div class="usage">The everyday past. Completed, one-time actions — <i>hier j'ai travaillé, elle est partie à midi</i>. Pairs with the imparfait, which handles description and background. In speech this fully replaces the passé simple.</div>
+  <div class="cols">
+    <div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">aux = avoir</span></div>
+    <table class="ct">
+    <tr><td class="pr">je</td><td class="fm">j'<span class="ax">ai</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">tu</td><td class="fm"><span class="ax">as</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">il/elle</td><td class="fm"><span class="ax">a</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">nous</td><td class="fm"><span class="ax">avons</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">vous</td><td class="fm"><span class="ax">avez</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">ils/elles</td><td class="fm"><span class="ax">ont</span> <span class="st">parlé</span></td></tr>
+    </table></div>
+    <div class="vcol"><div class="vhead"><span class="inf">aller</span><span class="grp">aux = être · agrees</span></div>
+    <table class="ct">
+    <tr><td class="pr">je</td><td class="fm">je <span class="ax">suis</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">tu</td><td class="fm"><span class="ax">es</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">il/elle</td><td class="fm"><span class="ax">est</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">nous</td><td class="fm"><span class="ax">sommes</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    <tr><td class="pr">vous</td><td class="fm"><span class="ax">êtes</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    <tr><td class="pr">ils/elles</td><td class="fm"><span class="ax">sont</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    </table></div>
+  </div>
+  <div class="note"><b>Passé composé vs imparfait in one line:</b> what <i>happened</i> → passé composé; what <i>was going on</i> → imparfait. <i>Je regardais la télé (background) quand le téléphone a sonné (event).</i></div>
+  <div class="note ca">🇨🇦 In spoken Québécois the auxiliary often reduces: <i>j'ai parlé</i> → <i>j'parlé</i>, <i>il a dit</i> → <i>y'a dit</i>. Recognize it; produce the full form.</div>
+</section>
+
+<section class="tense" id="pqp">
+  <div class="thead"><h2>Plus-que-parfait</h2><span class="en-name">I had spoken (the past before the past)</span>
+  <span class="tag wrt">✍️ written / 🗣️ spoken</span></div>
+  <div class="formula"><span class="box bax">AVOIR / ÊTRE in the <b>imparfait</b></span><span class="plus">+</span><span class="box bst">PARTICIPE PASSÉ</span></div>
+  <div class="usage">An action already completed <i>before</i> another past moment: <i>quand tu es arrivé, j'avais déjà mangé</i> (when you arrived, I had already eaten). Same auxiliary + agreement rules as the passé composé — only the auxiliary's tense changes (to imparfait).</div>
+  <div class="cols">
+    <div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">aux = avoir</span></div>
+    <table class="ct">
+    <tr><td class="pr">je</td><td class="fm">j'<span class="ax">avais</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">tu</td><td class="fm"><span class="ax">avais</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">il/elle</td><td class="fm"><span class="ax">avait</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">nous</td><td class="fm"><span class="ax">avions</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">vous</td><td class="fm"><span class="ax">aviez</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">ils/elles</td><td class="fm"><span class="ax">avaient</span> <span class="st">parlé</span></td></tr>
+    </table></div>
+    <div class="vcol"><div class="vhead"><span class="inf">aller</span><span class="grp">aux = être · agrees</span></div>
+    <table class="ct">
+    <tr><td class="pr">je</td><td class="fm">j'<span class="ax">étais</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">tu</td><td class="fm"><span class="ax">étais</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">il/elle</td><td class="fm"><span class="ax">était</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">nous</td><td class="fm"><span class="ax">étions</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    <tr><td class="pr">vous</td><td class="fm"><span class="ax">étiez</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    <tr><td class="pr">ils/elles</td><td class="fm"><span class="ax">étaient</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    </table></div>
+  </div>
+  <div class="note"><b>Discours indirect au passé:</b> when reporting past speech, présent → imparfait and passé composé → plus-que-parfait: <i>« j'ai fini »</i> → <i>il a dit qu'il <b>avait fini</b></i>.</div>
+</section>
+
+<section class="tense" id="cond-passe">
+  <div class="thead"><h2>Conditionnel passé</h2><span class="en-name">I would have spoken</span>
+  <span class="tag spk">🗣️ spoken core</span></div>
+  <div class="formula"><span class="box bax">AVOIR / ÊTRE in the <b>conditionnel</b></span><span class="plus">+</span><span class="box bst">PARTICIPE PASSÉ</span></div>
+  <div class="usage">A past action that <i>didn't</i> happen — regret, hypotheticals, unconfirmed news: <i>j'aurais aimé venir</i> (I would have liked to come). Auxiliary = the conditionnel you already know (<span class="ax">aur-</span> / <span class="ax">ser-</span> + imparfait endings), then the participle.</div>
+  <div class="cols">
+    <div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">aux = avoir</span></div>
+    <table class="ct">
+    <tr><td class="pr">je</td><td class="fm">j'<span class="ax">aurais</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">tu</td><td class="fm"><span class="ax">aurais</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">il/elle</td><td class="fm"><span class="ax">aurait</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">nous</td><td class="fm"><span class="ax">aurions</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">vous</td><td class="fm"><span class="ax">auriez</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">ils/elles</td><td class="fm"><span class="ax">auraient</span> <span class="st">parlé</span></td></tr>
+    </table></div>
+    <div class="vcol"><div class="vhead"><span class="inf">aller</span><span class="grp">aux = être · agrees</span></div>
+    <table class="ct">
+    <tr><td class="pr">je</td><td class="fm">je <span class="ax">serais</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">tu</td><td class="fm"><span class="ax">serais</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">il/elle</td><td class="fm"><span class="ax">serait</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">nous</td><td class="fm"><span class="ax">serions</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    <tr><td class="pr">vous</td><td class="fm"><span class="ax">seriez</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    <tr><td class="pr">ils/elles</td><td class="fm"><span class="ax">seraient</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    </table></div>
+  </div>
+  <div class="note"><b>These two are a pair — the “third conditional”:</b> <span class="st">Si</span> + <b>plus-que-parfait</b> → <b>conditionnel passé</b> in the result. <i>Si j'<b>avais su</b>, je ne <b>serais</b> pas <b>venu</b></i> (if I had known, I wouldn't have come). Compare the three <i>si</i> levels: <br>
+  ① <span class="st">Si</span> + présent → futur: <i>si tu veux, on ira</i><br>
+  ② <span class="st">Si</span> + imparfait → conditionnel présent: <i>si tu voulais, on irait</i><br>
+  ③ <span class="st">Si</span> + plus-que-parfait → conditionnel passé: <i>si tu avais voulu, on serait allés</i></div>
+  <div class="note ca">🇨🇦 High-value for TEF: level ② (regret/politeness) and level ③ (counterfactual) carry most persuasion and reflection tasks. <i>j'aurais dû, tu aurais pu, on aurait pensé que…</i> are ready-made chunks.</div>
+</section>
+
+<section class="tense" id="futur-ant">
+  <div class="thead"><h2>Futur antérieur</h2><span class="en-name">I will have spoken</span>
+  <span class="tag wrt">✍️ written / formal</span></div>
+  <div class="formula"><span class="box bax">AVOIR / ÊTRE in the <b>futur</b></span><span class="plus">+</span><span class="box bst">PARTICIPE PASSÉ</span></div>
+  <div class="usage">An action that will already be finished <i>before</i> a future moment: <i>demain à midi, j'aurai terminé</i> (by noon tomorrow, I'll have finished). Auxiliary stems are the futur ones you already know — <span class="ax">aur-</span> / <span class="ax">ser-</span>.</div>
+  <div class="cols">
+    <div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">aux = avoir</span></div>
+    <table class="ct">
+    <tr><td class="pr">je</td><td class="fm">j'<span class="ax">aurai</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">tu</td><td class="fm"><span class="ax">auras</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">il/elle</td><td class="fm"><span class="ax">aura</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">nous</td><td class="fm"><span class="ax">aurons</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">vous</td><td class="fm"><span class="ax">aurez</span> <span class="st">parlé</span></td></tr>
+    <tr><td class="pr">ils/elles</td><td class="fm"><span class="ax">auront</span> <span class="st">parlé</span></td></tr>
+    </table></div>
+    <div class="vcol"><div class="vhead"><span class="inf">aller</span><span class="grp">aux = être · agrees</span></div>
+    <table class="ct">
+    <tr><td class="pr">je</td><td class="fm">je <span class="ax">serai</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">tu</td><td class="fm"><span class="ax">seras</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">il/elle</td><td class="fm"><span class="ax">sera</span> <span class="st">allé</span><span class="en">(e)</span></td></tr>
+    <tr><td class="pr">nous</td><td class="fm"><span class="ax">serons</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    <tr><td class="pr">vous</td><td class="fm"><span class="ax">serez</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    <tr><td class="pr">ils/elles</td><td class="fm"><span class="ax">seront</span> <span class="st">allé</span><span class="en">(e)s</span></td></tr>
+    </table></div>
+  </div>
+  <div class="note"><b>Where it's obligatory:</b> after <i>quand, dès que, lorsque, après que, une fois que</i> when the first action finishes before the second — and French uses a real future here where English uses the present: <i>quand j'<b>aurai fini</b>, je t'appellerai</i> (when I <b>have finished</b>, I'll call you). Same trap as the futur simple after <i>quand</i>.</div>
+  <div class="note"><b>Also expresses a guess about the past:</b> <i>il n'est pas là — il aura oublié</i> (he must have forgotten). Parallel to the conditionnel passé's "unconfirmed" use.</div>
+</section>
+
+<section class="tense" id="periphrase">
+  <div class="thead"><h2>Two-verb structures</h2><span class="en-name">futur proche · passé récent · présent progressif</span>
+  <span class="tag spk">🗣️ spoken core</span></div>
+  <div class="formula"><span class="box bax">HELPER VERB (conjugated)</span><span class="plus">+</span><span class="box bst">INFINITIVE (never changes)</span></div>
+  <div class="usage">No new endings at all — only the helper verb conjugates.</div>
+  
+<div class="scrollx" style="margin:10px 18px 14px"><table class="big">
+<tr><th>Structure</th><th>Formula</th><th>Example</th><th>Meaning</th></tr>
+<tr><td class="lbl">Futur proche 🇨🇦</td><td><span class="ax">aller (présent)</span> + <span class="st">infinitive</span></td>
+<td><span class="ax">je vais</span> <span class="st">parler</span></td><td class="lbl">I'm going to speak</td></tr>
+<tr><td class="lbl">Passé récent</td><td><span class="ax">venir de (présent)</span> + <span class="st">infinitive</span></td>
+<td><span class="ax">je viens de</span> <span class="st">parler</span></td><td class="lbl">I just spoke</td></tr>
+<tr><td class="lbl">Présent progressif</td><td><span class="ax">être en train de</span> + <span class="st">infinitive</span></td>
+<td><span class="ax">je suis en train de</span> <span class="st">parler</span></td><td class="lbl">I am (busy) speaking</td></tr>
+</table></div>
+<div class="note ca">🇨🇦 <b>Futur proche is the default future of spoken Québécois</b> — safest choice for TEF oral tasks. Only the first verb conjugates; the second stays in the infinitive. (Finite vs. infinitive rule: <b>one conjugated verb per clause</b> — anything after it stays infinitive.)</div>
+
+</section>
+<section class="tense" id="nonfini">
+  <div class="thead"><h2>Non-finite forms</h2><span class="en-name">participe présent · gérondif · infinitif passé</span>
+  <span class="tag wrt">✍️ written / formal</span></div>
+  <div class="formula"><span class="box bst">NOUS-FORM − ons</span><span class="plus">+</span><span class="box ben">-ant</span></div>
+  <div class="usage">Verb forms that never change for person.</div>
+  
+<div class="scrollx" style="margin:10px 18px 14px"><table class="big">
+<tr><th>Form</th><th>Formula</th><th>Examples</th><th>Use</th></tr>
+<tr><td class="lbl">Participe présent</td><td><span class="st">nous-form − ons</span> + <span class="en">ant</span></td>
+<td><span class="st">parl</span><span class="en">ant</span>, <span class="st">finiss</span><span class="en">ant</span>, <span class="st">vend</span><span class="en">ant</span></td><td class="lbl">while/by doing — irregular: ayant, étant, sachant</td></tr>
+<tr><td class="lbl">Gérondif</td><td><span class="ax">en</span> + <span class="st">participe présent</span></td>
+<td><span class="ax">en</span> <span class="st">parl</span><span class="en">ant</span></td><td class="lbl">en travaillant = while/by working</td></tr>
+<tr><td class="lbl">Infinitif passé</td><td><span class="ax">avoir/être (infinitive)</span> + <span class="st">participe passé</span></td>
+<td><span class="ax">après avoir</span> <span class="st">parlé</span>, <span class="ax">après être</span> <span class="st">arrivé(e)</span></td><td class="lbl">after having spoken — great TEF writing connector</td></tr>
+</table></div>
+
+</section>
+<section class="tense" id="litteraire">
+  <div class="thead"><h2>Passé simple <span style="font-weight:400">&amp; the literary tenses</span></h2>
+  <span class="en-name">I spoke (narrative past)</span><span class="tag lit">📚 recognize only</span></div>
+  <div class="formula"><span class="box bst">INFINITIVE − er/ir/re</span><span class="plus">+</span><span class="box ben">-ai pattern (-er) / -is pattern (-ir, -re) / -us pattern</span></div>
+  <div class="usage">The written replacement for passé composé in literature and journalism.</div>
+  
+<div class="cols">
+<div class="vcol"><div class="vhead"><span class="inf">parler</span><span class="grp">-ER pattern</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">parl</span><span class="en">ai</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">parl</span><span class="en">as</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">parl</span><span class="en">a</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">parl</span><span class="en">âmes</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">parl</span><span class="en">âtes</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">parl</span><span class="en">èrent</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">finir</span><span class="grp">-IR/-RE pattern</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">fin</span><span class="en">is</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">fin</span><span class="en">is</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">fin</span><span class="en">it</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">fin</span><span class="en">îmes</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">fin</span><span class="en">îtes</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">fin</span><span class="en">irent</span></td></tr></table></div><div class="vcol"><div class="vhead"><span class="inf">vendre</span><span class="grp">-IR/-RE pattern</span></div><table class="ct"><tr><td class="pr">je </td><td class="fm"><span class="st">vend</span><span class="en">is</span></td></tr><tr><td class="pr">tu </td><td class="fm"><span class="st">vend</span><span class="en">is</span></td></tr><tr><td class="pr">il/elle </td><td class="fm"><span class="st">vend</span><span class="en">it</span></td></tr><tr><td class="pr">nous </td><td class="fm"><span class="st">vend</span><span class="en">îmes</span></td></tr><tr><td class="pr">vous </td><td class="fm"><span class="st">vend</span><span class="en">îtes</span></td></tr><tr><td class="pr">ils/elles </td><td class="fm"><span class="st">vend</span><span class="en">irent</span></td></tr></table></div>
+</div>
+<div class="note irr"><b>The “-u” pattern</b> (mostly verbs with a -u participle):
+avoir → <i>j'<span class="st">eu</span><span class="en">s</span>, il <span class="st">eu</span><span class="en">t</span>, ils <span class="st">eu</span><span class="en">rent</span></i> ·
+être → <i>je <span class="st">fu</span><span class="en">s</span>, il <span class="st">fu</span><span class="en">t</span>, ils <span class="st">fu</span><span class="en">rent</span></i> ·
+pouvoir → <i>il <span class="st">pu</span><span class="en">t</span></i> · savoir → <i>il <span class="st">su</span><span class="en">t</span></i> ·
+faire → <i>il <span class="st">fi</span><span class="en">t</span></i> · venir → <i>il <span class="st">vin</span><span class="en">t</span></i></div>
+<div class="note"><b>Recognition only.</b> You will meet these in novels and formal historical writing — never in speech, never required on the TEF. The other two literary tenses follow patterns you already know:
+<b>imparfait du subjonctif</b> (<i>qu'il parlât</i>) and <b>plus-que-parfait du subjonctif</b> (<i>qu'il eût parlé</i>). File them under “recognize and move on”.</div>
+
+</section>
+<section class="tense" id="orthographe">
+  <div class="thead"><h2>Spelling-change stems</h2><span class="en-name">the stem flexes to protect the sound</span>
+  <span class="tag spk">🗣️ affects everyday verbs</span></div>
+  <div class="usage">These are not irregular verbs — the endings are 100% regular. Only the spelling of the <b>stem</b> adjusts.</div>
+  <div class="scrollx" style="margin:10px 18px 14px"><table class="big">
+  <tr><th>Type</th><th>Rule</th><th>Examples</th><th>Where it applies</th></tr>
+  <tr><td class="lbl">-cer</td><td class="lbl">c → ç before a/o</td>
+  <td>nous <span class="st">commenç</span><span class="en">ons</span>, je <span class="st">commenç</span><span class="en">ais</span></td><td class="lbl">présent nous, all imparfait sing./3pl, passé simple</td></tr>
+  <tr><td class="lbl">-ger</td><td class="lbl">g → ge before a/o</td>
+  <td>nous <span class="st">mange</span><span class="en">ons</span>, je <span class="st">mange</span><span class="en">ais</span></td><td class="lbl">same slots as -cer</td></tr>
+  <tr><td class="lbl">e + consonant + er</td><td class="lbl">e → è before silent ending</td>
+  <td>j'<span class="st">achèt</span><span class="en">e</span> / nous <span class="st">achet</span><span class="en">ons</span> · futur: j'<span class="st">achèter</span><span class="en">ai</span></td><td class="lbl">présent (4 forms), subjonctif, ALL futur/cond</td></tr>
+  <tr><td class="lbl">é + consonant + er</td><td class="lbl">é → è before silent ending</td>
+  <td>je <span class="st">préfèr</span><span class="en">e</span> / nous <span class="st">préfér</span><span class="en">ons</span> · futur keeps é: je <span class="st">préférer</span><span class="en">ai</span></td><td class="lbl">présent &amp; subjonctif only — NOT futur/cond</td></tr>
+  <tr><td class="lbl">-eler / -eter</td><td class="lbl">double the consonant</td>
+  <td>j'<span class="st">appell</span><span class="en">e</span>, je <span class="st">jett</span><span class="en">e</span> / nous <span class="st">appel</span><span class="en">ons</span></td><td class="lbl">same slots as e→è (acheter/geler take è instead)</td></tr>
+  <tr><td class="lbl">-yer</td><td class="lbl">y → i before silent ending</td>
+  <td>j'<span class="st">envoi</span><span class="en">e</span>, je <span class="st">paier</span><span class="en">ai</span> / nous <span class="st">envoy</span><span class="en">ons</span></td><td class="lbl">-ayer verbs: both spellings OK (je paie / je paye)</td></tr>
+  </table></div>
+</section>
+<footer>Tags: 🗣️ spoken core (TEF oral) · ✍️ written/formal (TEF écrit) · 📚 literary, recognize only · 🇨🇦 Canadian French note. Pair with <b>02 — Master Comparison Tables</b> for side-by-side spotting.</footer>
+</div></body></html>

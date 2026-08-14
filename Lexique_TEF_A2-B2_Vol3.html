@@ -1,0 +1,620 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lexique TEF · A2–B2 · Volume 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F4F1;
+    --card:#FFFFFF;
+    --ink:#14171C;
+    --muted:#5C6470;
+    --faint:#8A9099;
+    --rule:#DCDCD4;
+    --cobalt:#1F4FA8;
+    --cobalt-soft:#E7ECF7;
+    --maple:#9E2B25;
+    --maple-soft:#F7E9E7;
+    --display:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--body);font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px 80px}
+
+  /* ---------- masthead ---------- */
+  .masthead{padding:56px 0 28px;border-bottom:2px solid var(--ink)}
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--cobalt);font-weight:700;margin-bottom:14px;
+  }
+  h1{
+    font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,54px);
+    line-height:.98;letter-spacing:-.025em;margin:0 0 14px;
+  }
+  h1 .thin{font-weight:500;color:var(--muted);display:block;font-size:.44em;letter-spacing:-.01em;margin-top:12px;line-height:1.3}
+  .standfirst{font-size:17px;color:var(--muted);max-width:58ch;margin:0}
+  .sourcing{
+    margin-top:22px;padding:14px 16px;background:var(--cobalt-soft);
+    border-left:3px solid var(--cobalt);font-size:14px;line-height:1.5;color:#2A3340;
+  }
+  .sourcing b{font-family:var(--display);font-weight:700}
+
+  /* ---------- how to use ---------- */
+  .howto{padding:30px 0;border-bottom:1px solid var(--rule)}
+  .howto h2, .lesson h2, .roadmap h2{
+    font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--faint);margin:0 0 16px;
+  }
+  .howto ul{margin:0;padding-left:20px}
+  .howto li{margin-bottom:9px;font-size:15.5px}
+  .howto li b{font-family:var(--display);font-weight:600;font-size:15px}
+
+  /* ---------- controls ---------- */
+  .controls{
+    position:sticky;top:0;z-index:20;background:var(--paper);
+    padding:14px 0;border-bottom:1px solid var(--rule);
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  }
+  .ctl-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--faint);margin-right:2px;
+  }
+  button{
+    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;
+    padding:6px 11px;border:1px solid var(--rule);background:var(--card);
+    color:var(--muted);border-radius:2px;cursor:pointer;transition:all .13s;
+  }
+  button:hover{border-color:var(--cobalt);color:var(--cobalt)}
+  button:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+  button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+  .spacer{flex:1}
+
+  /* ---------- lesson ---------- */
+  .lesson{padding:44px 0 8px;border-bottom:1px solid var(--rule)}
+  .lesson-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+  .lesson-num{
+    font-family:var(--mono);font-size:12px;font-weight:700;color:var(--cobalt);
+    letter-spacing:.08em;flex-shrink:0;
+  }
+  .lesson-title{
+    font-family:var(--display);font-weight:700;font-size:clamp(22px,4.4vw,30px);
+    letter-spacing:-.02em;margin:0;line-height:1.1;
+  }
+  .lesson-sub{font-size:14.5px;color:var(--muted);margin:0 0 26px 0;font-style:italic}
+
+  /* ---------- entry ---------- */
+  .entry{
+    background:var(--card);border:1px solid var(--rule);border-radius:3px;
+    padding:16px 18px;margin-bottom:10px;
+  }
+  .entry-top{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+  .idx{
+    font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:500;
+    padding-top:5px;min-width:24px;
+  }
+  .head-block{flex:1;min-width:200px}
+  .fr{
+    font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.015em;
+    color:var(--ink);
+  }
+  .pos{
+    font-family:var(--mono);font-size:10px;color:var(--faint);
+    letter-spacing:.06em;margin-left:8px;text-transform:uppercase;
+  }
+  .en{font-size:15.5px;color:var(--muted);margin-top:2px}
+  .en.hidden{filter:blur(5px);user-select:none}
+
+  /* ---------- the gauge (signature) ---------- */
+  .gauge{display:flex;gap:2px;padding-top:6px;flex-shrink:0}
+  .seg{
+    font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.04em;
+    padding:3px 5px;border:1px solid var(--rule);color:#C3C3BB;background:transparent;
+  }
+  .seg.on{background:var(--ink);border-color:var(--ink);color:#fff}
+
+  /* ---------- example + chunk ---------- */
+  .ex{
+    margin-top:12px;padding-left:13px;border-left:2px solid var(--cobalt);
+    font-size:16.5px;line-height:1.45;
+  }
+  .ex .gloss{display:block;font-size:13.5px;color:var(--faint);font-style:italic;margin-top:3px}
+  .ex .gloss.hidden{filter:blur(4px);user-select:none}
+  .chunk{
+    margin-top:10px;display:inline-block;font-family:var(--mono);font-size:11.5px;
+    background:var(--cobalt-soft);color:var(--cobalt);padding:4px 9px;border-radius:2px;
+    font-weight:500;
+  }
+  .ca{
+    margin-top:10px;padding:9px 12px;background:var(--maple-soft);
+    border-left:3px solid var(--maple);font-size:13.5px;color:#4A2320;line-height:1.45;
+  }
+  .ca b{font-family:var(--display);font-weight:600}
+
+  /* ---------- exercises ---------- */
+  .drill{margin:22px 0 34px;padding:20px;background:#EAEAE4;border-radius:3px}
+  .drill h3{
+    font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 14px;
+  }
+  .drill ol{margin:0;padding-left:22px}
+  .drill li{margin-bottom:9px;font-size:16px}
+  .blank{
+    display:inline-block;min-width:96px;border-bottom:1.5px solid var(--faint);
+  }
+  .key{
+    margin-top:14px;padding-top:13px;border-top:1px solid #D3D3CB;
+    font-family:var(--mono);font-size:12.5px;color:var(--cobalt);line-height:1.9;display:none;
+  }
+  .key.show{display:block}
+
+  /* ---------- roadmap ---------- */
+  .roadmap{padding:40px 0}
+  .roadmap ol{margin:0;padding-left:22px;columns:2;column-gap:32px}
+  .roadmap li{margin-bottom:7px;font-size:15px;break-inside:avoid}
+  .colophon{
+    margin-top:36px;padding-top:20px;border-top:1px solid var(--rule);
+    font-size:13px;color:var(--faint);line-height:1.6;
+  }
+
+  @media (max-width:560px){
+    .roadmap ol{columns:1}
+    .gauge{order:3;width:100%;padding-top:2px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media print{
+    .controls{display:none}
+    body{background:#fff;font-size:11pt}
+    .entry{break-inside:avoid;border-color:#ccc}
+    .key{display:block!important}
+    .lesson{break-before:page}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">TEF / TCF Canada · Préparation lexicale · Volume 3</div>
+    <h1>L’outillage<span class="thin">Volume 3 — 144 structures de production : reformuler, nuancer, structurer, tenir la parole</span></h1>
+    <p class="standfirst">Ce volume ne contient presque pas de vocabulaire thématique. Il contient les structures qui font la différence entre quelqu’un qui connaît des mots B2 et quelqu’un qui parle comme un B2.</p>
+    <div class="sourcing">
+      <b>Sur les sources.</b> Les leçons de ce volume correspondent aux compétences <i>stratégiques</i> et <i>discursives</i> définies par l’<i>Inventaire linguistique des contenus clés des niveaux du CECRL</i> (Eaquals / CIEP / Eurocentres / ACPLS, 2015) : périphrase, gain de temps et maintien de la parole, articulateurs, mise en relief. Le contenu est une compilation originale.
+    </div>
+  </header>
+
+  <section class="howto">
+    <h2>Mode d’emploi</h2>
+    <ul>
+      <li><b>La jauge A2 · B1 · B2</b> — chaque entrée est calibrée. Ce n’est pas une barrière : un mot B2 dans une leçon A2 se travaille quand même, il sera simplement plus lent à s’installer.</li>
+      <li><b>La collocation en bleu</b> donne ici le patron syntaxique, pas seulement la collocation : <i>à condition que + subjonctif</i>, <i>au cas où + conditionnel</i>. C’est le patron qu’il faut automatiser.</li>
+      <li><b>Les encadrés 🇨🇦</b> signalent l’usage canadien. Au TEF Canada, la variante québécoise est acceptée à l’oral ; le français standard reste plus sûr à l’écrit.</li>
+      <li><b>Masquer l’anglais</b> transforme le livre en test de rappel actif. C’est là que le travail réel se fait.</li>
+      <li><b>Ce volume se travaille à voix haute.</b> Une périphrase lue n’est pas une périphrase disponible. Chaque leçon devrait passer par Praktika ou par un enregistrement avant d’entrer en révision espacée.</li>
+      <li><b>Recoupements avec Berlitz</b> — certains mots des unités F1–F5 réapparaissent ici volontairement. Revoir un mot connu dans un nouveau contexte vaut mieux que l’éviter.</li>
+    </ul>
+  </section>
+
+  <nav class="controls">
+    <span class="ctl-label">Niveau</span>
+    <button data-lvl="all" aria-pressed="true">Tous</button>
+    <button data-lvl="A2" aria-pressed="false">A2</button>
+    <button data-lvl="B1" aria-pressed="false">B1</button>
+    <button data-lvl="B2" aria-pressed="false">B2</button>
+    <span class="spacer"></span>
+    <button id="mask" aria-pressed="false">Masquer l’anglais</button>
+    <button id="keys" aria-pressed="false">Corrigés</button>
+  </nav>
+
+  <main id="book"></main>
+
+  <section class="roadmap">
+    <h2>Fin de la série</h2>
+    <ol style="columns:1;list-style:none;padding-left:0">
+      <li style="font-size:16px"><b>Volume 1 — Le socle.</b> Domaines concrets et fonctions de base. 144 entrées, leçons 1–12.</li>
+      <li style="font-size:16px"><b>Volume 2 — L’extension.</b> Thèmes du débat, mécanique du verbe, registre canadien. 144 entrées, leçons 13–24.</li>
+      <li style="font-size:16px"><b>Volume 3 — L’outillage.</b> Structures de production et compétences stratégiques. 144 entrées, leçons 25–36.</li>
+    </ol>
+    <p style="margin-top:18px;font-size:15.5px;color:#5C6470;max-width:60ch">
+      432 entrées au total. Au-delà, la contrainte n’est plus l’inventaire mais la vitesse de rappel : mieux vaut alors consolider que produire de nouvelles listes.
+    </p>
+    <div class="colophon">
+      Volume 3 · Compilation originale, août 2026. Structure d’après l’<i>Inventaire linguistique des contenus clés des niveaux du CECRL</i>, Eaquals 2015 (libre d’accès). Aucun contenu repris d’ouvrages sous droits.
+    </div>
+  </section>
+
+</div>
+
+<script>
+const L = [
+{
+  n:25, t:"Reformuler et contourner : la périphrase",
+  s:"L’Inventaire CECRL nomme explicitement la périphrase comme compétence stratégique dès B1 : combler un trou lexical sans s’arrêter. Ne pas savoir un mot n’est pas une faute ; se taire en est une.",
+  e:[
+    ["c’est une sorte de…","expr.","it’s a kind of…","La poutine ? C’est une sorte de plat avec des frites et du fromage.","Poutine? It’s a kind of dish with fries and cheese.","c’est une sorte de + nom","B1",""],
+    ["c’est quelque chose qui…","expr.","it’s something that…","Un tournevis, c’est quelque chose qui sert à visser.","A screwdriver is something you use to screw things in.","c’est quelque chose qui + verbe","B1",""],
+    ["c’est le contraire de…","expr.","it’s the opposite of…","« Rural », c’est le contraire d’« urbain ».","“Rural” is the opposite of “urban”.","c’est le contraire de + nom","B1",""],
+    ["ça sert à…","expr.","it’s used for…","Ça sert à mesurer la température.","It’s used to measure temperature.","ça sert à + infinitif","B1",""],
+    ["c’est quand…","expr.","it’s when…","La sécheresse, c’est quand il ne pleut pas pendant longtemps.","A drought is when it doesn’t rain for a long time.","c’est quand + phrase","A2",""],
+    ["comment dire…","expr.","how can I put it…","C’était, comment dire, un peu décevant.","It was, how can I put it, a bit disappointing.","comment dire…","B1",""],
+    ["je ne trouve pas le mot","expr.","I can’t find the word","Excusez-moi, je ne trouve pas le mot exact.","Sorry, I can’t find the exact word.","je ne trouve pas le mot","B1","Formule légitime en examen. Le jury valorise la stratégie de contournement, pas le silence."],
+    ["autrement dit","adv.","in other words","Le dossier est incomplet ; autrement dit, il faut recommencer.","The file is incomplete; in other words, we have to start over.","autrement dit","B2",""],
+    ["c’est-à-dire","expr.","that is to say","Je viens de l’Ouest, c’est-à-dire de l’Alberta.","I’m from the West, that is to say Alberta.","c’est-à-dire (que)","B1",""],
+    ["ce que je veux dire, c’est que…","expr.","what I mean is that…","Ce que je veux dire, c’est que le problème est plus large.","What I mean is that the problem is broader.","ce que je veux dire, c’est que","B2",""],
+    ["un truc","n.m.","a thing, a whatsit","Passe-moi le truc pour ouvrir les bouteilles.","Pass me the thing for opening bottles.","un truc pour + infinitif","B1","Au Québec, <b>une affaire</b> remplit le même rôle : <i>l’affaire là, sur la table</i>. Utile à l’oral, à éviter à l’écrit."],
+    ["disons que…","expr.","let’s say that…","Disons que ce n’était pas la meilleure décision.","Let’s say it wasn’t the best decision.","disons que + indicatif","B2",""]
+  ],
+  d:[
+    ["Un thermomètre, ça ___ à mesurer la température.","sert"],
+    ["Le télétravail, c’est ___ on travaille depuis chez soi.","quand"],
+    ["Il est absent ; ___ dit, la réunion est reportée.","autrement"],
+    ["Ce que je ___ dire, c’est que le budget est insuffisant.","veux"],
+    ["Excusez-moi, je ne ___ pas le mot en français.","trouve"]
+  ]
+},
+{
+  n:26, t:"Gagner du temps et garder la parole",
+  s:"Compétence stratégique B2 citée telle quelle dans l’Inventaire. Ces formules achètent trois secondes de réflexion sans que le jury entende une hésitation.",
+  e:[
+    ["c’est une bonne question","expr.","that’s a good question","C’est une bonne question, je n’y avais pas pensé.","That’s a good question, I hadn’t thought about it.","c’est une bonne question","B1",""],
+    ["laissez-moi réfléchir","expr.","let me think","Laissez-moi réfléchir un instant.","Let me think for a moment.","laissez-moi réfléchir","B1",""],
+    ["en fait","adv.","actually, in fact","En fait, la situation est plus nuancée.","Actually, the situation is more nuanced.","en fait","B1",""],
+    ["à vrai dire","expr.","to be honest","À vrai dire, je ne connais pas bien ce dossier.","To be honest, I don’t know this file well.","à vrai dire","B2",""],
+    ["justement","adv.","precisely, as it happens","— Et le coût ? — Justement, j’allais y venir.","— And the cost? — Precisely, I was getting to that.","justement","B2","Aucun équivalent anglais direct. Signale que l’objection tombe à point nommé — très rentable en débat."],
+    ["si je peux me permettre","expr.","if I may","Si je peux me permettre, je verrais les choses autrement.","If I may, I’d see it differently.","si je peux me permettre","B2",""],
+    ["j’allais dire","expr.","I was going to say","J’allais dire que le problème vient de là.","I was going to say the problem comes from there.","j’allais dire que","B2",""],
+    ["écoutez","interj.","look, listen","Écoutez, ce n’est pas si simple.","Look, it isn’t that simple.","écoutez / bon","B1","À l’oral québécois, <b>ben</b> (de <i>bien</i>) joue le même rôle d’amorce : <i>ben là, ça dépend</i>."],
+    ["si vous voulez","expr.","if you like, in a sense","C’est une contrainte, si vous voulez, mais gérable.","It’s a constraint, in a sense, but manageable.","si vous voulez","B2",""],
+    ["ce qui est sûr, c’est que…","expr.","what’s certain is that…","Ce qui est sûr, c’est que rien ne changera cette année.","What’s certain is that nothing will change this year.","ce qui est sûr, c’est que","B2",""],
+    ["j’y viens","expr.","I’m getting to that","J’y viens, laissez-moi finir ce point.","I’m getting to that, let me finish this point.","j’y viens","B2",""],
+    ["en gros","expr.","roughly, broadly speaking","En gros, il y a deux solutions possibles.","Broadly speaking, there are two possible solutions.","en gros","B2",""]
+  ],
+  d:[
+    ["___ dire, je n’avais pas prévu cette question.","À vrai"],
+    ["___, c’est exactement ce que j’allais expliquer.","Justement"],
+    ["Ce qui est ___, c’est que la date ne changera pas.","sûr"],
+    ["___ moi réfléchir une seconde.","Laissez-"],
+    ["Si je peux me ___, je nuancerais un peu.","permettre"]
+  ]
+},
+{
+  n:27, t:"La nominalisation",
+  s:"Le passage du verbe au nom est la marque la plus visible du registre écrit. « Les prix ont augmenté » est B1 ; « la hausse des prix » est B2.",
+  e:[
+    ["une augmentation","n.f.","an increase (← augmenter)","L’augmentation des loyers inquiète les locataires.","The rise in rents worries tenants.","une augmentation / une hausse de","B2",""],
+    ["une diminution","n.f.","a decrease (← diminuer)","On observe une diminution des accidents.","A decrease in accidents can be observed.","une diminution / une baisse de","B2",""],
+    ["la création","n.f.","the creation (← créer)","La création d’emplois reste faible.","Job creation remains weak.","la création d’emplois","B1",""],
+    ["le développement","n.m.","development (← développer)","Le développement du réseau prendra dix ans.","Developing the network will take ten years.","le développement de","B1",""],
+    ["une amélioration","n.f.","an improvement (← améliorer)","On note une nette amélioration des résultats.","A marked improvement in results can be seen.","une amélioration de","B2",""],
+    ["une réduction","n.f.","a reduction (← réduire)","La réduction des déchets est une priorité.","Waste reduction is a priority.","une réduction de","B2",""],
+    ["la mise en place","n.f.","the setting up (← mettre en place)","La mise en place du système a pris six mois.","Setting up the system took six months.","la mise en place de","B2",""],
+    ["l’accueil","n.m.","the welcome (← accueillir)","L’accueil des nouveaux arrivants s’est amélioré.","The reception of newcomers has improved.","l’accueil de","B2",""],
+    ["la formation","n.f.","training (← former)","La formation du personnel commence en mars.","Staff training starts in March.","la formation de / du","B1",""],
+    ["une décision","n.f.","a decision (← décider)","La décision du comité a surpris tout le monde.","The committee’s decision surprised everyone.","la décision de","B1",""],
+    ["un échec","n.m.","a failure (← échouer)","L’échec du projet s’explique par un manque de moyens.","The project’s failure is explained by a lack of resources.","l’échec de","B2",""],
+    ["la participation","n.f.","participation (← participer)","La participation au vote a beaucoup baissé.","Voter turnout has fallen sharply.","la participation à","B1",""]
+  ],
+  d:[
+    ["L’___ du prix de l’essence pénalise les familles.","augmentation"],
+    ["La ___ en place du programme a été retardée.","mise"],
+    ["On constate une nette ___ des services offerts.","amélioration"],
+    ["L’___ de ce projet a coûté cher à l’entreprise.","échec"],
+    ["La ___ au sondage était très faible cette année.","participation"]
+  ]
+},
+{
+  n:28, t:"L’hypothèse et la condition",
+  s:"Formuler une hypothèse et y répondre est un descripteur B2 explicite. Les trois structures en « si » sont à mémoriser comme des blocs, pas comme des règles.",
+  e:[
+    ["si + présent → futur","gram.","if + present → future","Si j’ai le temps, je viendrai samedi.","If I have time, I’ll come on Saturday.","si + présent, futur simple","B1","Jamais de futur après <i>si</i> : on dit <b>si j’ai</b>, jamais <i>si j’aurai</i>."],
+    ["si + imparfait → conditionnel","gram.","if + imperfect → conditional","Si j’avais plus de temps, je voyagerais davantage.","If I had more time, I’d travel more.","si + imparfait, conditionnel présent","B1",""],
+    ["si + plus-que-parfait → conditionnel passé","gram.","if + pluperfect → past conditional","Si j’avais su, je serais parti plus tôt.","If I’d known, I’d have left earlier.","si + plus-que-parfait, conditionnel passé","B2",""],
+    ["à condition que","conj.","provided that","J’accepte, à condition que tout soit écrit.","I accept, provided everything is in writing.","à condition que + subjonctif","B2",""],
+    ["au cas où","conj.","in case","Prends un manteau au cas où il ferait froid.","Take a coat in case it’s cold.","au cas où + conditionnel","B2","Structure contre-intuitive : <b>au cas où</b> est suivi du conditionnel, jamais du subjonctif."],
+    ["sinon","conj.","otherwise, or else","Pars maintenant, sinon tu vas rater ton vol.","Leave now, otherwise you’ll miss your flight.","sinon","B1",""],
+    ["à moins que","conj.","unless","Nous partirons demain, à moins qu’il neige.","We’ll leave tomorrow, unless it snows.","à moins que + subjonctif","B2",""],
+    ["supposons que","expr.","let’s suppose that","Supposons que le projet soit refusé : que fait-on ?","Suppose the project is turned down: what do we do?","supposons que + subjonctif","B2",""],
+    ["en cas de","prép.","in the event of","En cas de retard, prévenez la réception.","In the event of a delay, notify reception.","en cas de + nom","B2",""],
+    ["quitte à","prép.","even if it means","Je préfère vérifier, quitte à perdre du temps.","I’d rather check, even if it means losing time.","quitte à + infinitif","B2",""],
+    ["même si","conj.","even if, even though","Même s’il pleut, on y va.","Even if it rains, we’re going.","même si + indicatif","B1","Piège permanent : <b>même si</b> prend l’indicatif, <b>bien que</b> prend le subjonctif."],
+    ["il suffit de","expr.","all you have to do is","Il suffit de remplir le formulaire en ligne.","All you have to do is fill in the form online.","il suffit de + inf. / il suffit que + subj.","B2",""]
+  ],
+  d:[
+    ["Si j’___ su, je ne serais pas venu.","avais"],
+    ["Prends un parapluie au cas ___ il pleuvrait.","où"],
+    ["J’accepte à condition que tu ___ présent.","sois"],
+    ["___ s’il fait froid, la sortie est maintenue.","Même"],
+    ["Il ___ de signer en bas de la page.","suffit"]
+  ]
+},
+{
+  n:29, t:"Collocations : faire, prendre, mettre",
+  s:"Trois verbes qui portent des dizaines d’expressions figées. Le verbe seul ne veut rien dire : c’est le bloc entier qui se mémorise.",
+  e:[
+    ["faire attention à","expr.","to pay attention to, watch out for","Fais attention à la glace sur le trottoir.","Watch out for ice on the sidewalk.","faire attention à + nom","B1",""],
+    ["faire partie de","expr.","to be part of","Ce module fait partie du programme obligatoire.","This module is part of the required program.","faire partie de + nom","B1",""],
+    ["faire face à","expr.","to face, to cope with","L’entreprise doit faire face à la concurrence.","The company has to face competition.","faire face à + nom","B2",""],
+    ["faire preuve de","expr.","to show, to demonstrate (a quality)","Il a fait preuve de beaucoup de patience.","He showed a great deal of patience.","faire preuve de + nom abstrait","B2",""],
+    ["prendre une décision","expr.","to make a decision","Nous prendrons une décision vendredi.","We’ll make a decision on Friday.","prendre une décision","B1","On ne <i>fait</i> jamais une décision en français : le verbe est <b>prendre</b>."],
+    ["prendre conscience de","expr.","to become aware of","J’ai pris conscience de l’ampleur du problème.","I became aware of the scale of the problem.","prendre conscience de + nom","B2",""],
+    ["prendre en compte","expr.","to take into account","Il faut prendre en compte le coût de la vie.","The cost of living has to be taken into account.","prendre en compte + nom","B2",""],
+    ["prendre soin de","expr.","to take care of","Elle prend soin de ses parents âgés.","She takes care of her elderly parents.","prendre soin de + nom","B1",""],
+    ["mettre en place","expr.","to set up, to implement","La ville a mis en place un nouveau service.","The city set up a new service.","mettre en place + nom","B2",""],
+    ["mettre l’accent sur","expr.","to emphasize","Le rapport met l’accent sur la prévention.","The report emphasizes prevention.","mettre l’accent sur + nom","B2",""],
+    ["mettre à jour","expr.","to update","J’ai mis à jour mon curriculum vitæ.","I updated my résumé.","mettre à jour + nom","B1","Au Canada, <b>un CV</b> se dit aussi couramment <b>un résumé</b>, calque de l’anglais. À l’examen, dites <b>un curriculum vitæ</b>."],
+    ["se mettre d’accord","expr.","to reach an agreement","Nous nous sommes mis d’accord sur la date.","We agreed on the date.","se mettre d’accord sur","B1",""]
+  ],
+  d:[
+    ["Le comité doit ___ une décision avant lundi.","prendre"],
+    ["Il faut ___ en compte l’avis des employés.","prendre"],
+    ["Elle a ___ preuve d’un grand professionnalisme.","fait"],
+    ["La ville a ___ en place un programme de recyclage.","mis"],
+    ["Nous nous sommes ___ d’accord sur le prix.","mis"]
+  ]
+},
+{
+  n:30, t:"Le registre formel à l’écrit",
+  s:"L’Expression Écrite section B exige un registre soutenu. Ces formules se copient telles quelles — aucune créativité n’est attendue ni récompensée.",
+  e:[
+    ["Madame, Monsieur,","formule","Dear Sir or Madam,","Madame, Monsieur, / Je vous écris au sujet de…","Dear Sir or Madam, / I am writing regarding…","Madame, Monsieur,","A2","Sans nom connu, c’est la seule ouverture correcte. <i>Cher Monsieur</i> suppose que vous connaissez la personne."],
+    ["je me permets de vous écrire","formule","I am writing to you","Je me permets de vous écrire au sujet de ma candidature.","I am writing to you regarding my application.","je me permets de + infinitif","B2",""],
+    ["suite à","prép.","further to, following","Suite à notre conversation téléphonique…","Further to our phone conversation…","suite à + nom","B1",""],
+    ["veuillez trouver ci-joint","formule","please find attached","Veuillez trouver ci-joint mon curriculum vitæ.","Please find my résumé attached.","veuillez trouver ci-joint","B2",""],
+    ["je vous serais reconnaissant de","formule","I would be grateful if you could","Je vous serais reconnaissant de me répondre avant vendredi.","I would be grateful if you could reply before Friday.","je vous serais reconnaissant de + inf.","B2",""],
+    ["dans l’attente de votre réponse","formule","looking forward to your reply","Dans l’attente de votre réponse, je vous remercie.","Looking forward to your reply, thank you.","dans l’attente de","B2",""],
+    ["je vous prie d’agréer","formule","yours faithfully (closing)","Je vous prie d’agréer mes salutations distinguées.","Yours faithfully.","je vous prie d’agréer + salutations","B2","Cette formule très française est rare au Canada, où l’on ferme presque toujours par <b>Cordialement</b> ou <b>Salutations</b>. Sachez la reconnaître ; au TEF elle reste valorisée à l’écrit."],
+    ["cordialement","formule","kind regards","Cordialement, / Arvin","Kind regards, / Arvin","cordialement / bien à vous","B1","Registre standard dans les courriels professionnels canadiens, y compris avec un supérieur."],
+    ["au sujet de","prép.","regarding, concerning","Je vous contacte au sujet de la facture de mai.","I’m contacting you regarding the May invoice.","au sujet de / concernant","B1",""],
+    ["par ailleurs","adv.","furthermore, moreover","Par ailleurs, je reste disponible pour un entretien.","Furthermore, I remain available for an interview.","par ailleurs","B2",""],
+    ["le cas échéant","expr.","if applicable, should the case arise","Le cas échéant, je fournirai les documents demandés.","If applicable, I will provide the requested documents.","le cas échéant","B2",""],
+    ["dans les meilleurs délais","expr.","as soon as possible","Merci de me répondre dans les meilleurs délais.","Please reply as soon as possible.","dans les meilleurs délais","B2",""]
+  ],
+  d:[
+    ["___ à votre courriel du 3 août, je vous confirme ma présence.","Suite"],
+    ["Veuillez trouver ___ les documents demandés.","ci-joint"],
+    ["Je vous serais ___ de bien vouloir me répondre.","reconnaissant"],
+    ["Dans l’___ de votre réponse, je vous remercie.","attente"],
+    ["Merci de traiter ce dossier dans les meilleurs ___.","délais"]
+  ]
+},
+{
+  n:31, t:"Les adverbes de nuance et d’intensité",
+  s:"Un adjectif nu est plat. L’adverbe qui le précède est ce qui donne au discours sa précision — critère B2 d’étendue linguistique.",
+  e:[
+    ["plutôt","adv.","rather, fairly","C’est plutôt réussi, dans l’ensemble.","It’s rather good, on the whole.","plutôt + adjectif","B1",""],
+    ["assez","adv.","quite, fairly","Le trajet est assez long en hiver.","The trip is fairly long in winter.","assez + adjectif","A2",""],
+    ["tout à fait","adv.","completely, absolutely","Vous avez tout à fait raison.","You’re absolutely right.","tout à fait + adj. / verbe","B1",""],
+    ["particulièrement","adv.","particularly","Ce point est particulièrement important.","This point is particularly important.","particulièrement + adjectif","B2",""],
+    ["relativement","adv.","relatively","Les coûts restent relativement stables.","Costs remain relatively stable.","relativement + adjectif","B2",""],
+    ["légèrement","adv.","slightly","Les ventes ont légèrement baissé.","Sales dipped slightly.","légèrement + verbe / adjectif","B2",""],
+    ["nettement","adv.","markedly, clearly","La qualité est nettement meilleure.","The quality is markedly better.","nettement + comparatif","B2",""],
+    ["à peu près","adv.","roughly, more or less","C’est à peu près la même chose.","It’s roughly the same thing.","à peu près","B1",""],
+    ["carrément","adv.","downright, totally","C’est carrément inacceptable.","That’s downright unacceptable.","carrément + adjectif","B2","Extrêmement fréquent à l’oral au Québec, souvent en réponse seule : <i>— Tu trouves ça exagéré ? — Carrément.</i>"],
+    ["franchement","adv.","frankly, honestly","Franchement, je ne vois pas l’intérêt.","Frankly, I don’t see the point.","franchement","B1",""],
+    ["quasiment","adv.","almost, practically","Le dossier est quasiment terminé.","The file is practically finished.","quasiment + adjectif","B2",""],
+    ["à peine","adv.","barely","Il parlait à peine français il y a deux ans.","He barely spoke French two years ago.","à peine + verbe","B2",""]
+  ],
+  d:[
+    ["Les résultats sont ___ meilleurs que l’an dernier.","nettement"],
+    ["Ce point me paraît ___ important pour la suite.","particulièrement"],
+    ["Le prix a ___ augmenté, de deux dollars environ.","légèrement"],
+    ["___, je préfère qu’on en reparle demain.","Franchement"],
+    ["Le travail est ___ fini, il reste une page.","quasiment"]
+  ]
+},
+{
+  n:32, t:"Le discours rapporté",
+  s:"Rapporter les propos d’autrui est un descripteur B1–B2. La difficulté n’est pas le vocabulaire mais la concordance des temps.",
+  e:[
+    ["dire que","v.","to say that","Il dit qu’il est en route.","He says he’s on the way.","dire que + indicatif","A2",""],
+    ["la concordance des temps","gram.","tense shift in reported speech","« Je viens » → Il a dit qu’il venait.","“I’m coming” → He said he was coming.","présent → imparfait ; futur → conditionnel","B1","Le passé composé devient plus-que-parfait : « J’ai fini » → <b>il a dit qu’il avait fini</b>."],
+    ["demander si","v.","to ask whether","Elle m’a demandé si j’avais fini.","She asked me whether I’d finished.","demander si + indicatif","B1",""],
+    ["demander ce que","v.","to ask what","Il a demandé ce que nous voulions.","He asked what we wanted.","« qu’est-ce que » → ce que","B2","Transformation obligatoire : <i>qu’est-ce que tu veux</i> devient <b>ce que tu veux</b> en discours indirect."],
+    ["dire de + infinitif","gram.","to tell someone to do sth","Il m’a dit de patienter.","He told me to wait.","dire à quelqu’un de + infinitif","B1",""],
+    ["affirmer que","v.","to assert, to state","Le rapport affirme que la tendance s’inverse.","The report states that the trend is reversing.","affirmer que + indicatif","B2",""],
+    ["répondre que","v.","to reply that","Elle a répondu qu’elle n’était pas disponible.","She replied that she wasn’t available.","répondre que + indicatif","B1",""],
+    ["expliquer que","v.","to explain that","Il a expliqué que le vol était annulé.","He explained that the flight was cancelled.","expliquer que + indicatif","B1",""],
+    ["ajouter que","v.","to add that","Elle a ajouté qu’elle rappellerait.","She added that she would call back.","ajouter que + indicatif","B2",""],
+    ["selon lui / d’après elle","expr.","according to him / her","Selon lui, la décision était inévitable.","According to him, the decision was unavoidable.","selon / d’après + pronom tonique","B1",""],
+    ["la veille / le lendemain","expr.","the day before / the next day","Il a dit qu’il était arrivé la veille.","He said he had arrived the day before.","hier → la veille ; demain → le lendemain","B2","Les repères temporels se décalent aussi : <i>aujourd’hui</i> devient <b>ce jour-là</b>."],
+    ["souligner que","v.","to stress that","L’auteur souligne que les données sont partielles.","The author stresses that the data is partial.","souligner que + indicatif","B2",""]
+  ],
+  d:[
+    ["Elle a dit qu’elle ___ fatiguée. (« je suis fatiguée »)","était"],
+    ["Il m’a demandé ___ j’avais reçu son courriel.","si"],
+    ["Le professeur nous a dit ___ recommencer l’exercice.","de"],
+    ["Il a expliqué qu’il ___ arrivé la veille.","était"],
+    ["___ lui, le projet sera reporté.","Selon"]
+  ]
+},
+{
+  n:33, t:"La mise en relief",
+  s:"Le français ne peut pas accentuer un mot par la voix comme l’anglais. Il déplace la structure à la place. Sans ces tournures, l’insistance ne passe pas.",
+  e:[
+    ["c’est… qui / c’est… que","gram.","it’s… who / it’s… that","C’est le prix qui pose problème, pas la qualité.","It’s the price that’s the problem, not the quality.","c’est X qui + verbe","B1","Équivaut à l’accent tonique anglais : <i>the PRICE is the problem</i> devient <b>c’est le prix qui…</b>"],
+    ["ce qui… c’est","gram.","what… is","Ce qui m’inquiète, c’est le délai.","What worries me is the deadline.","ce qui + verbe, c’est + nom","B2",""],
+    ["ce que… c’est","gram.","what… is","Ce que je préfère, c’est l’hiver en montagne.","What I prefer is winter in the mountains.","ce que + sujet + verbe, c’est","B2",""],
+    ["ce dont… c’est","gram.","what… (with «de») is","Ce dont j’ai besoin, c’est de temps.","What I need is time.","ce dont + sujet, c’est de","B2","S’emploie quand le verbe exige <i>de</i> : <b>avoir besoin de</b>, <b>parler de</b>, <b>se souvenir de</b>."],
+    ["moi, je…","gram.","as for me, I…","Moi, je trouve que c’est raisonnable.","Personally, I think it’s reasonable.","pronom tonique + sujet","A2",""],
+    ["en ce qui concerne","expr.","as regards, when it comes to","En ce qui concerne le budget, rien n’est décidé.","As regards the budget, nothing has been decided.","en ce qui concerne + nom","B2",""],
+    ["ce qui compte, c’est","expr.","what matters is","Ce qui compte, c’est la régularité.","What matters is consistency.","ce qui compte, c’est","B2",""],
+    ["surtout","adv.","especially, above all","J’aime la montagne, surtout en hiver.","I like the mountains, especially in winter.","surtout","B1",""],
+    ["notamment","adv.","notably, in particular","Plusieurs villes, notamment Calgary, ont adopté ce règlement.","Several cities, notably Calgary, adopted this rule.","notamment","B2",""],
+    ["y compris","prép.","including","Tous les frais, y compris les taxes, sont indiqués.","All fees, including taxes, are shown.","y compris + nom","B2",""],
+    ["avant tout","adv.","above all, first and foremost","C’est avant tout une question de moyens.","It’s above all a question of resources.","avant tout","B2",""],
+    ["loin d’être","expr.","far from being","Le dossier est loin d’être complet.","The file is far from complete.","loin d’être + adjectif","B2",""]
+  ],
+  d:[
+    ["___ qui m’inquiète, c’est le manque de temps.","Ce"],
+    ["Ce ___ j’ai besoin, c’est d’un peu de silence.","dont"],
+    ["___ le prix qui me dérange, pas le service.","C’est"],
+    ["Plusieurs provinces, ___ l’Alberta, ont refusé.","notamment"],
+    ["Ce projet est ___ d’être terminé.","loin"]
+  ]
+},
+{
+  n:34, t:"Décrire un graphique et des données",
+  s:"La compréhension écrite du TEF s’appuie constamment sur des chiffres, et l’expression écrite demande souvent de les commenter.",
+  e:[
+    ["un graphique","n.m.","a graph, a chart","Ce graphique montre l’évolution sur dix ans.","This graph shows the trend over ten years.","un graphique / un tableau","B1",""],
+    ["représenter","v.","to represent, to show","Chaque barre représente une année.","Each bar represents a year.","représenter + nom","B1",""],
+    ["une courbe","n.f.","a curve, a line","La courbe monte à partir de 2020.","The line rises from 2020 onwards.","une courbe ascendante / descendante","B2",""],
+    ["une tendance","n.f.","a trend","La tendance générale reste à la hausse.","The overall trend is still upward.","une tendance à la hausse / à la baisse","B2",""],
+    ["fortement / légèrement","adv.","sharply / slightly","Le chiffre a fortement augmenté en 2023.","The figure rose sharply in 2023.","augmenter fortement / légèrement","B2",""],
+    ["rester stable","expr.","to remain stable","Le taux est resté stable pendant trois ans.","The rate remained stable for three years.","rester stable","B1",""],
+    ["un pic","n.m.","a peak","On observe un pic en juillet.","A peak can be seen in July.","atteindre un pic","B2",""],
+    ["chuter","v.","to plummet, to fall sharply","Les ventes ont chuté après la crise.","Sales plummeted after the crisis.","chuter de X %","B2",""],
+    ["l’axe","n.m.","the axis","L’axe vertical indique le pourcentage.","The vertical axis shows the percentage.","l’axe horizontal / vertical","B2",""],
+    ["selon ce graphique","expr.","according to this graph","Selon ce graphique, la baisse est régulière.","According to this graph, the decline is steady.","selon ce graphique / d’après ces données","B1",""],
+    ["on constate que","expr.","it can be observed that","On constate que l’écart se réduit.","It can be observed that the gap is narrowing.","on constate que + indicatif","B2",""],
+    ["une proportion","n.f.","a proportion, a share","La proportion de télétravailleurs a doublé.","The share of remote workers has doubled.","une proportion de","B2","En français, la décimale s’écrit avec une <b>virgule</b> : <i>3,5 %</i> et non <i>3.5 %</i>. Erreur fréquente chez les anglophones."]
+  ],
+  d:[
+    ["___ ce graphique, la consommation baisse depuis 2022.","Selon"],
+    ["La ___ générale est à la hausse.","tendance"],
+    ["Les prix ont ___ après l’annonce du gouvernement.","chuté"],
+    ["On ___ que l’écart entre les deux groupes se réduit.","constate"],
+    ["Le taux est ___ stable pendant toute l’année.","resté"]
+  ]
+},
+{
+  n:35, t:"Structurer un exposé",
+  s:"Le jury évalue la cohérence autant que la langue. Un plan annoncé et tenu rapporte plus qu’un vocabulaire riche mais désordonné.",
+  e:[
+    ["tout d’abord","adv.","first of all","Tout d’abord, je vais présenter le contexte.","First of all, I’ll set out the context.","tout d’abord","B1",""],
+    ["ensuite","adv.","then, next","Ensuite, j’aborderai les conséquences.","Next, I’ll turn to the consequences.","ensuite / puis","A2",""],
+    ["d’une part… d’autre part","expr.","on the one hand… on the other","D’une part, c’est coûteux ; d’autre part, c’est nécessaire.","On the one hand it’s costly; on the other, it’s necessary.","d’une part… d’autre part","B2",""],
+    ["en premier lieu","expr.","in the first place","En premier lieu, examinons les causes.","In the first place, let’s examine the causes.","en premier / second lieu","B2",""],
+    ["aborder","v.","to address, to turn to (a topic)","Je vais maintenant aborder la question du coût.","I’ll now turn to the question of cost.","aborder une question","B2",""],
+    ["revenons à","expr.","let’s come back to","Revenons à votre première remarque.","Let’s come back to your first point.","revenons à + nom","B2",""],
+    ["cela m’amène à","expr.","which brings me to","Cela m’amène à mon deuxième point.","Which brings me to my second point.","cela m’amène à + nom / inf.","B2",""],
+    ["pour illustrer","expr.","to illustrate","Pour illustrer, prenons l’exemple de Calgary.","To illustrate, let’s take the example of Calgary.","pour illustrer / prenons l’exemple de","B2",""],
+    ["il convient de","expr.","it is appropriate to","Il convient de rappeler le contexte légal.","It’s worth recalling the legal context.","il convient de + infinitif","B2",""],
+    ["en résumé","expr.","to sum up","En résumé, trois problèmes se posent.","To sum up, there are three problems.","en résumé","B1",""],
+    ["en somme","expr.","in short, all in all","En somme, la mesure est utile mais insuffisante.","All in all, the measure is useful but insufficient.","en somme","B2",""],
+    ["pour conclure","expr.","in conclusion","Pour conclure, je dirais que le bilan est positif.","In conclusion, I’d say the outcome is positive.","pour conclure / en conclusion","B1",""]
+  ],
+  d:[
+    ["___ d’abord, je vais définir les termes du sujet.","Tout"],
+    ["___ une part, c’est efficace ; d’autre part, c’est cher.","D’"],
+    ["Cela m’___ à mon dernier argument.","amène"],
+    ["Il ___ de préciser un point important.","convient"],
+    ["___ conclure, je pense que la réforme est nécessaire.","Pour"]
+  ]
+},
+{
+  n:36, t:"Réagir et relancer à l’oral",
+  s:"L’oral du TEF est une interaction, pas un monologue. Réagir et relancer est évalué directement au titre de l’interaction orale.",
+  e:[
+    ["Ah bon ?","expr.","Really? Is that so?","— Le bureau ferme en août. — Ah bon ?","— The office closes in August. — Really?","Ah bon ?","A2","Marque la surprise sans juger. À l’oral québécois, <b>Ah oui ?</b> et <b>C’est-tu vrai ?</b> jouent le même rôle."],
+    ["effectivement","adv.","indeed, that’s right","Effectivement, c’est ce que le rapport indique.","Indeed, that’s what the report says.","effectivement","B2",""],
+    ["exactement","adv.","exactly","— Donc le coût double ? — Exactement.","— So the cost doubles? — Exactly.","exactement","B1",""],
+    ["je vois","expr.","I see","Je vois, donc il faut tout recommencer.","I see, so we have to start over.","je vois","B1",""],
+    ["et vous, qu’en pensez-vous ?","expr.","and you, what do you think?","Et vous, qu’en pensez-vous ?","And what do you think?","qu’en pensez-vous ?","B1",""],
+    ["qu’entendez-vous par là ?","expr.","what do you mean by that?","Qu’entendez-vous par « trop coûteux » ?","What do you mean by “too expensive”?","qu’entendez-vous par","B2",""],
+    ["pouvez-vous préciser ?","expr.","could you clarify?","Pouvez-vous préciser la date exacte ?","Could you clarify the exact date?","pouvez-vous préciser","B1",""],
+    ["si j’ai bien compris","expr.","if I’ve understood correctly","Si j’ai bien compris, la demande est refusée.","If I’ve understood correctly, the request is denied.","si j’ai bien compris","B2",""],
+    ["vous voulez dire que… ?","expr.","do you mean that…?","Vous voulez dire que le délai est dépassé ?","Do you mean the deadline has passed?","vous voulez dire que","B1",""],
+    ["je n’ai pas bien saisi","expr.","I didn’t quite catch that","Excusez-moi, je n’ai pas bien saisi le dernier point.","Sorry, I didn’t quite catch the last point.","je n’ai pas bien saisi","B2","Plus élégant que <i>je n’ai pas compris</i>, et parfaitement acceptable en examen. Demander une répétition n’est pas pénalisé."],
+    ["excusez-moi de vous interrompre","expr.","sorry to interrupt","Excusez-moi de vous interrompre, mais c’est important.","Sorry to interrupt, but this is important.","excusez-moi de + infinitif","B2",""],
+    ["pour revenir à ce que vous disiez","expr.","to go back to what you were saying","Pour revenir à ce que vous disiez, je ne suis pas d’accord.","To go back to what you were saying, I disagree.","pour revenir à","B2",""]
+  ],
+  d:[
+    ["___-vous préciser ce que vous entendez par là ?","Pouvez"],
+    ["Si j’ai bien ___, la réunion est annulée.","compris"],
+    ["Excusez-moi, je n’ai pas bien ___ le dernier chiffre.","saisi"],
+    ["Et vous, qu’___ pensez-vous ?","en"],
+    ["___, c’est exactement ce que dit le texte.","Effectivement"]
+  ]
+}
+];
+
+const LV = ["A2","B1","B2"];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function gauge(lvl){
+  return '<div class="gauge">' + LV.map(function(x){
+    return '<span class="seg' + (x===lvl?' on':'') + '">' + x + '</span>';
+  }).join("") + '</div>';
+}
+
+function entry(e,i){
+  const ca = e[7] ? '<div class="ca">🇨🇦 ' + e[7] + '</div>' : '';
+  return '<article class="entry" data-lvl="' + e[6] + '">' +
+    '<div class="entry-top">' +
+      '<div class="idx">' + String(i+1).padStart(2,"0") + '</div>' +
+      '<div class="head-block">' +
+        '<span class="fr">' + esc(e[0]) + '</span><span class="pos">' + esc(e[1]) + '</span>' +
+        '<div class="en">' + esc(e[2]) + '</div>' +
+      '</div>' +
+      gauge(e[6]) +
+    '</div>' +
+    '<div class="ex">' + esc(e[3]) + '<span class="gloss">' + esc(e[4]) + '</span></div>' +
+    '<span class="chunk">' + esc(e[5]) + '</span>' +
+    ca +
+  '</article>';
+}
+
+function lesson(l){
+  const items = l.e.map(entry).join("");
+  const drills = l.d.map(function(d){
+    return '<li>' + esc(d[0]).replace("___",'<span class="blank"></span>') + '</li>';
+  }).join("");
+  const key = l.d.map(function(d,i){ return (i+1) + ". " + d[1]; }).join("  ·  ");
+  return '<section class="lesson" id="l' + l.n + '">' +
+    '<div class="lesson-head">' +
+      '<span class="lesson-num">LEÇON ' + String(l.n).padStart(2,"0") + '</span>' +
+      '<h2 class="lesson-title">' + l.t + '</h2>' +
+    '</div>' +
+    '<p class="lesson-sub">' + l.s + '</p>' +
+    items +
+    '<div class="drill">' +
+      '<h3>Exercice — complétez</h3>' +
+      '<ol>' + drills + '</ol>' +
+      '<div class="key">' + key + '</div>' +
+    '</div>' +
+  '</section>';
+}
+
+document.getElementById("book").innerHTML = L.map(lesson).join("");
+
+// level filter
+document.querySelectorAll("[data-lvl]").forEach(function(b){
+  if(b.tagName !== "BUTTON") return;
+  b.addEventListener("click", function(){
+    const v = b.dataset.lvl;
+    document.querySelectorAll(".controls [data-lvl]").forEach(function(x){
+      x.setAttribute("aria-pressed", x === b ? "true" : "false");
+    });
+    document.querySelectorAll(".entry").forEach(function(el){
+      el.style.display = (v === "all" || el.dataset.lvl === v) ? "" : "none";
+    });
+  });
+});
+
+// recall mode
+const mask = document.getElementById("mask");
+mask.addEventListener("click", function(){
+  const on = mask.getAttribute("aria-pressed") === "true";
+  mask.setAttribute("aria-pressed", on ? "false" : "true");
+  document.querySelectorAll(".en,.gloss").forEach(function(el){
+    el.classList.toggle("hidden", !on);
+  });
+});
+
+// answer keys
+const keys = document.getElementById("keys");
+keys.addEventListener("click", function(){
+  const on = keys.getAttribute("aria-pressed") === "true";
+  keys.setAttribute("aria-pressed", on ? "false" : "true");
+  document.querySelectorAll(".key").forEach(function(el){
+    el.classList.toggle("show", !on);
+  });
+});
+</script>

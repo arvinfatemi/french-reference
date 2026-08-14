@@ -1,0 +1,626 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lexique TEF · A2–B2 · Volume 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F4F1;
+    --card:#FFFFFF;
+    --ink:#14171C;
+    --muted:#5C6470;
+    --faint:#8A9099;
+    --rule:#DCDCD4;
+    --cobalt:#1F4FA8;
+    --cobalt-soft:#E7ECF7;
+    --maple:#9E2B25;
+    --maple-soft:#F7E9E7;
+    --display:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--body);font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px 80px}
+
+  /* ---------- masthead ---------- */
+  .masthead{padding:56px 0 28px;border-bottom:2px solid var(--ink)}
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--cobalt);font-weight:700;margin-bottom:14px;
+  }
+  h1{
+    font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,54px);
+    line-height:.98;letter-spacing:-.025em;margin:0 0 14px;
+  }
+  h1 .thin{font-weight:500;color:var(--muted);display:block;font-size:.44em;letter-spacing:-.01em;margin-top:12px;line-height:1.3}
+  .standfirst{font-size:17px;color:var(--muted);max-width:58ch;margin:0}
+  .sourcing{
+    margin-top:22px;padding:14px 16px;background:var(--cobalt-soft);
+    border-left:3px solid var(--cobalt);font-size:14px;line-height:1.5;color:#2A3340;
+  }
+  .sourcing b{font-family:var(--display);font-weight:700}
+
+  /* ---------- how to use ---------- */
+  .howto{padding:30px 0;border-bottom:1px solid var(--rule)}
+  .howto h2, .lesson h2, .roadmap h2{
+    font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--faint);margin:0 0 16px;
+  }
+  .howto ul{margin:0;padding-left:20px}
+  .howto li{margin-bottom:9px;font-size:15.5px}
+  .howto li b{font-family:var(--display);font-weight:600;font-size:15px}
+
+  /* ---------- controls ---------- */
+  .controls{
+    position:sticky;top:0;z-index:20;background:var(--paper);
+    padding:14px 0;border-bottom:1px solid var(--rule);
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  }
+  .ctl-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--faint);margin-right:2px;
+  }
+  button{
+    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;
+    padding:6px 11px;border:1px solid var(--rule);background:var(--card);
+    color:var(--muted);border-radius:2px;cursor:pointer;transition:all .13s;
+  }
+  button:hover{border-color:var(--cobalt);color:var(--cobalt)}
+  button:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+  button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+  .spacer{flex:1}
+
+  /* ---------- lesson ---------- */
+  .lesson{padding:44px 0 8px;border-bottom:1px solid var(--rule)}
+  .lesson-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+  .lesson-num{
+    font-family:var(--mono);font-size:12px;font-weight:700;color:var(--cobalt);
+    letter-spacing:.08em;flex-shrink:0;
+  }
+  .lesson-title{
+    font-family:var(--display);font-weight:700;font-size:clamp(22px,4.4vw,30px);
+    letter-spacing:-.02em;margin:0;line-height:1.1;
+  }
+  .lesson-sub{font-size:14.5px;color:var(--muted);margin:0 0 26px 0;font-style:italic}
+
+  /* ---------- entry ---------- */
+  .entry{
+    background:var(--card);border:1px solid var(--rule);border-radius:3px;
+    padding:16px 18px;margin-bottom:10px;
+  }
+  .entry-top{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+  .idx{
+    font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:500;
+    padding-top:5px;min-width:24px;
+  }
+  .head-block{flex:1;min-width:200px}
+  .fr{
+    font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.015em;
+    color:var(--ink);
+  }
+  .pos{
+    font-family:var(--mono);font-size:10px;color:var(--faint);
+    letter-spacing:.06em;margin-left:8px;text-transform:uppercase;
+  }
+  .en{font-size:15.5px;color:var(--muted);margin-top:2px}
+  .en.hidden{filter:blur(5px);user-select:none}
+
+  /* ---------- the gauge (signature) ---------- */
+  .gauge{display:flex;gap:2px;padding-top:6px;flex-shrink:0}
+  .seg{
+    font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.04em;
+    padding:3px 5px;border:1px solid var(--rule);color:#C3C3BB;background:transparent;
+  }
+  .seg.on{background:var(--ink);border-color:var(--ink);color:#fff}
+
+  /* ---------- example + chunk ---------- */
+  .ex{
+    margin-top:12px;padding-left:13px;border-left:2px solid var(--cobalt);
+    font-size:16.5px;line-height:1.45;
+  }
+  .ex .gloss{display:block;font-size:13.5px;color:var(--faint);font-style:italic;margin-top:3px}
+  .ex .gloss.hidden{filter:blur(4px);user-select:none}
+  .chunk{
+    margin-top:10px;display:inline-block;font-family:var(--mono);font-size:11.5px;
+    background:var(--cobalt-soft);color:var(--cobalt);padding:4px 9px;border-radius:2px;
+    font-weight:500;
+  }
+  .ca{
+    margin-top:10px;padding:9px 12px;background:var(--maple-soft);
+    border-left:3px solid var(--maple);font-size:13.5px;color:#4A2320;line-height:1.45;
+  }
+  .ca b{font-family:var(--display);font-weight:600}
+
+  /* ---------- exercises ---------- */
+  .drill{margin:22px 0 34px;padding:20px;background:#EAEAE4;border-radius:3px}
+  .drill h3{
+    font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 14px;
+  }
+  .drill ol{margin:0;padding-left:22px}
+  .drill li{margin-bottom:9px;font-size:16px}
+  .blank{
+    display:inline-block;min-width:96px;border-bottom:1.5px solid var(--faint);
+  }
+  .key{
+    margin-top:14px;padding-top:13px;border-top:1px solid #D3D3CB;
+    font-family:var(--mono);font-size:12.5px;color:var(--cobalt);line-height:1.9;display:none;
+  }
+  .key.show{display:block}
+
+  /* ---------- roadmap ---------- */
+  .roadmap{padding:40px 0}
+  .roadmap ol{margin:0;padding-left:22px;columns:2;column-gap:32px}
+  .roadmap li{margin-bottom:7px;font-size:15px;break-inside:avoid}
+  .colophon{
+    margin-top:36px;padding-top:20px;border-top:1px solid var(--rule);
+    font-size:13px;color:var(--faint);line-height:1.6;
+  }
+
+  @media (max-width:560px){
+    .roadmap ol{columns:1}
+    .gauge{order:3;width:100%;padding-top:2px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media print{
+    .controls{display:none}
+    body{background:#fff;font-size:11pt}
+    .entry{break-inside:avoid;border-color:#ccc}
+    .key{display:block!important}
+    .lesson{break-before:page}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">TEF / TCF Canada · Préparation lexicale · Volume 2</div>
+    <h1>Lexique essentiel<span class="thin">Volume 2 — 144 entrées de plus : thèmes restants, mécanique du verbe, registre canadien</span></h1>
+    <p class="standfirst">Le volume 1 couvrait les domaines concrets et les fonctions de base. Celui-ci complète les thèmes du débat, puis change de nature : trois leçons portent sur la mécanique du verbe et deux sur le français d’ici.</p>
+    <div class="sourcing">
+      <b>Sur les sources.</b> Il n’existe pas de liste de vocabulaire officielle pour le TEF : la CCI Paris n’en publie aucune. La structure de ce livre suit les domaines lexicaux et les fonctions discursives de l’<i>Inventaire linguistique des contenus clés des niveaux du CECRL</i> (Eaquals / CIEP / Eurocentres / ACPLS, 2015), document libre d’accès et coproduit par l’organisme qui administre le TCF. Le contenu lexical est une compilation originale.
+    </div>
+  </header>
+
+  <section class="howto">
+    <h2>Mode d’emploi</h2>
+    <ul>
+      <li><b>La jauge A2 · B1 · B2</b> — chaque entrée est calibrée. Ce n’est pas une barrière : un mot B2 dans une leçon A2 se travaille quand même, il sera simplement plus lent à s’installer.</li>
+      <li><b>La collocation en bleu</b> est l’élément à mémoriser en priorité. <i>Postuler</i> ne sert à rien sans <i>postuler à un poste</i>.</li>
+      <li><b>Les encadrés 🇨🇦</b> signalent l’usage canadien. Au TEF Canada, la variante québécoise est acceptée à l’oral ; le français standard reste plus sûr à l’écrit.</li>
+      <li><b>Masquer l’anglais</b> transforme le livre en test de rappel actif. C’est là que le travail réel se fait.</li>
+      <li><b>La leçon 22 est en reconnaissance seule</b> — comprendre le québécois familier à l’écoute est nécessaire ; le produire à l’examen ne l’est pas. L’encadré 🇨🇦 donne chaque fois l’équivalent standard à employer le jour J.</li>
+      <li><b>Recoupements avec Berlitz</b> — certains mots des unités F1–F5 réapparaissent ici volontairement. Revoir un mot connu dans un nouveau contexte vaut mieux que l’éviter.</li>
+    </ul>
+  </section>
+
+  <nav class="controls">
+    <span class="ctl-label">Niveau</span>
+    <button data-lvl="all" aria-pressed="true">Tous</button>
+    <button data-lvl="A2" aria-pressed="false">A2</button>
+    <button data-lvl="B1" aria-pressed="false">B1</button>
+    <button data-lvl="B2" aria-pressed="false">B2</button>
+    <span class="spacer"></span>
+    <button id="mask" aria-pressed="false">Masquer l’anglais</button>
+    <button id="keys" aria-pressed="false">Corrigés</button>
+  </nav>
+
+  <main id="book"></main>
+
+  <section class="roadmap">
+    <h2>Volume 3 — l’outillage</h2>
+    <ol start="25">
+      <li>Reformuler et contourner : la périphrase</li>
+      <li>Gagner du temps et garder la parole</li>
+      <li>La nominalisation</li>
+      <li>L’hypothèse et la condition</li>
+      <li>Collocations : faire, prendre, mettre</li>
+      <li>Le registre formel à l’écrit</li>
+      <li>Les adverbes de nuance et d’intensité</li>
+      <li>Le discours rapporté</li>
+      <li>La mise en relief</li>
+      <li>Décrire un graphique et des données</li>
+      <li>Structurer un exposé</li>
+      <li>Réagir et relancer à l’oral</li>
+    </ol>
+    <div class="colophon">
+      Volume 2 · Compilation originale, août 2026. Structure d’après l’<i>Inventaire linguistique des contenus clés des niveaux du CECRL</i>, Eaquals 2015 (libre d’accès). Aucun contenu repris d’ouvrages sous droits.
+    </div>
+  </section>
+
+</div>
+
+<script>
+const L = [
+{
+  n:13, t:"Le débat : nuancer, concéder, réfuter",
+  s:"Concéder avant de réfuter est le mouvement qui fait passer une réponse de B1 à B2. Un avis sans concession se lit comme un avis non réfléchi.",
+  e:[
+    ["certes… mais","expr.","admittedly… but","Certes, le loyer est élevé, mais l’emplacement est excellent.","Admittedly the rent is high, but the location is excellent.","certes… mais…","B2",""],
+    ["il est vrai que","expr.","it’s true that","Il est vrai que le problème existe depuis longtemps.","It’s true that the problem has existed for a long time.","il est vrai que + indicatif","B1",""],
+    ["en revanche","adv.","on the other hand","Le service est excellent ; en revanche, les prix sont élevés.","The service is excellent; on the other hand, prices are high.","en revanche","B2",""],
+    ["néanmoins","adv.","nevertheless","La mesure est coûteuse ; néanmoins, elle reste nécessaire.","The measure is costly; nevertheless, it remains necessary.","néanmoins","B2",""],
+    ["dans une certaine mesure","expr.","to some extent","Je suis d’accord dans une certaine mesure.","I agree to some extent.","dans une certaine mesure","B2",""],
+    ["avoir tendance à","expr.","to tend to","Les gens ont tendance à exagérer ce risque.","People tend to exaggerate that risk.","avoir tendance à + infinitif","B2",""],
+    ["il n’en reste pas moins que","expr.","the fact remains that","Il n’en reste pas moins que la décision est contestable.","The fact remains that the decision is questionable.","il n’en reste pas moins que","B2",""],
+    ["exagérer","v.","to exaggerate, overstate","Je pense qu’on exagère un peu le problème.","I think the problem is being somewhat overstated.","exagérer un problème","B1",""],
+    ["nier","v.","to deny","Personne ne nie l’importance de cette question.","No one denies the importance of this question.","nier un fait","B2",""],
+    ["contredire","v.","to contradict","Ces chiffres contredisent son argument.","These figures contradict his argument.","contredire quelqu’un","B2",""],
+    ["plutôt que","conj.","rather than","Je choisirais le train plutôt que l’avion.","I’d choose the train rather than the plane.","plutôt que de + infinitif","B1",""],
+    ["loin de là","expr.","far from it","Ce n’est pas réglé, loin de là.","It isn’t settled, far from it.","loin de là","B2",""]
+  ],
+  d:[
+    ["___, le projet est ambitieux, mais il manque de financement.","Certes"],
+    ["Le prix est bon ; ___ revanche, la qualité laisse à désirer.","en"],
+    ["Ces données ___ complètement sa conclusion.","contredisent"],
+    ["Je préfère marcher ___ que prendre l’autobus.","plutôt"],
+    ["On ___ tendance à sous-estimer ce genre de risque.","a"]
+  ]
+},
+{
+  n:14, t:"La quantité, la proportion, les chiffres",
+  s:"Indispensable pour la compréhension écrite du TEF, où presque chaque texte comporte des données chiffrées.",
+  e:[
+    ["la plupart (de)","expr.","most (of)","La plupart des candidats réussissent l’écrit.","Most candidates pass the written section.","la plupart des gens","B1",""],
+    ["une majorité","n.f.","a majority","Une large majorité soutient cette réforme.","A large majority supports this reform.","une large majorité","B1",""],
+    ["environ","adv.","about, approximately","Le trajet dure environ quarante minutes.","The trip takes about forty minutes.","environ + chiffre","A2",""],
+    ["la moitié","n.f.","half","La moitié des employés travaillent à distance.","Half the employees work remotely.","la moitié / le tiers / le quart","B1",""],
+    ["une moyenne","n.f.","an average","La moyenne se situe autour de trois heures.","The average is around three hours.","en moyenne","B1",""],
+    ["un pourcentage","n.m.","a percentage","Le pourcentage de réussite a progressé.","The pass rate has improved.","un pourcentage élevé","B1",""],
+    ["par rapport à","prép.","compared to","Les ventes ont doublé par rapport à l’an dernier.","Sales doubled compared to last year.","par rapport à + nom","B2",""],
+    ["atteindre","v.","to reach","Les températures ont atteint moins trente.","Temperatures reached minus thirty.","atteindre un niveau","B1",""],
+    ["dépasser","v.","to exceed, go beyond","Le coût dépasse largement le budget prévu.","The cost far exceeds the planned budget.","dépasser un seuil","B1",""],
+    ["à peine","adv.","barely, hardly","Il y avait à peine vingt personnes.","There were barely twenty people.","à peine + chiffre","B2",""],
+    ["un écart","n.m.","a gap, a difference","L’écart entre les deux régions se creuse.","The gap between the two regions is widening.","un écart important","B2",""],
+    ["s’élever à","v. pron.","to amount to","Les frais s’élèvent à deux mille dollars.","The costs amount to two thousand dollars.","s’élever à + montant","B2",""]
+  ],
+  d:[
+    ["Les dépenses ___ à quinze mille dollars.","s’élèvent"],
+    ["___ des étudiants travaillent à temps partiel.","La plupart"],
+    ["Le chiffre a augmenté ___ rapport à 2024.","par"],
+    ["Il restait ___ peine dix places libres.","à"],
+    ["L’___ salarial entre les deux postes est important.","écart"]
+  ]
+},
+{
+  n:15, t:"Les transports et le déplacement",
+  s:"Thème transactionnel du TEF, et vocabulaire de votre quotidien albertain.",
+  e:[
+    ["le transport en commun","n.m.","public transit","Je prends le transport en commun tous les jours.","I take public transit every day.","prendre le transport en commun","B1","Au Canada, le singulier <b>transport en commun</b> domine ; en France on dit <b>les transports en commun</b> au pluriel."],
+    ["un trajet","n.m.","a trip, a commute","Mon trajet dure quarante minutes.","My commute takes forty minutes.","un trajet quotidien","B1",""],
+    ["faire la navette","expr.","to commute","Il fait la navette entre Airdrie et Calgary.","He commutes between Airdrie and Calgary.","faire la navette entre","B2",""],
+    ["un embouteillage","n.m.","a traffic jam","On est resté une heure dans les embouteillages.","We were stuck in traffic for an hour.","être pris dans un embouteillage","B1","À l’oral au Canada : <b>il y a du trafic</b>, <b>c’est bouché</b>. <i>Embouteillage</i> reste correct mais plus écrit."],
+    ["un retard","n.m.","a delay","Le vol a trois heures de retard.","The flight is three hours late.","avoir du retard","A2",""],
+    ["une correspondance","n.f.","a connection (transit)","J’ai raté ma correspondance à Toronto.","I missed my connection in Toronto.","rater une correspondance","B1",""],
+    ["rouler","v.","to drive along, to run","On a roulé pendant six heures jusqu’à Fernie.","We drove for six hours to Fernie.","rouler vite / lentement","B1",""],
+    ["un permis de conduire","n.m.","a driver’s licence","J’ai passé mon permis de conduire en Alberta.","I got my driver’s licence in Alberta.","passer / obtenir son permis","A2",""],
+    ["le covoiturage","n.m.","carpooling","Le covoiturage réduit les coûts et la pollution.","Carpooling cuts costs and pollution.","faire du covoiturage","B2",""],
+    ["un aller-retour","n.m.","a return ticket","Un aller-retour Calgary–Vancouver, s’il vous plaît.","A return ticket Calgary–Vancouver, please.","un aller simple / un aller-retour","A2",""],
+    ["desservir","v.","to serve (a route)","Cette ligne dessert tout le nord de la ville.","This line serves the whole north of the city.","desservir un quartier","B2",""],
+    ["se déplacer","v. pron.","to get around, to travel","Je me déplace surtout en voiture l’hiver.","I mostly get around by car in winter.","se déplacer en voiture","B1",""]
+  ],
+  d:[
+    ["J’ai raté ma ___ à cause du retard du premier vol.","correspondance"],
+    ["Cette ligne d’autobus ___ tout le centre-ville.","dessert"],
+    ["Il ___ la navette entre sa maison et le bureau.","fait"],
+    ["Nous avons été pris dans un ___ pendant une heure.","embouteillage"],
+    ["Le ___ permet de partager les frais d’essence.","covoiturage"]
+  ]
+},
+{
+  n:16, t:"La technologie et le numérique",
+  s:"Sujet de débat fréquent (vie privée, écrans, télétravail) et lexique transactionnel courant.",
+  e:[
+    ["un logiciel","n.m.","software, a program","Ce logiciel est gratuit pour les étudiants.","This software is free for students.","installer un logiciel","B1",""],
+    ["télécharger","v.","to download","J’ai téléchargé le formulaire en ligne.","I downloaded the form online.","télécharger un fichier","B1",""],
+    ["un mot de passe","n.m.","a password","J’ai oublié mon mot de passe.","I forgot my password.","changer son mot de passe","A2",""],
+    ["une application","n.f.","an app","L’application ne fonctionne pas sur mon téléphone.","The app doesn’t work on my phone.","une application mobile","B1","<b>Un cellulaire</b> au Canada, <b>un portable</b> en France. Écrire <i>portable</i> au Canada fait penser à un ordinateur portable."],
+    ["en ligne","adv.","online","Toutes les démarches se font en ligne.","All the procedures are done online.","en ligne / hors ligne","A2",""],
+    ["sauvegarder","v.","to save, to back up","N’oublie pas de sauvegarder ton travail.","Don’t forget to save your work.","sauvegarder un document","B1",""],
+    ["un réseau","n.m.","a network","Le réseau est instable dans ce secteur.","The network is unstable in this area.","un réseau social","B1",""],
+    ["les données","n.f.pl.","data","Les données personnelles sont mal protégées.","Personal data is poorly protected.","protéger les données","B2",""],
+    ["la vie privée","n.f.","privacy","La vie privée est menacée par ces outils.","Privacy is threatened by these tools.","respecter la vie privée","B2",""],
+    ["pirater","v.","to hack","Son compte a été piraté la semaine dernière.","His account was hacked last week.","se faire pirater","B2",""],
+    ["une mise à jour","n.f.","an update","La mise à jour prend cinq minutes.","The update takes five minutes.","faire une mise à jour","B1",""],
+    ["un courriel","n.m.","an email","Je vous envoie un courriel cet après-midi.","I’ll send you an email this afternoon.","envoyer un courriel","A2","<b>Courriel</b> est le terme normal au Canada, y compris à l’oral. <i>Mail</i> et <i>e-mail</i> sonnent français de France."]
+  ],
+  d:[
+    ["J’ai ___ le document depuis le site du gouvernement.","téléchargé"],
+    ["Il faut ___ ton fichier avant de fermer.","sauvegarder"],
+    ["La protection des ___ personnelles pose problème.","données"],
+    ["Je vous ai envoyé un ___ hier soir.","courriel"],
+    ["Son compte Facebook s’est fait ___.","pirater"]
+  ]
+},
+{
+  n:17, t:"La justice, les droits, l’administration",
+  s:"Registre formel obligatoire. Ce lexique revient dans les textes officiels de la compréhension écrite.",
+  e:[
+    ["un droit","n.m.","a right","Chaque employé a droit à des congés payés.","Every employee is entitled to paid leave.","avoir droit à","B1",""],
+    ["une loi","n.f.","a law","La loi est entrée en vigueur en janvier.","The law came into force in January.","respecter la loi","B1",""],
+    ["interdire","v.","to ban, forbid","Il est interdit de fumer dans l’immeuble.","Smoking is forbidden in the building.","il est interdit de + infinitif","B1",""],
+    ["autoriser","v.","to authorize, allow","Le règlement autorise deux animaux par logement.","The rules allow two pets per unit.","être autorisé à","B1",""],
+    ["une amende","n.f.","a fine","J’ai reçu une amende pour stationnement.","I got a parking fine.","payer une amende","B1","Au Québec, <b>une contravention</b> ou familièrement <b>un ticket</b> pour une infraction routière."],
+    ["un formulaire","n.m.","a form","Le formulaire doit être signé et daté.","The form must be signed and dated.","remplir un formulaire","A2",""],
+    ["une démarche","n.f.","a procedure, a step","Les démarches administratives prennent du temps.","Administrative procedures take time.","entreprendre une démarche","B2",""],
+    ["un justificatif","n.m.","supporting document","Joignez un justificatif de domicile.","Attach proof of address.","fournir un justificatif","B2","Au Canada on demande plutôt <b>une preuve de résidence</b> ou <b>une pièce justificative</b>."],
+    ["faire appel","expr.","to appeal (a decision)","Il a décidé de faire appel de la décision.","He decided to appeal the decision.","faire appel d’une décision","B2",""],
+    ["une obligation","n.f.","an obligation","Le port du casque est une obligation légale.","Wearing a helmet is a legal requirement.","avoir l’obligation de","B1",""],
+    ["porter plainte","expr.","to file a complaint","Elle a porté plainte contre son employeur.","She filed a complaint against her employer.","porter plainte contre","B2",""],
+    ["en vigueur","expr.","in force, in effect","La nouvelle règle est en vigueur depuis lundi.","The new rule has been in effect since Monday.","entrer en vigueur","B2",""]
+  ],
+  d:[
+    ["Le nouveau règlement entre en ___ le 1er septembre.","vigueur"],
+    ["Vous devez ___ ce formulaire en lettres majuscules.","remplir"],
+    ["Il est ___ de stationner ici entre 8 h et 18 h.","interdit"],
+    ["Elle a décidé de ___ plainte auprès de la police.","porter"],
+    ["Les ___ pour la résidence permanente sont longues.","démarches"]
+  ]
+},
+{
+  n:18, t:"Les relations et les émotions",
+  s:"Nécessaire pour raconter une expérience personnelle — la tâche d’ouverture de l’oral.",
+  e:[
+    ["s’entendre (avec)","v. pron.","to get along (with)","Je m’entends très bien avec mes collègues.","I get along very well with my colleagues.","bien s’entendre avec","B1",""],
+    ["se disputer","v. pron.","to argue, to quarrel","Ils se sont disputés pour une bêtise.","They argued over something trivial.","se disputer avec quelqu’un","B1",""],
+    ["faire confiance à","expr.","to trust","Je lui fais entièrement confiance.","I trust him completely.","faire confiance à quelqu’un","B1",""],
+    ["décevoir","v.","to disappoint","Le film m’a un peu déçu.","The film disappointed me a little.","être déçu de / par","B1",""],
+    ["s’inquiéter (de)","v. pron.","to worry (about)","Ne t’inquiète pas pour l’examen.","Don’t worry about the exam.","s’inquiéter pour quelqu’un","B1",""],
+    ["soulagé","adj.","relieved","J’étais soulagé d’avoir terminé.","I was relieved to have finished.","être soulagé de + infinitif","B2",""],
+    ["gêné","adj.","embarrassed, uncomfortable","Je me suis senti gêné pendant la réunion.","I felt awkward during the meeting.","être gêné par","B2",""],
+    ["un malentendu","n.m.","a misunderstanding","Tout ça vient d’un simple malentendu.","This all comes from a simple misunderstanding.","dissiper un malentendu","B2",""],
+    ["compter sur","v.","to rely on","Tu peux compter sur moi.","You can count on me.","compter sur quelqu’un","B1",""],
+    ["supporter","v.","to put up with, to bear","Je ne supporte plus ce bruit.","I can’t stand this noise any more.","ne pas supporter","B2","Faux ami : <b>supporter</b> = <i>to tolerate</i>, jamais <i>to support</i>. Pour <i>to support</i>, dites <b>soutenir</b> ou <b>appuyer</b>."],
+    ["reconnaissant","adj.","grateful","Je vous suis très reconnaissant de votre aide.","I’m very grateful for your help.","être reconnaissant à quelqu’un de","B2",""],
+    ["un lien","n.m.","a bond, a connection","Il a gardé des liens forts avec sa famille.","He kept strong ties with his family.","créer / garder des liens","B1","Au Québec : <b>un chum</b> (petit ami), <b>une blonde</b> (petite amie). Universel à l’oral, à ne pas employer à l’écrit formel."]
+  ],
+  d:[
+    ["Je m’___ très bien avec mon voisin.","entends"],
+    ["Tu peux ___ sur moi pour la présentation.","compter"],
+    ["Ce n’était qu’un ___ : elle n’avait pas compris la date.","malentendu"],
+    ["J’ai été ___ d’apprendre que tout allait bien.","soulagé"],
+    ["Je ne ___ pas le bruit après vingt-deux heures.","supporte"]
+  ]
+},
+{
+  n:19, t:"Le tourisme et la culture",
+  s:"Décrire une expérience, recommander, justifier un choix — trois actes de parole très rentables.",
+  e:[
+    ["un séjour","n.m.","a stay","Nous avons passé un séjour de dix jours à Banff.","We had a ten-day stay in Banff.","faire un séjour","B1",""],
+    ["dépaysant","adj.","refreshingly different","Le Québec est dépaysant même pour un Canadien.","Quebec feels like another world even to a Canadian.","le dépaysement","B2",""],
+    ["une exposition","n.f.","an exhibition","L’exposition dure jusqu’en septembre.","The exhibition runs until September.","visiter une exposition","B1",""],
+    ["une œuvre","n.f.","a work (of art)","C’est l’œuvre la plus connue du musée.","It’s the best-known work in the museum.","une œuvre d’art","B2",""],
+    ["un spectacle","n.m.","a show, a performance","Le spectacle commence à vingt heures.","The show starts at 8 p.m.","assister à un spectacle","A2",""],
+    ["réserver","v.","to book","J’ai réservé une chambre pour deux nuits.","I booked a room for two nights.","réserver à l’avance","A2",""],
+    ["un forfait","n.m.","a package, a plan","Le forfait comprend le transport et l’hébergement.","The package includes transport and accommodation.","un forfait tout compris","B2","Au Canada, <b>forfait</b> s’emploie partout : <b>un forfait cellulaire</b>, <b>un forfait de ski</b>."],
+    ["valoir le détour","expr.","to be worth the trip","Le lac Louise vaut vraiment le détour.","Lake Louise is really worth the trip.","ça vaut le détour","B2",""],
+    ["le patrimoine","n.m.","heritage","Le Vieux-Québec fait partie du patrimoine mondial.","Old Quebec is a World Heritage site.","le patrimoine culturel","B2",""],
+    ["incontournable","adj.","not to be missed","Ce musée est incontournable à Montréal.","This museum is a must in Montreal.","une visite incontournable","B2",""],
+    ["se renseigner (sur)","v. pron.","to find out about","Je me suis renseigné sur les horaires.","I found out about the schedule.","se renseigner auprès de","B1",""],
+    ["un hébergement","n.m.","accommodation","L’hébergement est compris dans le prix.","Accommodation is included in the price.","trouver un hébergement","B1",""]
+  ],
+  d:[
+    ["Le musée des beaux-arts est ___ si vous passez par Montréal.","incontournable"],
+    ["Je me suis ___ auprès de l’office de tourisme.","renseigné"],
+    ["Le ___ comprend les repas et les remontées mécaniques.","forfait"],
+    ["Ce détour ___ vraiment la peine.","vaut"],
+    ["Nous avons fait un ___ de deux semaines en Gaspésie.","séjour"]
+  ]
+},
+{
+  n:20, t:"Les verbes pronominaux à haut rendement",
+  s:"Douze pronominaux qui reviennent sans arrêt. Mémorisez le verbe avec sa préposition, jamais seul.",
+  e:[
+    ["se rendre compte (de / que)","v. pron.","to realize","Je me suis rendu compte de mon erreur trop tard.","I realized my mistake too late.","se rendre compte que + indicatif","B1","Attention à l’accord : <b>elle s’est rendu compte</b> — le participe reste invariable."],
+    ["s’attendre à","v. pron.","to expect","Je ne m’attendais pas à une telle réponse.","I wasn’t expecting such a reply.","s’attendre à ce que + subjonctif","B2",""],
+    ["se débrouiller","v. pron.","to manage, to get by","Il se débrouille très bien en anglais.","He gets by very well in English.","se débrouiller en / avec","B1","<b>Se débrouiller</b> est omniprésent au Canada francophone. À maîtriser en production."],
+    ["s’habituer à","v. pron.","to get used to","Je me suis habitué au froid de l’Alberta.","I got used to the Alberta cold.","s’habituer à + nom / infinitif","B1",""],
+    ["se plaindre (de)","v. pron.","to complain (about)","Les voisins se plaignent du bruit.","The neighbours are complaining about the noise.","se plaindre de quelque chose","B1",""],
+    ["s’occuper de","v. pron.","to take care of, deal with","Je m’occupe des réservations.","I’ll take care of the bookings.","s’occuper de quelque chose","B1",""],
+    ["se passer de","v. pron.","to do without","On peut se passer de voiture ici.","You can do without a car here.","se passer de quelque chose","B2",""],
+    ["se méfier de","v. pron.","to be wary of","Il faut se méfier des offres trop belles.","Be wary of offers that seem too good.","se méfier de quelqu’un","B2",""],
+    ["il s’agit de","expr.","it’s about, it’s a matter of","Il s’agit d’un problème structurel.","It’s a structural problem.","il s’agit de + nom","B1","Toujours impersonnel : on ne dit jamais <i>je m’agis</i> ni <i>ce livre s’agit de</i>."],
+    ["se mettre à","v. pron.","to start, to take up","Il s’est mis à pleuvoir vers midi.","It started raining around noon.","se mettre à + infinitif","B1",""],
+    ["se douter de","v. pron.","to suspect","Je m’en doutais un peu.","I rather suspected as much.","se douter de quelque chose","B2",""],
+    ["se rendre (à)","v. pron.","to go to, to make one’s way to","Je me rends au bureau trois fois par semaine.","I go into the office three times a week.","se rendre à un endroit","B1",""]
+  ],
+  d:[
+    ["Je me suis ___ compte que j’avais oublié mon passeport.","rendu"],
+    ["Elle s’___ vite habituée à son nouveau quartier.","est"],
+    ["Il ___ agit d’une décision purement administrative.","s’"],
+    ["Les clients se ___ des délais de livraison.","plaignent"],
+    ["Il faut se ___ des sites qui demandent vos coordonnées bancaires.","méfier"]
+  ]
+},
+{
+  n:21, t:"Les prépositions imposées par le verbe",
+  s:"La préposition ne se déduit pas du sens : elle se mémorise avec le verbe. L’intuition anglaise induit ici systématiquement en erreur.",
+  e:[
+    ["essayer de","v.","to try to","J’essaie de parler français tous les jours.","I try to speak French every day.","essayer de + infinitif","B1",""],
+    ["réussir à","v.","to manage to, succeed in","Elle a réussi à convaincre son patron.","She managed to convince her boss.","réussir à + infinitif","B1",""],
+    ["penser à / penser de","v.","to think of (about) / to have an opinion of","Je pense souvent à mon pays. — Que penses-tu de ce film ?","I often think about my country. — What do you think of this film?","penser à = avoir en tête ; penser de = avoir un avis","B1","Distinction constante en examen : <b>penser à</b> = to have in mind ; <b>penser de</b> = to have an opinion about."],
+    ["décider de","v.","to decide to","Nous avons décidé de rester une nuit de plus.","We decided to stay one more night.","décider de + infinitif","B1",""],
+    ["arriver à","v.","to manage to","Je n’arrive pas à ouvrir ce fichier.","I can’t manage to open this file.","arriver à + infinitif","B1",""],
+    ["commencer à / finir de","v.","to start / to finish","Il a commencé à neiger. J’ai fini de travailler.","It started snowing. I finished working.","commencer à + inf. / finir de + inf.","A2",""],
+    ["hésiter à","v.","to hesitate to","N’hésitez pas à me contacter.","Don’t hesitate to contact me.","n’hésitez pas à + infinitif","B1",""],
+    ["accepter de / refuser de","v.","to agree to / to refuse to","Il a refusé de signer le contrat.","He refused to sign the contract.","accepter de / refuser de + inf.","B1",""],
+    ["servir à / se servir de","v.","to be used for / to use","Ce bouton sert à régler le volume. Je me sers de mon vélo l’été.","This button is used to adjust the volume. I use my bike in summer.","servir à + inf. / se servir de + nom","B2",""],
+    ["manquer de","v.","to lack","Ce rapport manque de précision.","This report lacks precision.","manquer de + nom","B2",""],
+    ["participer à","v.","to take part in","J’ai participé à trois ateliers.","I took part in three workshops.","participer à + nom","B1",""],
+    ["s’intéresser à","v. pron.","to be interested in","Elle s’intéresse beaucoup à la politique canadienne.","She’s very interested in Canadian politics.","s’intéresser à + nom","B1",""]
+  ],
+  d:[
+    ["Je n’arrive pas ___ retenir cette conjugaison.","à"],
+    ["Il a décidé ___ changer de carrière.","de"],
+    ["N’hésitez pas ___ poser des questions.","à"],
+    ["Ce document manque ___ clarté.","de"],
+    ["Qu’est-ce que tu penses ___ sa proposition ?","de"]
+  ]
+},
+{
+  n:22, t:"L’oral québécois : expressions figées",
+  s:"Leçon de reconnaissance uniquement. Vous devez comprendre ces formes à l’écoute ; ne les produisez pas à l’examen, où le registre standard est exigé.",
+  e:[
+    ["c’est correct","expr.","it’s fine, that’s OK","— Désolé pour le retard. — C’est correct !","— Sorry I’m late. — It’s fine!","c’est correct","B1","Ne signifie pas <i>it’s correct</i>. Équivaut à <b>ce n’est pas grave</b> ou <b>ça va</b>."],
+    ["pas pire","expr.","not bad, pretty good","— Comment ça va ? — Pas pire.","— How’s it going? — Not bad.","pas pire","B1","Sonne négatif à l’oreille française, mais c’est un compliment modéré au Québec."],
+    ["la particule « -tu »","gram.","spoken yes/no question marker","Tu viens-tu avec nous ? / C’est-tu loin ?","Are you coming with us? / Is it far?","verbe + -tu ?","B2","Marqueur d’interrogation, sans lien avec le pronom <i>tu</i> : <b>il vient-tu ?</b> est correct à l’oral. Reconnaissance seulement."],
+    ["faque","conj.","so, therefore","Il pleuvait, faque on est restés à la maison.","It was raining, so we stayed home.","faque…","B1","Contraction de <i>ce qui fait que</i>. À l’examen, dites <b>donc</b> ou <b>alors</b>."],
+    ["présentement","adv.","currently, right now","Je travaille présentement sur un autre dossier.","I’m currently working on another file.","présentement","B1","Standard et acceptable à l’écrit au Canada, là où la France dirait <b>actuellement</b>."],
+    ["embarquer","v.","to get in / on (a vehicle)","Embarque, je te dépose au centre-ville.","Hop in, I’ll drop you downtown.","embarquer dans l’auto","B1","<b>Débarquer</b> pour descendre. En France, réservé aux bateaux et avions."],
+    ["c’est plate","expr.","it’s boring / that’s too bad","C’est plate qu’il ne puisse pas venir.","It’s a shame he can’t come.","c’est plate","B2","Deux sens selon le contexte : <i>ennuyeux</i> ou <i>dommage</i>."],
+    ["avoir de la misère à","expr.","to have trouble doing sth","J’ai de la misère à comprendre son accent.","I have trouble understanding his accent.","avoir de la misère à + inf.","B2","Équivalent standard : <b>avoir du mal à</b>."],
+    ["être tanné de","expr.","to be fed up with","Je suis tanné de l’hiver.","I’m fed up with winter.","être tanné de + nom / inf.","B2","Équivalent standard : <b>en avoir assez de</b>, <b>être las de</b>."],
+    ["tomber en amour","expr.","to fall in love","Ils sont tombés en amour à Québec.","They fell in love in Quebec City.","tomber en amour avec","B2","Calque de l’anglais. En France : <b>tomber amoureux de</b>."],
+    ["bienvenue","interj.","you’re welcome","— Merci beaucoup ! — Bienvenue !","— Thanks a lot! — You’re welcome!","bienvenue","B1","Réponse à <i>merci</i>, calque de <i>you’re welcome</i>. En France cela déconcerte : dites <b>de rien</b> ou <b>je vous en prie</b>."],
+    ["par exemple","adv.","however, mind you","C’est cher, par exemple.","It’s expensive, mind you.","…, par exemple.","B2","En fin de phrase au Québec, signifie <b>cependant</b> — piège classique en compréhension orale."]
+  ],
+  d:[
+    ["Il pleut, ___ on annule le pique-nique.","faque"],
+    ["Je suis ___ de refaire les mêmes exercices.","tanné"],
+    ["J’ai de la ___ à suivre quand il parle vite.","misère"],
+    ["— Merci pour ton aide ! — ___ !","Bienvenue"],
+    ["Je travaille ___ sur le chapitre 10.","présentement"]
+  ]
+},
+{
+  n:23, t:"L’immigration et les démarches canadiennes",
+  s:"Lexique administratif propre au Canada. Absent des manuels français, indispensable pour votre dossier comme pour l’oral du TEF Canada.",
+  e:[
+    ["la résidence permanente","n.f.","permanent residence","J’ai déposé ma demande de résidence permanente.","I submitted my permanent residence application.","obtenir la résidence permanente","B1","Abrégée <b>RP</b>. La carte s’appelle <b>la carte de résident permanent</b>."],
+    ["un nouvel arrivant","n.m.","a newcomer","Des cours gratuits sont offerts aux nouveaux arrivants.","Free classes are offered to newcomers.","un nouvel arrivant au Canada","B1","Terme officiel canadien, plus neutre et plus courant que <i>immigrant</i> dans les documents publics."],
+    ["parrainer","v.","to sponsor","Elle a parrainé son conjoint.","She sponsored her spouse.","le parrainage familial","B2",""],
+    ["un permis de travail","n.m.","a work permit","Mon permis de travail expire en mars.","My work permit expires in March.","renouveler un permis de travail","B1",""],
+    ["la citoyenneté","n.f.","citizenship","Il a obtenu la citoyenneté canadienne l’an dernier.","He obtained Canadian citizenship last year.","demander la citoyenneté","B1",""],
+    ["faire une demande","expr.","to apply (administrative)","J’ai fait une demande de visa de visiteur.","I applied for a visitor visa.","faire une demande de","B1","Pour un emploi on dit <b>postuler</b> ; pour une démarche administrative, <b>faire une demande</b>."],
+    ["un dossier","n.m.","a file, an application","Mon dossier est en cours de traitement.","My application is being processed.","monter un dossier","B1",""],
+    ["une preuve","n.f.","proof, evidence","Fournissez une preuve de résidence.","Provide proof of residence.","une preuve de résidence","B1",""],
+    ["admissible","adj.","eligible","Êtes-vous admissible au programme Entrée express ?","Are you eligible for the Express Entry program?","être admissible à","B2","<b>L’admissibilité</b> = eligibility. Terme constant dans les formulaires fédéraux."],
+    ["un délai de traitement","n.m.","a processing time","Le délai de traitement est de six mois.","The processing time is six months.","un délai de traitement","B2",""],
+    ["le numéro d’assurance sociale","n.m.","social insurance number","Il faut un numéro d’assurance sociale pour travailler.","You need a social insurance number to work.","le NAS","B2","Toujours abrégé <b>NAS</b> à l’oral. Sans équivalent en France."],
+    ["l’équivalence de diplôme","n.f.","credential recognition","J’ai fait évaluer l’équivalence de mon diplôme.","I had my credential assessed.","faire reconnaître un diplôme","B2","L’évaluation officielle s’appelle <b>l’ÉDE</b> (évaluation des diplômes d’études)."]
+  ],
+  d:[
+    ["Le ___ de traitement varie selon le pays de résidence.","délai"],
+    ["Vous devez fournir une ___ de résidence de moins de trois mois.","preuve"],
+    ["Elle a ___ son mari après avoir obtenu la RP.","parrainé"],
+    ["Je ne suis pas ___ à ce programme sans expérience canadienne.","admissible"],
+    ["Il faut un ___ pour être payé légalement au Canada.","NAS"]
+  ]
+},
+{
+  n:24, t:"Les faux amis",
+  s:"Douze mots que votre anglais vous fera employer à contresens. Chacun coûte des points en production.",
+  e:[
+    ["actuellement","adv.","currently (NOT actually)","Il est actuellement en réunion.","He’s currently in a meeting.","actuellement = en ce moment","B1","Pour <i>actually</i>, dites <b>en fait</b> ou <b>en réalité</b>."],
+    ["éventuellement","adv.","possibly (NOT eventually)","Je pourrais éventuellement changer d’avis.","I might possibly change my mind.","éventuellement = peut-être","B2","Pour <i>eventually</i>, dites <b>finalement</b> ou <b>à terme</b>."],
+    ["sensible","adj.","sensitive (NOT sensible)","C’est un sujet très sensible.","It’s a very sensitive subject.","un sujet sensible","B1","Pour <i>sensible</i>, dites <b>raisonnable</b> ou <b>sensé</b>."],
+    ["rester","v.","to stay (NOT to rest)","Je reste à la maison ce week-end.","I’m staying home this weekend.","rester quelque part","A2","Pour <i>to rest</i>, dites <b>se reposer</b>."],
+    ["assister à","v.","to attend (NOT to assist)","J’ai assisté à la conférence hier.","I attended the conference yesterday.","assister à un événement","B1","Pour <i>to assist</i>, dites <b>aider</b>."],
+    ["attendre","v.","to wait for (NOT to attend)","J’attends le bus depuis vingt minutes.","I’ve been waiting for the bus for twenty minutes.","attendre quelqu’un / quelque chose","A2","<b>Attendre</b> n’a jamais de préposition : <i>attendre le bus</i>, pas <i>attendre pour le bus</i>."],
+    ["demander","v.","to ask (NOT to demand)","Il m’a demandé mon avis.","He asked me for my opinion.","demander quelque chose à quelqu’un","A2","Pour <i>to demand</i>, dites <b>exiger</b>."],
+    ["une librairie","n.f.","a bookshop (NOT a library)","J’ai acheté ce roman dans une librairie.","I bought this novel at a bookshop.","aller à la librairie","A2","La <i>library</i> est <b>une bibliothèque</b>."],
+    ["prétendre","v.","to claim (NOT to pretend)","Il prétend avoir tout terminé.","He claims to have finished everything.","prétendre que + indicatif","B2","Pour <i>to pretend</i>, dites <b>faire semblant de</b>."],
+    ["une déception","n.f.","a disappointment (NOT deception)","Ce résultat a été une grande déception.","That result was a big disappointment.","une déception","B1","Pour <i>deception</i>, dites <b>une tromperie</b>."],
+    ["la monnaie","n.f.","change / currency (NOT money)","Vous avez de la monnaie pour vingt dollars ?","Do you have change for twenty dollars?","rendre la monnaie","A2","<i>Money</i> = <b>l’argent</b>. Au Québec, on entend souvent <b>du change</b> pour les pièces."],
+    ["formidable","adj.","great, wonderful (NOT formidable)","C’est une formidable occasion.","It’s a wonderful opportunity.","une formidable occasion","B1","Pour <i>formidable</i> au sens de redoutable, dites <b>redoutable</b> ou <b>impressionnant</b>."]
+  ],
+  d:[
+    ["Je suis ___ en formation, je reprends le travail en mai.","actuellement"],
+    ["J’ai ___ à la réunion, mais je n’ai pas pris la parole.","assisté"],
+    ["Il ___ être le seul à connaître le dossier.","prétend"],
+    ["J’ai acheté ce livre dans une petite ___ du quartier.","librairie"],
+    ["Avez-vous de la ___ ? Je n’ai qu’un billet de cinquante.","monnaie"]
+  ]
+}
+];
+
+const LV = ["A2","B1","B2"];
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function gauge(lvl){
+  return '<div class="gauge">' + LV.map(function(x){
+    return '<span class="seg' + (x===lvl?' on':'') + '">' + x + '</span>';
+  }).join("") + '</div>';
+}
+
+function entry(e,i){
+  const ca = e[7] ? '<div class="ca">🇨🇦 ' + e[7] + '</div>' : '';
+  return '<article class="entry" data-lvl="' + e[6] + '">' +
+    '<div class="entry-top">' +
+      '<div class="idx">' + String(i+1).padStart(2,"0") + '</div>' +
+      '<div class="head-block">' +
+        '<span class="fr">' + esc(e[0]) + '</span><span class="pos">' + esc(e[1]) + '</span>' +
+        '<div class="en">' + esc(e[2]) + '</div>' +
+      '</div>' +
+      gauge(e[6]) +
+    '</div>' +
+    '<div class="ex">' + esc(e[3]) + '<span class="gloss">' + esc(e[4]) + '</span></div>' +
+    '<span class="chunk">' + esc(e[5]) + '</span>' +
+    ca +
+  '</article>';
+}
+
+function lesson(l){
+  const items = l.e.map(entry).join("");
+  const drills = l.d.map(function(d){
+    return '<li>' + esc(d[0]).replace("___",'<span class="blank"></span>') + '</li>';
+  }).join("");
+  const key = l.d.map(function(d,i){ return (i+1) + ". " + d[1]; }).join("  ·  ");
+  return '<section class="lesson" id="l' + l.n + '">' +
+    '<div class="lesson-head">' +
+      '<span class="lesson-num">LEÇON ' + String(l.n).padStart(2,"0") + '</span>' +
+      '<h2 class="lesson-title">' + l.t + '</h2>' +
+    '</div>' +
+    '<p class="lesson-sub">' + l.s + '</p>' +
+    items +
+    '<div class="drill">' +
+      '<h3>Exercice — complétez</h3>' +
+      '<ol>' + drills + '</ol>' +
+      '<div class="key">' + key + '</div>' +
+    '</div>' +
+  '</section>';
+}
+
+document.getElementById("book").innerHTML = L.map(lesson).join("");
+
+// level filter
+document.querySelectorAll("[data-lvl]").forEach(function(b){
+  if(b.tagName !== "BUTTON") return;
+  b.addEventListener("click", function(){
+    const v = b.dataset.lvl;
+    document.querySelectorAll(".controls [data-lvl]").forEach(function(x){
+      x.setAttribute("aria-pressed", x === b ? "true" : "false");
+    });
+    document.querySelectorAll(".entry").forEach(function(el){
+      el.style.display = (v === "all" || el.dataset.lvl === v) ? "" : "none";
+    });
+  });
+});
+
+// recall mode
+const mask = document.getElementById("mask");
+mask.addEventListener("click", function(){
+  const on = mask.getAttribute("aria-pressed") === "true";
+  mask.setAttribute("aria-pressed", on ? "false" : "true");
+  document.querySelectorAll(".en,.gloss").forEach(function(el){
+    el.classList.toggle("hidden", !on);
+  });
+});
+
+// answer keys
+const keys = document.getElementById("keys");
+keys.addEventListener("click", function(){
+  const on = keys.getAttribute("aria-pressed") === "true";
+  keys.setAttribute("aria-pressed", on ? "false" : "true");
+  document.querySelectorAll(".key").forEach(function(el){
+    el.classList.toggle("show", !on);
+  });
+});
+</script>

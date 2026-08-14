@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>French Tenses — Master Comparison Tables</title>
+<style>
+:root{
+  --ink:#23201c; --paper:#fbfaf7; --line:#e2ddd2; --soft:#f1eee6;
+  --stem:#0b6e6e; --end:#c0392b; --aux:#6b4fa0; --dim:#8a8377;
+  --chip:#efece4; --warn:#9a6b00; --ca:#1f5fa8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:15px/1.5 "Avenir Next","Segoe UI",system-ui,sans-serif;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+header.hero{padding:34px 0 10px;border-bottom:3px solid var(--ink)}
+h1{font-size:30px;margin:0 0 4px;letter-spacing:-.02em}
+.sub{color:var(--dim);margin:0 0 14px}
+nav.sticky{position:sticky;top:0;background:var(--paper);z-index:30;
+  border-bottom:1px solid var(--line);padding:8px 0;display:flex;flex-wrap:wrap;gap:6px}
+nav.sticky a{font-size:12px;text-decoration:none;color:var(--ink);
+  background:var(--chip);border:1px solid var(--line);border-radius:99px;
+  padding:3px 10px;white-space:nowrap}
+nav.sticky a:hover{background:#e6e1d4}
+nav.sticky a.lit{background:#efe9f7;border-color:#d7c9ee}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 4px;font-size:13.5px}
+.legend span b{font-weight:700}
+.st{color:var(--stem);font-weight:600}
+.en{color:var(--end);font-weight:800}
+.en.zero{color:var(--dim);font-weight:600}
+.ax{color:var(--aux);font-weight:700}
+section.tense{margin:34px 0 0;border:1px solid var(--line);border-radius:10px;
+  background:#fff;overflow:hidden}
+.thead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding:12px 18px;background:var(--soft);border-bottom:1px solid var(--line)}
+.thead h2{margin:0;font-size:20px}
+.thead .en-name{color:var(--dim);font-size:13.5px}
+.tag{font-size:11px;border-radius:4px;padding:2px 7px;font-weight:700;letter-spacing:.03em}
+.tag.spk{background:#e3f2e6;color:#226b34}
+.tag.wrt{background:#e8eef9;color:#27508f}
+.tag.lit{background:#f3eadf;color:#8a5a13}
+.formula{padding:10px 18px;border-bottom:1px dashed var(--line);font-size:15px;
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.formula .box{border:1.5px solid;border-radius:6px;padding:3px 10px;font-weight:700}
+.formula .box.bst{border-color:var(--stem);color:var(--stem)}
+.formula .box.ben{border-color:var(--end);color:var(--end)}
+.formula .box.bax{border-color:var(--aux);color:var(--aux)}
+.formula .plus{font-weight:800;color:var(--dim)}
+.usage{padding:8px 18px;color:#574f44;font-size:13.5px;border-bottom:1px solid var(--line)}
+.cols{display:flex;gap:0;flex-wrap:wrap;padding:8px 8px 14px}
+.vcol{flex:1 1 280px;min-width:250px;padding:8px 10px}
+.vhead{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:2px solid var(--ink);padding-bottom:4px;margin-bottom:4px}
+.inf{font-weight:800;font-size:16px}
+.grp{font-size:11.5px;color:var(--dim);font-weight:700}
+table.ct{width:100%;border-collapse:collapse;font-size:16px}
+table.ct td{padding:3.5px 6px;border-bottom:1px solid var(--soft)}
+table.ct td.pr{color:var(--dim);font-size:13px;width:88px;text-align:right;padding-right:10px}
+table.ct td.fm{font-family:Georgia,"Times New Roman",serif;font-size:17px}
+.note{margin:0 18px 14px;background:var(--soft);border-left:4px solid var(--ink);
+  border-radius:0 6px 6px 0;padding:9px 13px;font-size:13.5px}
+.note.ca{border-left-color:var(--ca)}
+.note.irr{border-left-color:var(--end)}
+.note b{font-weight:700}
+.irrlist{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px}
+.irrlist span{white-space:nowrap;font-family:Georgia,serif;font-size:15px}
+.irrlist span i{font-style:normal;color:var(--dim);font-family:"Avenir Next","Segoe UI",sans-serif;font-size:12.5px}
+h1.part, .part-h{font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);margin:44px 0 -18px;font-weight:800}
+table.big{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff}
+table.big th{background:var(--ink);color:#fff;padding:7px 9px;font-size:12px;
+  letter-spacing:.04em;text-align:left}
+table.big td{border:1px solid var(--line);padding:5px 9px;
+  font-family:Georgia,serif;font-size:15.5px;white-space:nowrap}
+table.big td.pr, table.big td.lbl{font-family:"Avenir Next","Segoe UI",sans-serif;
+  font-size:12.5px;color:var(--dim);font-weight:700;background:var(--soft)}
+table.big tr.src td{font-family:"Avenir Next","Segoe UI",sans-serif;font-size:12px;
+  background:#fbf7ec;color:#574f44;white-space:normal}
+.scrollx{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin-top:24px}
+.callout{border:1.5px solid var(--ink);border-radius:10px;background:#fff;
+  padding:14px 18px;margin:26px 0 0}
+.callout h3{margin:0 0 8px;font-size:16px}
+.pair{font-family:Georgia,serif;font-size:16.5px;margin:3px 0}
+.pair .lab{font-family:"Avenir Next","Segoe UI",sans-serif;font-size:12px;
+  color:var(--dim);font-weight:700;display:inline-block;width:150px}
+footer{margin-top:50px;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line);padding-top:12px}
+@media print{nav.sticky{display:none}.scrollx{overflow:visible}body{font-size:13px}}
+
+table.big th{position:static}
+</style></head><body><div class="wrap">
+<header class="hero">
+<h1>Master Comparison Tables</h1>
+<p class="sub">Everything side by side, for spotting differences · companion to <b>01 — Tenses Reference</b></p>
+
+<div class="legend">
+  <span><b class="st">stem</b> — the part that carries the meaning</span>
+  <span><b class="en">ending</b> — the part that changes with person/tense</span>
+  <span><b class="ax">auxiliary</b> — avoir/être in compound tenses</span>
+  <span><span class="en zero">&empty;</span> = no ending</span>
+</div>
+
+</header>
+
+<nav class="sticky">
+<a href="#t-endings">Endings grid</a>
+<a href="#t-verbs">parler · finir · vendre</a>
+<a href="#t-aux">être &amp; avoir</a>
+<a href="#t-comp">Compound tenses</a>
+<a href="#t-irr">Irregular stems</a>
+<a href="#t-borrow">Loan map</a>
+<a href="#t-spot">Lookalikes</a>
+</nav>
+
+
+<p class="part-h" id="t-endings">A · All endings, one grid</p>
+<div class="scrollx"><table class="big"><tr><th></th><th>PRÉSENT -er</th><th>PRÉSENT -ir</th><th>PRÉSENT -re</th><th>IMPARFAIT</th><th>FUTUR</th><th>CONDITIONNEL</th><th>SUBJONCTIF</th><th>P. SIMPLE -er 📚</th><th>P. SIMPLE -ir/-re 📚</th></tr><tr class="src"><td class="lbl">STEM =</td><td>infinitive − er</td><td>infinitive − ir</td><td>infinitive − re</td><td>nous form − ons</td><td>infinitive (−e)</td><td>infinitive (−e)</td><td>ils form − ent</td><td>infinitive − er</td><td>infinitive − ir/re</td></tr><tr><td class="pr">je</td><td><span class="en">-e</span></td><td><span class="en">-is</span></td><td><span class="en">-s</span></td><td><span class="en">-ais</span></td><td><span class="en">-ai</span></td><td><span class="en">-ais</span></td><td><span class="en">-e</span></td><td><span class="en">-ai</span></td><td><span class="en">-is</span></td></tr><tr><td class="pr">tu</td><td><span class="en">-es</span></td><td><span class="en">-is</span></td><td><span class="en">-s</span></td><td><span class="en">-ais</span></td><td><span class="en">-as</span></td><td><span class="en">-ais</span></td><td><span class="en">-es</span></td><td><span class="en">-as</span></td><td><span class="en">-is</span></td></tr><tr><td class="pr">il/elle</td><td><span class="en">-e</span></td><td><span class="en">-it</span></td><td><span class="en zero">&empty;</span></td><td><span class="en">-ait</span></td><td><span class="en">-a</span></td><td><span class="en">-ait</span></td><td><span class="en">-e</span></td><td><span class="en">-a</span></td><td><span class="en">-it</span></td></tr><tr><td class="pr">nous</td><td><span class="en">-ons</span></td><td><span class="en">-issons</span></td><td><span class="en">-ons</span></td><td><span class="en">-ions</span></td><td><span class="en">-ons</span></td><td><span class="en">-ions</span></td><td><span class="en">-ions</span></td><td><span class="en">-âmes</span></td><td><span class="en">-îmes</span></td></tr><tr><td class="pr">vous</td><td><span class="en">-ez</span></td><td><span class="en">-issez</span></td><td><span class="en">-ez</span></td><td><span class="en">-iez</span></td><td><span class="en">-ez</span></td><td><span class="en">-iez</span></td><td><span class="en">-iez</span></td><td><span class="en">-âtes</span></td><td><span class="en">-îtes</span></td></tr><tr><td class="pr">ils/elles</td><td><span class="en">-ent</span></td><td><span class="en">-issent</span></td><td><span class="en">-ent</span></td><td><span class="en">-aient</span></td><td><span class="en">-ont</span></td><td><span class="en">-aient</span></td><td><span class="en">-ent</span></td><td><span class="en">-èrent</span></td><td><span class="en">-irent</span></td></tr></table></div>
+<div class="note" style="margin:10px 0 0">Read down a column to conjugate; read <b>across a row</b> to compare tenses for the same person — that's where confusions live.</div>
+
+<p class="part-h" id="t-verbs">B · The three regular cores, fully conjugated <span style="text-transform:none;letter-spacing:0;font-weight:400">(not “three groups” — irregulars live in the stem banks, section E)</span></p>
+<div class="scrollx"><table class="big"><tr><th style="min-width:70px">parler</th><th>PRÉSENT</th><th>IMPARFAIT</th><th>FUTUR</th><th>CONDITIONNEL</th><th>SUBJONCTIF</th><th>P. SIMPLE 📚</th></tr><tr><td class="pr">je</td><td><span class="st">parl</span><span class="en">e</span></td><td><span class="st">parl</span><span class="en">ais</span></td><td><span class="st">parler</span><span class="en">ai</span></td><td><span class="st">parler</span><span class="en">ais</span></td><td><span class="st">parl</span><span class="en">e</span></td><td><span class="st">parl</span><span class="en">ai</span></td></tr><tr><td class="pr">tu</td><td><span class="st">parl</span><span class="en">es</span></td><td><span class="st">parl</span><span class="en">ais</span></td><td><span class="st">parler</span><span class="en">as</span></td><td><span class="st">parler</span><span class="en">ais</span></td><td><span class="st">parl</span><span class="en">es</span></td><td><span class="st">parl</span><span class="en">as</span></td></tr><tr><td class="pr">il/elle</td><td><span class="st">parl</span><span class="en">e</span></td><td><span class="st">parl</span><span class="en">ait</span></td><td><span class="st">parler</span><span class="en">a</span></td><td><span class="st">parler</span><span class="en">ait</span></td><td><span class="st">parl</span><span class="en">e</span></td><td><span class="st">parl</span><span class="en">a</span></td></tr><tr><td class="pr">nous</td><td><span class="st">parl</span><span class="en">ons</span></td><td><span class="st">parl</span><span class="en">ions</span></td><td><span class="st">parler</span><span class="en">ons</span></td><td><span class="st">parler</span><span class="en">ions</span></td><td><span class="st">parl</span><span class="en">ions</span></td><td><span class="st">parl</span><span class="en">âmes</span></td></tr><tr><td class="pr">vous</td><td><span class="st">parl</span><span class="en">ez</span></td><td><span class="st">parl</span><span class="en">iez</span></td><td><span class="st">parler</span><span class="en">ez</span></td><td><span class="st">parler</span><span class="en">iez</span></td><td><span class="st">parl</span><span class="en">iez</span></td><td><span class="st">parl</span><span class="en">âtes</span></td></tr><tr><td class="pr">ils/elles</td><td><span class="st">parl</span><span class="en">ent</span></td><td><span class="st">parl</span><span class="en">aient</span></td><td><span class="st">parler</span><span class="en">ont</span></td><td><span class="st">parler</span><span class="en">aient</span></td><td><span class="st">parl</span><span class="en">ent</span></td><td><span class="st">parl</span><span class="en">èrent</span></td></tr></table></div><div class="scrollx"><table class="big"><tr><th style="min-width:70px">finir</th><th>PRÉSENT</th><th>IMPARFAIT</th><th>FUTUR</th><th>CONDITIONNEL</th><th>SUBJONCTIF</th><th>P. SIMPLE 📚</th></tr><tr><td class="pr">je</td><td><span class="st">fin</span><span class="en">is</span></td><td><span class="st">finiss</span><span class="en">ais</span></td><td><span class="st">finir</span><span class="en">ai</span></td><td><span class="st">finir</span><span class="en">ais</span></td><td><span class="st">finiss</span><span class="en">e</span></td><td><span class="st">fin</span><span class="en">is</span></td></tr><tr><td class="pr">tu</td><td><span class="st">fin</span><span class="en">is</span></td><td><span class="st">finiss</span><span class="en">ais</span></td><td><span class="st">finir</span><span class="en">as</span></td><td><span class="st">finir</span><span class="en">ais</span></td><td><span class="st">finiss</span><span class="en">es</span></td><td><span class="st">fin</span><span class="en">is</span></td></tr><tr><td class="pr">il/elle</td><td><span class="st">fin</span><span class="en">it</span></td><td><span class="st">finiss</span><span class="en">ait</span></td><td><span class="st">finir</span><span class="en">a</span></td><td><span class="st">finir</span><span class="en">ait</span></td><td><span class="st">finiss</span><span class="en">e</span></td><td><span class="st">fin</span><span class="en">it</span></td></tr><tr><td class="pr">nous</td><td><span class="st">fin</span><span class="en">issons</span></td><td><span class="st">finiss</span><span class="en">ions</span></td><td><span class="st">finir</span><span class="en">ons</span></td><td><span class="st">finir</span><span class="en">ions</span></td><td><span class="st">finiss</span><span class="en">ions</span></td><td><span class="st">fin</span><span class="en">îmes</span></td></tr><tr><td class="pr">vous</td><td><span class="st">fin</span><span class="en">issez</span></td><td><span class="st">finiss</span><span class="en">iez</span></td><td><span class="st">finir</span><span class="en">ez</span></td><td><span class="st">finir</span><span class="en">iez</span></td><td><span class="st">finiss</span><span class="en">iez</span></td><td><span class="st">fin</span><span class="en">îtes</span></td></tr><tr><td class="pr">ils/elles</td><td><span class="st">fin</span><span class="en">issent</span></td><td><span class="st">finiss</span><span class="en">aient</span></td><td><span class="st">finir</span><span class="en">ont</span></td><td><span class="st">finir</span><span class="en">aient</span></td><td><span class="st">finiss</span><span class="en">ent</span></td><td><span class="st">fin</span><span class="en">irent</span></td></tr></table></div><div class="scrollx"><table class="big"><tr><th style="min-width:70px">vendre</th><th>PRÉSENT</th><th>IMPARFAIT</th><th>FUTUR</th><th>CONDITIONNEL</th><th>SUBJONCTIF</th><th>P. SIMPLE 📚</th></tr><tr><td class="pr">je</td><td><span class="st">vend</span><span class="en">s</span></td><td><span class="st">vend</span><span class="en">ais</span></td><td><span class="st">vendr</span><span class="en">ai</span></td><td><span class="st">vendr</span><span class="en">ais</span></td><td><span class="st">vend</span><span class="en">e</span></td><td><span class="st">vend</span><span class="en">is</span></td></tr><tr><td class="pr">tu</td><td><span class="st">vend</span><span class="en">s</span></td><td><span class="st">vend</span><span class="en">ais</span></td><td><span class="st">vendr</span><span class="en">as</span></td><td><span class="st">vendr</span><span class="en">ais</span></td><td><span class="st">vend</span><span class="en">es</span></td><td><span class="st">vend</span><span class="en">is</span></td></tr><tr><td class="pr">il/elle</td><td><span class="st">vend</span><span class="en zero">&empty;</span></td><td><span class="st">vend</span><span class="en">ait</span></td><td><span class="st">vendr</span><span class="en">a</span></td><td><span class="st">vendr</span><span class="en">ait</span></td><td><span class="st">vend</span><span class="en">e</span></td><td><span class="st">vend</span><span class="en">it</span></td></tr><tr><td class="pr">nous</td><td><span class="st">vend</span><span class="en">ons</span></td><td><span class="st">vend</span><span class="en">ions</span></td><td><span class="st">vendr</span><span class="en">ons</span></td><td><span class="st">vendr</span><span class="en">ions</span></td><td><span class="st">vend</span><span class="en">ions</span></td><td><span class="st">vend</span><span class="en">îmes</span></td></tr><tr><td class="pr">vous</td><td><span class="st">vend</span><span class="en">ez</span></td><td><span class="st">vend</span><span class="en">iez</span></td><td><span class="st">vendr</span><span class="en">ez</span></td><td><span class="st">vendr</span><span class="en">iez</span></td><td><span class="st">vend</span><span class="en">iez</span></td><td><span class="st">vend</span><span class="en">îtes</span></td></tr><tr><td class="pr">ils/elles</td><td><span class="st">vend</span><span class="en">ent</span></td><td><span class="st">vend</span><span class="en">aient</span></td><td><span class="st">vendr</span><span class="en">ont</span></td><td><span class="st">vendr</span><span class="en">aient</span></td><td><span class="st">vend</span><span class="en">ent</span></td><td><span class="st">vend</span><span class="en">irent</span></td></tr></table></div>
+
+<p class="part-h" id="t-aux">C · être &amp; avoir in every simple tense (your compound-tense fuel)</p>
+<div class="scrollx"><table class="big"><tr><th></th><th colspan="2">PRÉSENT</th><th colspan="2">IMPARFAIT</th><th colspan="2">FUTUR</th><th colspan="2">CONDITIONNEL</th><th colspan="2">SUBJONCTIF</th></tr><tr class="src"><td class="lbl"></td><td><b>avoir</b></td><td><b>être</b></td><td><b>avoir</b></td><td><b>être</b></td><td><b>avoir</b></td><td><b>être</b></td><td><b>avoir</b></td><td><b>être</b></td><td><b>avoir</b></td><td><b>être</b></td></tr><tr><td class="pr">je</td><td><span class="ax">ai</span></td><td><span class="ax">suis</span></td><td><span class="ax">avais</span></td><td><span class="ax">étais</span></td><td><span class="ax">aurai</span></td><td><span class="ax">serai</span></td><td><span class="ax">aurais</span></td><td><span class="ax">serais</span></td><td><span class="ax">aie</span></td><td><span class="ax">sois</span></td></tr><tr><td class="pr">tu</td><td><span class="ax">as</span></td><td><span class="ax">es</span></td><td><span class="ax">avais</span></td><td><span class="ax">étais</span></td><td><span class="ax">auras</span></td><td><span class="ax">seras</span></td><td><span class="ax">aurais</span></td><td><span class="ax">serais</span></td><td><span class="ax">aies</span></td><td><span class="ax">sois</span></td></tr><tr><td class="pr">il/elle</td><td><span class="ax">a</span></td><td><span class="ax">est</span></td><td><span class="ax">avait</span></td><td><span class="ax">était</span></td><td><span class="ax">aura</span></td><td><span class="ax">sera</span></td><td><span class="ax">aurait</span></td><td><span class="ax">serait</span></td><td><span class="ax">ait</span></td><td><span class="ax">soit</span></td></tr><tr><td class="pr">nous</td><td><span class="ax">avons</span></td><td><span class="ax">sommes</span></td><td><span class="ax">avions</span></td><td><span class="ax">étions</span></td><td><span class="ax">aurons</span></td><td><span class="ax">serons</span></td><td><span class="ax">aurions</span></td><td><span class="ax">serions</span></td><td><span class="ax">ayons</span></td><td><span class="ax">soyons</span></td></tr><tr><td class="pr">vous</td><td><span class="ax">avez</span></td><td><span class="ax">êtes</span></td><td><span class="ax">aviez</span></td><td><span class="ax">étiez</span></td><td><span class="ax">aurez</span></td><td><span class="ax">serez</span></td><td><span class="ax">auriez</span></td><td><span class="ax">seriez</span></td><td><span class="ax">ayez</span></td><td><span class="ax">soyez</span></td></tr><tr><td class="pr">ils/elles</td><td><span class="ax">ont</span></td><td><span class="ax">sont</span></td><td><span class="ax">avaient</span></td><td><span class="ax">étaient</span></td><td><span class="ax">auront</span></td><td><span class="ax">seront</span></td><td><span class="ax">auraient</span></td><td><span class="ax">seraient</span></td><td><span class="ax">aient</span></td><td><span class="ax">soient</span></td></tr></table></div>
+
+<p class="part-h" id="t-comp">D · The six compound tenses</p>
+
+<div class="scrollx" ><table class="big">
+<tr><th>Compound tense</th><th>Auxiliary in…</th><th>with AVOIR</th><th>with ÊTRE</th><th>Meaning</th></tr>
+<tr>
+<td class="lbl">Passé composé</td>
+<td class="lbl">présent</td>
+<td><span class="ax">j'ai</span> <span class="st">parlé</span></td>
+<td><span class="ax">je suis</span> <span class="st">allé(e)</span></td>
+<td class="lbl">I spoke / have spoken</td></tr>
+<tr>
+<td class="lbl">Plus-que-parfait</td>
+<td class="lbl">imparfait</td>
+<td><span class="ax">j'avais</span> <span class="st">parlé</span></td>
+<td><span class="ax">j'étais</span> <span class="st">allé(e)</span></td>
+<td class="lbl">I had spoken</td></tr>
+<tr>
+<td class="lbl">Futur antérieur</td>
+<td class="lbl">futur</td>
+<td><span class="ax">j'aurai</span> <span class="st">parlé</span></td>
+<td><span class="ax">je serai</span> <span class="st">allé(e)</span></td>
+<td class="lbl">I will have spoken</td></tr>
+<tr>
+<td class="lbl">Conditionnel passé</td>
+<td class="lbl">conditionnel</td>
+<td><span class="ax">j'aurais</span> <span class="st">parlé</span></td>
+<td><span class="ax">je serais</span> <span class="st">allé(e)</span></td>
+<td class="lbl">I would have spoken</td></tr>
+<tr>
+<td class="lbl">Subjonctif passé</td>
+<td class="lbl">subjonctif</td>
+<td><span class="ax">que j'aie</span> <span class="st">parlé</span></td>
+<td><span class="ax">que je sois</span> <span class="st">allé(e)</span></td>
+<td class="lbl">(that) I spoke</td></tr>
+<tr>
+<td class="lbl">Passé antérieur 📚</td>
+<td class="lbl">passé simple</td>
+<td><span class="ax">j'eus</span> <span class="st">parlé</span></td>
+<td><span class="ax">je fus</span> <span class="st">allé(e)</span></td>
+<td class="lbl">literary only</td></tr>
+</table></div>
+
+<div class="note" style="margin:14px 0 4px"><b>The three you'll use most, conjugated in full.</b> Notice the <span class="st">participle never moves</span> — only the <span class="ax">auxiliary</span> shifts tense (imparfait → plus-que-parfait · conditionnel → conditionnel passé · futur → futur antérieur). Read <b>across</b> a row to see the same person in all three.</div>
+<div class="scrollx"><table class="big">
+<tr><th></th><th colspan="2">PLUS-QUE-PARFAIT</th><th colspan="2">CONDITIONNEL PASSÉ</th><th colspan="2">FUTUR ANTÉRIEUR</th></tr>
+<tr class="src"><td class="lbl"></td><td><b>parler (avoir)</b></td><td><b>aller (être)</b></td><td><b>parler (avoir)</b></td><td><b>aller (être)</b></td><td><b>parler (avoir)</b></td><td><b>aller (être)</b></td></tr>
+<tr><td class="pr">je</td><td><span class="ax">avais</span> <span class="st">parlé</span></td><td><span class="ax">étais</span> <span class="st">allé(e)</span></td><td><span class="ax">aurais</span> <span class="st">parlé</span></td><td><span class="ax">serais</span> <span class="st">allé(e)</span></td><td><span class="ax">aurai</span> <span class="st">parlé</span></td><td><span class="ax">serai</span> <span class="st">allé(e)</span></td></tr>
+<tr><td class="pr">tu</td><td><span class="ax">avais</span> <span class="st">parlé</span></td><td><span class="ax">étais</span> <span class="st">allé(e)</span></td><td><span class="ax">aurais</span> <span class="st">parlé</span></td><td><span class="ax">serais</span> <span class="st">allé(e)</span></td><td><span class="ax">auras</span> <span class="st">parlé</span></td><td><span class="ax">seras</span> <span class="st">allé(e)</span></td></tr>
+<tr><td class="pr">il/elle</td><td><span class="ax">avait</span> <span class="st">parlé</span></td><td><span class="ax">était</span> <span class="st">allé(e)</span></td><td><span class="ax">aurait</span> <span class="st">parlé</span></td><td><span class="ax">serait</span> <span class="st">allé(e)</span></td><td><span class="ax">aura</span> <span class="st">parlé</span></td><td><span class="ax">sera</span> <span class="st">allé(e)</span></td></tr>
+<tr><td class="pr">nous</td><td><span class="ax">avions</span> <span class="st">parlé</span></td><td><span class="ax">étions</span> <span class="st">allé(e)s</span></td><td><span class="ax">aurions</span> <span class="st">parlé</span></td><td><span class="ax">serions</span> <span class="st">allé(e)s</span></td><td><span class="ax">aurons</span> <span class="st">parlé</span></td><td><span class="ax">serons</span> <span class="st">allé(e)s</span></td></tr>
+<tr><td class="pr">vous</td><td><span class="ax">aviez</span> <span class="st">parlé</span></td><td><span class="ax">étiez</span> <span class="st">allé(e)s</span></td><td><span class="ax">auriez</span> <span class="st">parlé</span></td><td><span class="ax">seriez</span> <span class="st">allé(e)s</span></td><td><span class="ax">aurez</span> <span class="st">parlé</span></td><td><span class="ax">serez</span> <span class="st">allé(e)s</span></td></tr>
+<tr><td class="pr">ils/elles</td><td><span class="ax">avaient</span> <span class="st">parlé</span></td><td><span class="ax">étaient</span> <span class="st">allé(e)s</span></td><td><span class="ax">auraient</span> <span class="st">parlé</span></td><td><span class="ax">seraient</span> <span class="st">allé(e)s</span></td><td><span class="ax">auront</span> <span class="st">parlé</span></td><td><span class="ax">seront</span> <span class="st">allé(e)s</span></td></tr>
+</table></div>
+<div class="note"><b>Si-clause pairing (third conditional):</b> <span class="st">Si</span> + plus-que-parfait → conditionnel passé. <i>Si j'<b>avais su</b>, je ne <b>serais</b> pas <b>venu</b></i>.</div>
+
+
+<p class="part-h" id="t-irr">E · Irregular stem banks</p>
+<div class="callout"><h3>Futur / conditionnel stems (one list serves both tenses)</h3><div class="irrlist" style="font-size:15px"><span>être <i>→</i> <span class="st">ser-</span></span><span>avoir <i>→</i> <span class="st">aur-</span></span><span>aller <i>→</i> <span class="st">ir-</span></span><span>faire <i>→</i> <span class="st">fer-</span></span><span>pouvoir <i>→</i> <span class="st">pourr-</span></span><span>vouloir <i>→</i> <span class="st">voudr-</span></span><span>venir <i>→</i> <span class="st">viendr-</span></span><span>tenir <i>→</i> <span class="st">tiendr-</span></span><span>voir <i>→</i> <span class="st">verr-</span></span><span>envoyer <i>→</i> <span class="st">enverr-</span></span><span>savoir <i>→</i> <span class="st">saur-</span></span><span>devoir <i>→</i> <span class="st">devr-</span></span><span>recevoir <i>→</i> <span class="st">recevr-</span></span><span>courir <i>→</i> <span class="st">courr-</span></span><span>mourir <i>→</i> <span class="st">mourr-</span></span><span>falloir <i>→</i> <span class="st">faudr-</span></span><span>valoir <i>→</i> <span class="st">vaudr-</span></span><span>pleuvoir <i>→</i> <span class="st">pleuvr-</span></span></div></div>
+<div class="callout"><h3>Subjonctif stems (second stem = nous/vous)</h3><div class="irrlist" style="font-size:15px"><span>être <i>→</i> <span class="st">sois / soyons</span></span><span>avoir <i>→</i> <span class="st">aie / ayons</span></span><span>faire <i>→</i> <span class="st">fass-</span></span><span>pouvoir <i>→</i> <span class="st">puiss-</span></span><span>savoir <i>→</i> <span class="st">sach-</span></span><span>aller <i>→</i> <span class="st">aill- / all-</span></span><span>vouloir <i>→</i> <span class="st">veuill- / voul-</span></span><span>boire <i>→</i> <span class="st">boiv- / buv-</span></span><span>prendre <i>→</i> <span class="st">prenn- / pren-</span></span><span>venir <i>→</i> <span class="st">vienn- / ven-</span></span><span>voir <i>→</i> <span class="st">voi- / voy-</span></span><span>devoir <i>→</i> <span class="st">doiv- / dev-</span></span></div></div>
+
+<p class="part-h" id="t-borrow">F · Who borrows what — the loan map</p>
+<div class="scrollx"><table class="big">
+<tr><th>Tense</th><th>Stem from…</th><th>Endings from…</th></tr>
+<tr><td class="lbl">Imparfait</td><td class="lbl">présent <i>nous</i> − ons</td><td class="lbl">own set (-ais…)</td></tr>
+<tr><td class="lbl">Subjonctif</td><td class="lbl">présent <i>ils</i> − ent</td><td class="lbl">présent -er endings</td></tr>
+<tr><td class="lbl">Futur</td><td class="lbl">full infinitive (ends in -r)</td><td class="lbl"><b>avoir</b> présent</td></tr>
+<tr><td class="lbl" style="background:#efe9f7"><b>Conditionnel</b></td><td class="lbl" style="background:#efe9f7"><b>futur</b> stem</td><td class="lbl" style="background:#efe9f7"><b>imparfait</b> endings</td></tr>
+<tr><td class="lbl">Compound tenses</td><td class="lbl">participe passé (fixed)</td><td class="lbl">the <b>auxiliary</b> carries the tense</td></tr>
+</table></div>
+<div class="callout"><h3>The three loans worth reciting</h3>
+<p class="pair"><span class="lab">① shared stem</span> futur &amp; conditionnel — <i>always</i>, irregulars included (ser-, aur-, ir-, voudr-)</p>
+<p class="pair"><span class="lab">② shared endings</span> imparfait &amp; conditionnel — <i>-ais -ais -ait -ions -iez -aient</i></p>
+<p class="pair"><span class="lab">③ futur endings</span> = <i>avoir</i> présent: ai, as, a, (av)ons, (av)ez, ont</p>
+</div>
+
+<p class="part-h" id="t-spot">G · Lookalike spotter</p>
+
+<div class="callout">
+<h3>The four lookalikes of <i>parler</i> — only stem &amp; one vowel differ</h3>
+<p class="pair"><span class="lab">passé simple 📚</span> je <span class="st">parl</span><span class="en">ai</span></p>
+<p class="pair"><span class="lab">imparfait</span> je <span class="st">parl</span><span class="en">ais</span></p>
+<p class="pair"><span class="lab">futur</span> je <span class="st">parler</span><span class="en">ai</span></p>
+<p class="pair"><span class="lab">conditionnel</span> je <span class="st">parler</span><span class="en">ais</span></p>
+<p style="font-size:13.5px;color:#574f44;margin:8px 0 0">Hear an <b>r</b> before the ending → future family. Ending in <b>-s</b> → “would/was” family (imparfait or conditionnel).</p>
+</div>
+<div class="callout">
+<h3>Identical twins — forms that are the same on purpose</h3>
+<p class="pair"><span class="lab">imparfait = cond.</span> same <b>endings</b> (-ais…) — only the stem tells them apart: <span class="st">parl</span><span class="en">ais</span> vs <span class="st">parler</span><span class="en">ais</span></p>
+<p class="pair"><span class="lab">futur = cond.</span> same <b>stem</b> (always in -r) — only the endings differ: <span class="en">-ai</span> vs <span class="en">-ais</span></p>
+<p class="pair"><span class="lab">subj. = présent</span> for -er verbs: je/tu/il/ils forms are identical (que je <span class="st">parl</span><span class="en">e</span>)</p>
+<p class="pair"><span class="lab">subj. = imparfait</span> nous/vous forms are identical for almost all verbs (que nous <span class="st">parl</span><span class="en">ions</span>)</p>
+<p class="pair"><span class="lab">futur endings</span> = present tense of <i>avoir</i>: -ai -as -a -ons -ez -ont</p>
+</div>
+
+<footer>Generated as a companion to 01 — French Tenses Reference. 📚 = literary, recognize only.</footer>
+</div></body></html>
