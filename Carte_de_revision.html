@@ -1,0 +1,245 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Carte de révision</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a transit map. Eight colored lines (cards); each line runs through 4–5 stations, one study session each. */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --ink:#18202b; --muted:#5d6878; --faint:#98a2b0; --rule:#dde2ea; --chip:#eef1f5;
+  --c1:#2f6fd0; --c2:#2a8a55; --c3:#7a4fd1; --c4:#b07d06; --c5:#d0611a; --c6:#c8324a; --c7:#b83a8e; --c8:#0f7f88;
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-fr:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11151b; --surface:#191e26; --ink:#e8ecf2; --muted:#9aa5b4; --faint:#667180; --rule:#2a313c; --chip:#232a34;
+  --c1:#6f9ef0; --c2:#5cc08a; --c3:#a88bee; --c4:#e0b54a; --c5:#f0955a; --c6:#ef6f82; --c7:#e57dc0; --c8:#4fc3cc;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11151b; --surface:#191e26; --ink:#e8ecf2; --muted:#9aa5b4; --faint:#667180; --rule:#2a313c; --chip:#232a34;
+  --c1:#6f9ef0; --c2:#5cc08a; --c3:#a88bee; --c4:#e0b54a; --c5:#f0955a; --c6:#ef6f82; --c7:#e57dc0; --c8:#4fc3cc;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-display);font-size:14px;line-height:1.4;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 32px}
+.wrap{max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{margin:2px 0 0;font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-.02em;line-height:1.05;text-wrap:balance}
+.lede{margin:0;color:var(--muted);max-width:64ch}
+
+/* how-to + source filter */
+.bar{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:10px 14px;display:flex;flex-direction:column;gap:10px}
+.method{display:flex;flex-wrap:wrap;gap:6px 0;font-size:12.5px}
+.step{display:flex;gap:8px;align-items:baseline;padding:2px 14px 2px 0;margin-right:14px;border-right:1px solid var(--rule);min-width:0;color:var(--muted)}
+.step:last-child{border-right:0}
+.step b{font-family:var(--f-mono);font-size:11px}
+.step em{font-style:normal;color:var(--ink);font-weight:600}
+.filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:var(--muted)}
+.filters .lbl{margin-right:4px}
+.src{appearance:none;font:inherit;font-size:12px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:20px;padding:3px 10px;cursor:pointer;display:inline-flex;gap:6px;align-items:baseline}
+.src b{font-family:var(--f-mono);font-size:11px}
+.src[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.src:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+/* lines */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:start}
+@media (max-width:1180px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.step{border-right:0;margin-right:0;width:100%}}
+
+.card{--c:var(--c1);background:var(--surface);border:1px solid var(--rule);border-top:4px solid var(--c);border-radius:10px;
+  padding:12px 12px 10px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.c-head{display:flex;gap:10px;align-items:flex-start}
+.badge{flex:none;width:30px;height:30px;border-radius:50%;background:var(--c);color:var(--surface);display:grid;place-items:center;font-family:var(--f-mono);font-weight:600;font-size:15px}
+.c-title{min-width:0;flex:1}
+.c-title h2{margin:0;font-size:18px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.c-title p{margin:2px 0 0;font-size:12px;color:var(--muted)}
+.tef{flex:none;font-family:var(--f-mono);font-size:10px;border:1px solid var(--c);color:var(--c);border-radius:20px;padding:2px 7px;white-space:nowrap}
+.model{margin:0;font-family:var(--f-fr);font-style:italic;font-size:15px;line-height:1.35;padding-left:10px;border-left:2px solid var(--c)}
+
+/* stations on the line */
+.stations{position:relative;display:flex;flex-direction:column;gap:2px;padding-left:18px}
+.stations::before{content:"";position:absolute;left:5px;top:10px;bottom:10px;width:3px;border-radius:2px;background:var(--c);opacity:.35}
+details.st{position:relative;border-radius:8px}
+details.st::before{content:"";position:absolute;left:-17px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--surface);border:3px solid var(--c);box-sizing:border-box}
+details.st[open]::before{background:var(--c)}
+summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:4px 6px 6px;border-radius:8px}
+summary::-webkit-details-marker{display:none}
+summary:hover{background:var(--bg)}
+summary:focus-visible{outline:2px solid var(--c);outline-offset:1px}
+.st-t{display:flex;gap:6px;align-items:baseline;font-weight:600;font-size:13.5px;line-height:1.25}
+.st-t .id{font-family:var(--f-mono);font-size:10.5px;color:var(--c);font-weight:600}
+.row{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.lead{font-family:var(--f-mono);font-size:11px;font-weight:600;line-height:1;padding:4px 6px;border-radius:4px;background:var(--c);color:var(--surface);white-space:nowrap}
+.kz{font-family:var(--f-mono);font-size:11px;line-height:1;padding:3px 5px;border-radius:4px;border:1px dashed var(--muted);color:var(--ink);white-space:nowrap}
+.kz.none{border-color:var(--faint);color:var(--faint);font-style:italic}
+.refs{font-family:var(--f-mono);font-size:11px;color:var(--faint);line-height:1.5}
+.refs span{white-space:nowrap}
+.refs span+span::before{content:" · ";color:var(--faint);font-weight:400}
+
+/* source filter states */
+.filtering .refs span,.filtering .lead,.filtering .kz{opacity:.28}
+.filtering .lead{opacity:.45}
+.filtering [data-on="1"]{opacity:1 !important;color:var(--ink);font-weight:600}
+.filtering .lead[data-on="1"]{color:var(--surface);outline:2px solid var(--ink);outline-offset:1px}
+.filtering .kz[data-on="1"]{border-style:solid;border-color:var(--ink)}
+
+details.st ul{list-style:none;margin:2px 0 8px;padding:0 6px;display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--muted)}
+details.st li{display:flex;gap:8px;min-width:0}
+details.st li b{flex:none;font-family:var(--f-mono);font-weight:600;color:var(--ink);font-size:11px;min-width:3.6em;padding-top:1px}
+details.st li.is-lead b{color:var(--c)}
+details.st li span{min-width:0}
+.note{font-size:11.5px;color:var(--muted);margin:0;border-top:1px solid var(--rule);padding-top:7px}
+
+footer{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--muted)}
+footer a{color:var(--ink)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">TEF Canada · révision de grammaire · cible NCLC 7</div>
+      <h1>Carte de révision</h1>
+    </div>
+    <p class="lede">Eight lines, thirty-three stations. Each station is one study session that pulls from every book. Ride the lines in order; inside a line, take the stations top to bottom. Tap a station to see chapter titles.</p>
+  </header>
+
+  <section class="bar" aria-label="How to work a station">
+    <div class="method">
+      <div class="step"><b>1</b><span><em>★ Start</em> with the filled chip: the best explanation for that topic</span></div>
+      <div class="step"><b>2</b><span><em>Drill</em> the dashed Kwiziq notebook</span></div>
+      <div class="step"><b>3</b><span><em>Look up</em> the grey references only for what tripped you</span></div>
+      <div class="step"><b>4</b><span><em>Write</em> the line's model sentence five times, changing one thing each time</span></div>
+    </div>
+    <div class="filters" id="filters"><span class="lbl">Show one source:</span></div>
+  </section>
+
+  <main class="grid" id="grid"></main>
+
+  <footer>
+    <span>EF = Easy French Step-by-Step · K = Kurbegov, PMP Intermediate French Grammar · M = Mazet, PMP Advanced French Grammar (2nd ed.) · Gi / Ga / Gp = Grammaire progressive Intermédiaire / Avancé / Perfectionnement · KZ = your Kwiziq notebooks</span>
+    <span>Every Grammaire progressive chapter is tagged with the same line in Notion: <a href="https://www.notion.so/1daf346f79674f63b1ed2456ed0ec33c?v=3f9fc87fb75a81b28a09000c29a60ad3" target="_blank" rel="noopener">Roadmap board</a></span>
+  </footer>
+</div>
+
+<script>
+const T = {
+EF:{1:"Nouns, articles, descriptive adjectives",2:"être, avoir, subject pronouns, negation",3:"Days and months, -er verbs, interrogatives",4:"Numbers, dates, time, -ir verbs",5:"-re verbs, -er spelling changes, depuis vs since",6:"aller + future, à/de and prepositions, lequel, geography, faire",7:"Irregular verbs I, verb + verb (à / de + infinitive)",8:"connaître/savoir, irregular verbs II, relative pronouns, indirect questions",9:"prendre/boire, partitive, direct and indirect objects, y and en",10:"Possessives, demonstratives, comparatives, adverbs",11:"Yes and no, stressed pronouns, the imperative",12:"Pronominal verbs, present participle",13:"Passé composé (avoir, être, agreement, pronominal verbs)",14:"Imparfait, past narration, double object pronouns",15:"Future, conditional, pluperfect, past conditional, tout",16:"The subjunctive"},
+K:{1:"Present tense: regular and stem-changing verbs",2:"Articles and genders",3:"aller, avoir, être, faire: idiomatic uses",4:"Adjectives and comparisons",5:"Irregular verbs in -oir, -re, -ir",6:"Prepositions and verb structures after prepositions",7:"Imperative, infinitive, present participle",8:"Reflexive verbs",9:"Future tenses",10:"Negative and interrogative structures",11:"Imparfait and passé composé",12:"Adverbs and adverbial phrases",13:"Conditional sentences",14:"Object pronouns",15:"Past infinitive, past participle agreement",16:"Demonstrative, interrogative, possessive pronouns",17:"The subjunctive mood",18:"Relative pronouns"},
+M:{1:"Understanding the verb",2:"Compound tenses and past participle agreement",3:"Use of the past tenses",4:"Translating the -ing form into French",5:"Tenses introduced by que (reported speech)",6:"The subjunctive",7:"Tenses not introduced by que (when / if sentences)",8:"Articles",9:"Other determiners",10:"Relative pronouns",11:"Neutral relative pronouns: a different kind of what",12:"Determining a noun with prepositions",13:"Object pronouns",14:"Position of object pronouns",15:"This is / that is: ce, ça, il",16:"Questions",17:"for, since and other time expressions",18:"Negative sentences"},
+Gi:{1:"Le verbe « être »",2:"L'adjectif (1)",3:"La négation et l'interrogation (1)",4:"Le nom et l'article",5:"« C'est » et « il est »",6:"Les possessifs",7:"Les noms de parenté et de groupe",8:"Les démonstratifs",9:"« Il y a » et « c'est »",10:"La situation dans l'espace (1)",11:"Le verbe « avoir »",12:"L'adjectif (2)",13:"Les nombres",14:"Le temps (1)",15:"Les indéfinis",16:"Les verbes en -ER au présent",17:"Le temps (2)",18:"L'adverbe",19:"L'expression de la quantité",20:"Le pronom « en »",21:"La situation dans l'espace (2)",22:"Le comparatif et le superlatif",23:"Le verbe « aller »",24:"Le pronom « y »",25:"L'espace et le temps (3)",26:"Les verbes en -IR, -OIR, -RE au présent",27:"Les verbes pronominaux",28:"Les pronoms compléments",29:"Les pronoms toniques",30:"L'impératif",31:"Le conditionnel (1)",32:"Les relatifs",33:"L'interrogation (2)",34:"La négation (2)",35:"Le discours indirect au présent",36:"Le gérondif",37:"Les prépositions et les verbes",38:"Les verbes de déplacement",39:"Le futur proche",40:"Le passé composé",41:"Le temps (3)",42:"Le passif",43:"L'imparfait",44:"Le plus-que-parfait",45:"Le discours indirect au passé",46:"Venir de, être en train de, être sur le point de",47:"Le futur simple",48:"Le futur antérieur",49:"Le conditionnel (2)",50:"Les hypothèses",51:"Le subjonctif",52:"Les relations logiques"},
+Ga:{1:"L'article",2:"L'adjectif",3:"Les négations",4:"Les temps de l'indicatif",5:"Le subjonctif",6:"Le conditionnel",7:"L'infinitif",8:"Le participe présent",9:"Le gérondif",10:"L'adjectif verbal",11:"La forme passive",12:"La forme pronominale",13:"La forme impersonnelle",14:"Le discours indirect",15:"L'adverbe",16:"Les prépositions",17:"Les pronoms relatifs",18:"Les pronoms personnels compléments",19:"Les pronoms indéfinis",20:"La situation dans le temps",21:"L'expression de la cause",22:"L'expression de la conséquence",23:"L'expression de la comparaison",24:"L'opposition et la concession",25:"L'expression du but",26:"La condition et l'hypothèse",27:"Communication : mécanismes et nuances"},
+Gp:{1:"dans, sur, à, chez",2:"dessus, dessous, dedans, dehors",3:"devant, derrière, en haut, en bas",4:"entre / parmi, près / proche",5:"ici, là, là-bas",6:"venir, aller, apporter, emporter",7:"joindre, rejoindre, partir, quitter",8:"en Chine, au Chili, à Cuba",9:"en Provence, dans le Var, au Québec",10:"au XXe siècle, en été, fin août",11:"à midi, le matin, du lundi au jeudi",12:"chaque jour, tous les trois jours",13:"an / année, jour / journée",14:"ce jour-là, la veille, le lendemain",15:"pendant, en, dans, pour",16:"il y a, depuis, ça fait que",17:"dès, depuis, aussitôt, à peine",18:"une femme, la femme",19:"les enfants, des enfants, de beaux enfants",20:"le directeur de la banque / un directeur de banque",21:"le nord de la France, l'histoire de France",22:"du soleil, de la musique, des vacances",23:"un kilo de sucre, pas de sucre",24:"faire du judo, avoir la grippe",25:"le ciel, le soleil, la mer",26:"hausse de la température (nominalisation)",27:"les yeux noirs, des yeux magnifiques",28:"un petit commerçant / un commerçant petit",29:"ça ou il ?",30:"ça, c'est, il est",31:"moi, je… toi, tu…",32:"je le vois, je lui parle",33:"je l'interroge, je lui pose une question",34:"en, y, le — de lui, d'elle",35:"tableau récapitulatif des pronoms",36:"je les invite, je les ai invités",37:"quelqu'un, n'importe qui, quiconque",38:"quelques-uns, plusieurs, chacun",39:"tout, toute, tous, toutes",40:"qui, que, dont, où",41:"lequel, auquel, duquel",42:"ce qui, ce que, ce dont",43:"qui est-ce qui ? qu'est-ce qui ?",44:"je vais partir / je partirai",45:"il neigeait, j'ai glissé",46:"avant je fumais / j'ai fumé 20 ans",47:"passé simple (reading only)",48:"dès que j'avais fait / j'eus fait / j'aurai fait",49:"les temps du passé : difficultés",50:"les temps de l'indicatif",51:"ils se sont vus, ils se sont plu",52:"ne… pas, ne… rien, ne… personne",53:"tu crois qu'il viendra ? j'aimerais qu'il vienne",54:"croyez-vous qu'il soit… / supposons que",55:"il faut que je parte, il se peut qu'il pleuve",56:"je cherche un studio qui soit…",57:"avant qu'il ne parte / jusqu'à ce qu'il parte",58:"formation du subjonctif",59:"s'il faisait beau, on irait…",60:"il ferait beau, on irait…",61:"les subordonnées de condition",62:"a été fabriqué / se lave à 30°",63:"en dormant / ayant voiture",64:"prévoyant / prévoyante (adjectif verbal)",65:"il m'a dit qu'il avait vingt ans…",66:"parce que, comme, puisque, car",67:"à cause de, grâce à, faute de",68:"d'autant plus que, non que, soit que",69:"sachant que, ayant compris que",70:"donc, alors, d'où, par conséquent",71:"si, tellement, tant, tel",72:"trop pour que, assez pour que, sans que",73:"pour que, afin que, de sorte que",74:"provoquer, atteindre, avoir un impact",75:"mais, cependant, toutefois",76:"bien que, quoique, qui que, quoi que",77:"or, avoir beau, quitte à",78:"en effet, en fait, d'ailleurs, par ailleurs",79:"plus, moins, autant, mieux, meilleur",80:"comme, ainsi que, le même, tel",81:"conjonctions et temps des verbes",82:"prépositions suivies d'un verbe",83:"prépositions suivies d'un nom",84:"organisation du discours (1)",85:"organisation du discours (2)"},
+KZ:{"verbes":"Your per-verb notebooks (Venir, Mettre, Pouvoir…)","EF01":"Noms, articles, adjectifs","EF01+":"Adjectifs : position et sens","EF02":"Être, avoir, pronoms sujets, négation","EF03":"Questions, présent, jours","EF04":"Nombres, dates, heure","EF05":"Verbes à changement, depuis, durée","EF06":"Aller, prépositions, lieux, faire","EF07":"Irréguliers I, verbe + infinitif","EF08":"Connaître/savoir, pronoms relatifs","EF08+":"Relatifs composés (B2)","EF09":"Partitif, COD/COI, y, en","EF10a":"Possessifs & démonstratifs","EF10b":"Comparatifs & adverbes","EF11a":"Négations","EF11b":"Pronoms toniques & impératif","EF12":"Verbes pronominaux, gérondif","EF13":"Passé composé","EF13+":"Avoir ou être ? (B1–B2)","EF14":"Imparfait, récit, doubles pronoms","EF15a":"Futur, conditionnel, plus-que-parfait","EF15b":"Tout & indéfinis","EF16":"Subjonctif","EF16+":"Subjonctif avancé (B2–C1)"}
+};
+const SRC = [["EF","Easy French"],["K","Kurbegov"],["M","Mazet"],["Gi","GP Intermédiaire"],["Ga","GP Avancé"],["Gp","GP Perfectionnement"],["KZ","Kwiziq"]];
+const R = (a,b)=>Array.from({length:b-a+1},(_,i)=>a+i);
+
+const LINES = [
+ {n:1,name:"Phrase de base",gloss:"present tense · questions · negation · near future and recent past",tef:"EO A + B",
+  model:"Pourquoi ne venez-vous pas avec nous ce soir ?",st:[
+  {t:"Le présent et ses irréguliers",lead:["K",[1,3,5]],kz:["EF05","verbes"],s:{EF:[2,3,4,5,7,8,9],M:[1],Gi:[1,11,16,26]}},
+  {t:"Poser des questions",lead:["M",[16]],kz:["EF03"],s:{EF:[3,6],K:[10],Gi:[33],Gp:[43]}},
+  {t:"La négation",lead:["M",[18]],kz:["EF11a","EF02"],s:{EF:[2,11],K:[10],Gi:[3,34],Ga:[3],Gp:[52]}},
+  {t:"Aller, venir de, en train de",lead:["Gi",[46]],kz:["EF03","EF07"],s:{EF:[6,7],Gi:[39]}}]},
+ {n:2,name:"Nommer & décrire",gloss:"articles · adjectives · determiners · comparison · adverbs",tef:"EE A + B",
+  model:"C'est un petit appartement, plus lumineux que le mien, avec beaucoup de rangement.",st:[
+  {t:"Articles, partitif, quantité",lead:["M",[8]],kz:["EF01","EF09"],s:{EF:[1,9],K:[2],M:[12],Gi:[4,7,19],Ga:[1],Gp:[...R(18,25),27]}},
+  {t:"Adjectifs : accord et place",lead:["K",[4]],kz:["EF01","EF01+"],s:{EF:[1],Gi:[2,12],Ga:[2],Gp:[28]}},
+  {t:"Possessifs, démonstratifs, tout",lead:["M",[9]],kz:["EF10a","EF15b"],s:{EF:[10,15],Gi:[6,8,15],Ga:[19],Gp:R(37,39)}},
+  {t:"Comparer, adverbes",lead:["EF",[10]],kz:["EF10b"],s:{K:[4,12],Gi:[18,22],Ga:[15,23],Gp:[79,80]}}]},
+ {n:3,name:"Les pronoms",gloss:"le, lui, y, en · order · imperative · stressed · c'est / il est",tef:"EO · CO",
+  model:"Je ne le lui ai pas encore dit.",st:[
+  {t:"COD et COI",lead:["M",[13]],kz:["EF09"],s:{EF:[9],K:[14],Gi:[28],Ga:[18],Gp:[32,33,36]}},
+  {t:"Y et en",lead:["K",[14]],kz:["EF09"],s:{EF:[9],Gi:[20,24],Gp:[34]}},
+  {t:"Ordre des pronoms, impératif",lead:["M",[14]],kz:["EF11b","EF14"],s:{EF:[11,14],K:[7],Gi:[30],Gp:[35]}},
+  {t:"Toniques, c'est / il est, ça",lead:["M",[15]],kz:["EF02","EF11b"],s:{EF:[2,10,11],K:[16],Gi:[5,9,29],Gp:R(29,31)}}]},
+ {n:4,name:"Où & quand",gloss:"place · dates and time · duration · verb + à / de",tef:"EO A · CO",
+  model:"J'habite à Calgary depuis deux ans et j'ai décidé de partir au Québec dans un mois.",st:[
+  {t:"Lieux, pays, déplacements",lead:["EF",[6]],kz:["EF06"],s:{Gi:[10,21,23,25,38],Gp:R(1,9)}},
+  {t:"Nombres, dates, heure",lead:["EF",[4]],kz:["EF04"],s:{Gi:[13,14],Gp:R(10,13)}},
+  {t:"Durée : depuis, pendant, il y a",lead:["M",[17]],kz:["EF05"],s:{EF:[5],Gi:[17,41],Ga:[20],Gp:R(14,17)}},
+  {t:"Verbe + à / de",lead:["K",[6]],kz:[],s:{EF:[7],Gi:[37],Ga:[16],Gp:[82,83]}}]},
+ {n:5,name:"Raconter au passé",gloss:"passé composé · imparfait · pluperfect · reported speech",tef:"EE A · fait divers",
+  model:"Il pleuvait quand l'accident a eu lieu ; le conducteur a dit qu'il s'était endormi.",st:[
+  {t:"Passé composé et accord",lead:["M",[2]],kz:["EF13","EF13+"],s:{EF:[13],K:[15],Gi:[40],Gp:[51]}},
+  {t:"Imparfait ou passé composé",lead:["M",[3]],kz:["EF14"],s:{EF:[14],K:[11],Gi:[43],Gp:[45,46,49]}},
+  {t:"Plus-que-parfait, antériorité",lead:["Ga",[4]],kz:["EF15a"],s:{EF:[15],Gi:[44],Gp:[47,48,50]}},
+  {t:"Verbes pronominaux",lead:["K",[8]],kz:["EF12"],s:{EF:[12,13],Gi:[27],Ga:[12]}},
+  {t:"Discours rapporté",lead:["M",[5]],kz:[],s:{EF:[8],Gi:[35,45],Ga:[14],Gp:[65]}}]},
+ {n:6,name:"Projeter",gloss:"future · conditional · si-clauses · subjunctive",tef:"EO B · EE B",
+  model:"Si tu venais avec nous, ce serait génial ; il faut juste que tu me répondes avant vendredi.",st:[
+  {t:"Futur et futur antérieur",lead:["K",[9]],kz:["EF15a"],s:{EF:[15],Gi:[47,48],Gp:[44]}},
+  {t:"Conditionnel : politesse, conseil, info non confirmée",lead:["Ga",[6]],kz:["EF15a"],s:{EF:[15],Gi:[31,49],Gp:[60]}},
+  {t:"Si : les hypothèses",lead:["M",[7]],kz:["EF15a"],s:{K:[13],Gi:[50],Ga:[26],Gp:[59,61]}},
+  {t:"Subjonctif",lead:["M",[6]],kz:["EF16","EF16+"],s:{EF:[16],K:[17],Gi:[51],Ga:[5],Gp:R(53,58)}}]},
+ {n:7,name:"Phrase complexe",gloss:"relatives · infinitive, participle, gérondif · passive",tef:"EE A · CE",
+  model:"Le projet dont on parle a été lancé en mai, selon ce qu'a annoncé la mairie.",st:[
+  {t:"Qui, que, où, dont",lead:["K",[18]],kz:["EF08"],s:{EF:[8],M:[10],Gi:[32],Ga:[17],Gp:[40]}},
+  {t:"Lequel, ce qui, ce que, mise en relief",lead:["M",[11]],kz:["EF08+"],s:{EF:[8],M:[10],Gp:[41,42]}},
+  {t:"Infinitif, participe, gérondif",lead:["M",[4]],kz:["EF12","EF07"],s:{EF:[12],K:[7,15],Gi:[36],Ga:R(7,10),Gp:[63,64]}},
+  {t:"Passif et impersonnel",lead:["Ga",[11]],kz:[],s:{Gi:[42],Ga:[13],Gp:[62]}}]},
+ {n:8,name:"Argumenter",gloss:"cause · consequence · purpose · concession · connectors",tef:"EE B · EO B",
+  model:"Bien que ce soit cher, ça vaut la peine, d'autant plus que c'est durable.",
+  note:"The two Practice Makes Perfect books stop short of this line, and Kwiziq barely covers it. Grammaire progressive carries it, so do its exercises in place of a drill.",st:[
+  {t:"Cause",lead:["Ga",[21]],kz:[],s:{Gp:R(66,69)}},
+  {t:"Conséquence et but",lead:["Ga",[22,25]],kz:["EF16"],kzNote:"pour que only",s:{Gp:R(70,74)}},
+  {t:"Opposition et concession",lead:["Ga",[24]],kz:["EF16"],kzNote:"bien que only",s:{Gp:R(75,77)}},
+  {t:"Organiser le discours",lead:["Ga",[27]],kz:[],s:{EF:[13],Gi:[52],Gp:[26,78,81,84,85]}}]}
+];
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function compress(nums){
+  const s=[...nums].sort((a,b)=>a-b),out=[];
+  for(let i=0;i<s.length;i++){let j=i;while(j+1<s.length&&s[j+1]===s[j]+1)j++;
+    if(j-i>=2)out.push(`${s[i]}–${s[j]}`);else for(let k=i;k<=j;k++)out.push(String(s[k]));i=j;}
+  return out.join(",");
+}
+const ORDER=["EF","K","M","Gi","Ga","Gp"];
+
+function station(L,S,idx){
+  const id=`${L.n}${"abcde"[idx]}`;
+  const [lb,lc]=S.lead;
+  const leadChip=`<span class="lead" data-src="${lb}" title="Start here">★ ${lb} ${compress(lc)}</span>`;
+  const kz=S.kz.length
+    ? S.kz.map(k=>`<span class="kz" data-src="KZ" title="${esc(T.KZ[k])}">${k==="verbes"?"KZ per-verb":"KZ "+esc(k)}</span>`).join("")+(S.kzNote?`<span class="kz none">${esc(S.kzNote)}</span>`:"")
+    : `<span class="kz none" data-src="KZ" title="Kwiziq has no lesson for this">no Kwiziq drill</span>`;
+  const refs=ORDER.filter(b=>S.s[b]).map(b=>`<span data-src="${b}">${b} ${compress(S.s[b])}</span>`).join("");
+  const items=[];
+  lc.forEach(c=>items.push(`<li class="is-lead"><b>★ ${lb} ${c}</b><span>${esc(T[lb][c]||"")}</span></li>`));
+  S.kz.forEach(k=>items.push(`<li><b>KZ</b><span>${k==="verbes"?"":esc(k)+" · "}${esc(T.KZ[k])}</span></li>`));
+  ORDER.forEach(b=>(S.s[b]||[]).forEach(c=>items.push(`<li><b>${b} ${c}</b><span>${esc(T[b][c]||"")}</span></li>`)));
+  return `<details class="st"><summary>
+    <span class="st-t"><span class="id">${id}</span><span>${esc(S.t)}</span></span>
+    <span class="row">${leadChip}${kz}</span>
+    ${refs?`<span class="refs">${refs}</span>`:""}
+  </summary><ul>${items.join("")}</ul></details>`;
+}
+
+document.getElementById("grid").innerHTML=LINES.map(L=>`
+<article class="card" style="--c:var(--c${L.n})">
+  <div class="c-head"><span class="badge">${L.n}</span>
+    <div class="c-title"><h2>${esc(L.name)}</h2><p>${esc(L.gloss)}</p></div>
+    <span class="tef" title="Where this pays off on the TEF">${esc(L.tef)}</span></div>
+  <p class="model" lang="fr">${esc(L.model)}</p>
+  <div class="stations">${L.st.map((S,i)=>station(L,S,i)).join("")}</div>
+  ${L.note?`<p class="note">${esc(L.note)}</p>`:""}
+</article>`).join("");
+
+const filters=document.getElementById("filters");
+filters.insertAdjacentHTML("beforeend",SRC.map(([k,label])=>`<button type="button" class="src" data-k="${k}" aria-pressed="false"><b>${k}</b>${esc(label)}</button>`).join(""));
+function setSrc(k){
+  document.body.classList.toggle("filtering",!!k);
+  document.querySelectorAll(".src").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.k===k)));
+  document.querySelectorAll("[data-src]").forEach(el=>{el.dataset.on=(k&&el.dataset.src===k&&!el.classList.contains("none"))?"1":"0"});
+  try{k?localStorage.setItem("carte-src",k):localStorage.removeItem("carte-src")}catch(e){}
+}
+filters.addEventListener("click",e=>{const b=e.target.closest(".src");if(!b)return;setSrc(b.getAttribute("aria-pressed")==="true"?null:b.dataset.k)});
+let saved=null;try{saved=localStorage.getItem("carte-src")}catch(e){}
+setSrc(saved&&SRC.some(s=>s[0]===saved)?saved:null);
+</script>
+
+</body></html>

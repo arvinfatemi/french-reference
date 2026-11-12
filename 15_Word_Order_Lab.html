@@ -1,0 +1,987 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Word Order Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Zilla+Slab:wght@500;600;700&display=swap">
+<style>
+/* Layout: a sentence stage pinned above a console of layer switches; desktop puts the console left, stage + explanations right.
+   The five pronoun slots run violet > blue > teal > green > amber in the fixed order me · le · lui · y · en, so the colour sequence is the mnemonic.
+   Slab = French text everywhere; Plex Sans = interface; Plex Mono = grammatical labels. */
+:root{
+  --bg:#f1f3f7; --surface:#ffffff; --sunk:#e7ebf1; --ink:#161e2b; --ink-2:#465165; --ink-3:#6f798d; --line:#d7dce5; --line-2:#bfc7d4;
+  --sel:#161e2b; --sel-ink:#f5f7fa; --focus:#2b6be0; --hl:#dde4ff; --ok:#1b7a4d; --ok-bg:#ddf2e6;
+  --s1:#7c4dd6; --s1-bg:#efe8fc; --s1-ink:#3a1d7a;
+  --s2:#2b6be0; --s2-bg:#e3edfd; --s2-ink:#11336f;
+  --s3:#0d8b84; --s3-bg:#dbf2ef; --s3-ink:#08423d;
+  --s4:#4a922b; --s4-bg:#e6f3dc; --s4-ink:#224815;
+  --s5:#bd7f0b; --s5-bg:#faf0d5; --s5-ink:#613c00;
+  --ng:#c8323c; --ng-bg:#fde5e6; --ng-ink:#7a121a;
+  --sb:#8a93a5; --sb-bg:#eaedf2; --sb-ink:#161e2b;
+  --font-tile:"Zilla Slab", Rockwell, "Roboto Slab", Georgia, serif;
+  --font-ui:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f131a; --surface:#171c25; --sunk:#1f2531; --ink:#e7eaf1; --ink-2:#aab3c4; --ink-3:#848da0; --line:#2a313e; --line-2:#3b4455;
+    --sel:#e7eaf1; --sel-ink:#0f131a; --focus:#7aa7ff; --hl:#2b3560; --ok:#5fcf93; --ok-bg:#15301f;
+    --s1:#a888f2; --s1-bg:#2a2043; --s1-ink:#e6dcff;
+    --s2:#72a2f7; --s2-bg:#18294a; --s2-ink:#d9e6ff;
+    --s3:#3fc4bb; --s3-bg:#113532; --s3-ink:#c9f2ed;
+    --s4:#85cb62; --s4-bg:#1a3217; --s4-ink:#d9f2cb;
+    --s5:#e7b14b; --s5-bg:#3a2c0f; --s5-ink:#fbe7bd;
+    --ng:#f0737b; --ng-bg:#3d1a1e; --ng-ink:#ffd9dc;
+    --sb:#6d7689; --sb-bg:#242b37; --sb-ink:#e7eaf1;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f131a; --surface:#171c25; --sunk:#1f2531; --ink:#e7eaf1; --ink-2:#aab3c4; --ink-3:#848da0; --line:#2a313e; --line-2:#3b4455;
+  --sel:#e7eaf1; --sel-ink:#0f131a; --focus:#7aa7ff; --hl:#2b3560; --ok:#5fcf93; --ok-bg:#15301f;
+  --s1:#a888f2; --s1-bg:#2a2043; --s1-ink:#e6dcff;
+  --s2:#72a2f7; --s2-bg:#18294a; --s2-ink:#d9e6ff;
+  --s3:#3fc4bb; --s3-bg:#113532; --s3-ink:#c9f2ed;
+  --s4:#85cb62; --s4-bg:#1a3217; --s4-ink:#d9f2cb;
+  --s5:#e7b14b; --s5-bg:#3a2c0f; --s5-ink:#fbe7bd;
+  --ng:#f0737b; --ng-bg:#3d1a1e; --ng-ink:#ffd9dc;
+  --sb:#6d7689; --sb-bg:#242b37; --sb-ink:#e7eaf1;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-ui);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.app{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.fr{font-family:var(--font-tile)}
+.muted{color:var(--ink-3)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+button{font:inherit;color:inherit}
+button:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+
+/* header */
+.top{padding-block:22px 10px}
+.eyebrow-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.eyebrow{font:500 11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.mnemo{display:inline-flex;align-items:center;gap:4px;font-family:var(--font-tile);font-size:14px}
+.mnemo b{font-weight:700;padding:1px 6px;border-radius:5px;border:1.5px solid var(--c);background:var(--cb);color:var(--ci)}
+.mnemo i{font-style:normal;color:var(--ink-3);font-size:12px}
+.c1{--c:var(--s1);--cb:var(--s1-bg);--ci:var(--s1-ink)} .c2{--c:var(--s2);--cb:var(--s2-bg);--ci:var(--s2-ink)}
+.c3{--c:var(--s3);--cb:var(--s3-bg);--ci:var(--s3-ink)} .c4{--c:var(--s4);--cb:var(--s4-bg);--ci:var(--s4-ink)}
+.c5{--c:var(--s5);--cb:var(--s5-bg);--ci:var(--s5-ink)}
+h1{font-family:var(--font-tile);font-weight:700;font-size:clamp(30px,6vw,44px);line-height:1.05;margin:10px 0 8px;letter-spacing:-.01em;text-wrap:balance}
+.lead{max-width:62ch;color:var(--ink-2);margin:0 0 16px}
+.tabs{display:inline-flex;gap:3px;background:var(--sunk);padding:3px;border-radius:10px}
+.tabs button{border:0;background:transparent;padding:8px 16px;border-radius:8px;font-weight:500;cursor:pointer;color:var(--ink-2)}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(10,20,40,.12)}
+
+/* layout */
+.explore{display:block}
+.play{position:relative}
+.stage-wrap{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--bg);padding-block:10px 12px}
+.console{display:flex;flex-direction:column;gap:14px}
+.explain{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+@media (min-width:900px){
+  .explore{display:grid;grid-template-columns:minmax(320px,390px) minmax(0,1fr);grid-template-areas:"console stage" "console explain";column-gap:26px;align-items:start}
+  .play{display:contents}
+  .stage-wrap{grid-area:stage;padding-top:14px}
+  .console{grid-area:console;padding-top:14px}
+  .explain{grid-area:explain;margin-top:0}
+}
+
+/* stage */
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px 6px;box-shadow:0 10px 26px -20px rgba(15,25,45,.45)}
+.stage-top{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.kicker{font:500 11px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.reg{font:500 11px/1 var(--font-mono);padding:4px 7px;border-radius:5px;border:1px solid var(--line-2);color:var(--ink-2)}
+.reg.formel{border-color:var(--s1);color:var(--s1)}
+.reg.familier{border-color:var(--ng);color:var(--ng)}
+.spacer{flex:1}
+.ghost{border:1px solid var(--line-2);background:var(--surface);padding:6px 10px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer}
+.ghost:hover{border-color:var(--ink-3)}
+.primary{border:1px solid var(--sel);background:var(--sel);color:var(--sel-ink);padding:9px 14px;border-radius:9px;font-weight:600;cursor:pointer}
+
+/* tiles */
+.tiles{--ts:21px;display:flex;flex-wrap:wrap;align-items:flex-start;row-gap:10px;min-height:64px}
+@media (min-width:900px){.tiles{--ts:28px}}
+.tile{position:relative;display:inline-flex;flex-direction:column;align-items:center;margin-right:8px;padding:6px 10px 5px;border-radius:8px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--ink);line-height:1;min-width:1.7em}
+.tile .tw{font-family:var(--font-tile);font-size:var(--ts);font-weight:600;white-space:nowrap}
+.tile .tc{font:500 9.5px/1 var(--font-mono);letter-spacing:.03em;margin-top:5px;color:var(--ink-3);white-space:nowrap}
+.tile .tc:empty{display:none}
+.tile.hy{margin-right:17px}
+.tile.hy::after{content:"-";position:absolute;right:-12px;top:6px;font-family:var(--font-tile);font-size:var(--ts);font-weight:700;color:var(--ink-2)}
+.tile.el{margin-right:3px}
+.punct{font-family:var(--font-tile);font-size:var(--ts);font-weight:700;color:var(--ink-2);padding-top:6px;margin-left:-3px}
+.r-s1{background:var(--s1-bg);border-color:var(--s1);color:var(--s1-ink)} .r-s1 .tc{color:var(--s1)}
+.r-s2{background:var(--s2-bg);border-color:var(--s2);color:var(--s2-ink)} .r-s2 .tc{color:var(--s2)}
+.r-s3{background:var(--s3-bg);border-color:var(--s3);color:var(--s3-ink)} .r-s3 .tc{color:var(--s3)}
+.r-s4{background:var(--s4-bg);border-color:var(--s4);color:var(--s4-ink)} .r-s4 .tc{color:var(--s4)}
+.r-s5{background:var(--s5-bg);border-color:var(--s5);color:var(--s5-ink)} .r-s5 .tc{color:var(--s5)}
+.r-neg{background:var(--ng-bg);border-color:var(--ng);color:var(--ng-ink)} .r-neg .tc{color:var(--ng)}
+.r-subj,.r-q{background:var(--sb-bg);border-color:var(--sb);color:var(--sb-ink)}
+.r-fin{background:var(--ink);border-color:var(--ink);color:var(--surface)} .r-fin .tc{color:var(--surface);opacity:.7}
+.r-nonfin{border:2px solid var(--ink)}
+.r-noun{background:transparent;border-style:dashed;color:var(--ink-2)}
+.r-tee{padding-inline:6px;border-color:var(--line-2)} .r-tee .tw{font-size:calc(var(--ts)*.8)}
+.r-plain{background:var(--surface);border-color:var(--line-2);color:var(--ink)}
+.end{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px}
+.e-s2{color:var(--s2);text-decoration-color:var(--s2)}
+.e-subj{color:var(--ink);text-decoration-color:var(--sb)}
+
+/* console */
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.box-h{display:flex;align-items:baseline;gap:10px;padding:14px 14px 10px}
+.box-h h3{margin:0;font-family:var(--font-tile);font-size:19px;font-weight:700}
+.box-h span{font-size:12.5px;color:var(--ink-3)}
+.layer{padding:11px 14px 13px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.l-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--ink-3);flex:none}
+.layer.on .dot{background:var(--ink);border-color:var(--ink)}
+.l-name{font-weight:600;font-size:14px}
+.l-note{font-size:12px;color:var(--ink-3)}
+.seg,.chips{display:flex;flex-wrap:wrap;gap:6px}
+.seg button,.chips button{border:1px solid var(--line-2);background:var(--surface);padding:7px 10px;border-radius:8px;font-size:13.5px;font-weight:500;line-height:1.1;cursor:pointer;min-height:34px}
+.seg button.fr,.chips button.fr{font-size:15px;font-weight:600}
+.seg button:hover:not(:disabled),.chips button:hover:not(:disabled){border-color:var(--ink-3)}
+.seg button[aria-pressed="true"],.chips button[aria-pressed="true"]{background:var(--sel);color:var(--sel-ink);border-color:var(--sel)}
+.seg button:disabled,.chips button:disabled{opacity:.35;cursor:not-allowed}
+.seg.sm button{min-height:30px;padding:5px 9px;font-size:12.5px}
+.switch{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2);cursor:pointer;user-select:none}
+.switch input{appearance:none;-webkit-appearance:none;width:34px;height:20px;border-radius:999px;background:var(--line-2);position:relative;margin:0;flex:none;cursor:pointer;transition:background .2s}
+.switch input::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--surface);transition:transform .2s}
+.switch input:checked{background:var(--ink)}
+.switch input:checked::after{transform:translateX(14px)}
+.switch input:disabled{opacity:.4;cursor:not-allowed}
+.switch i{font-family:var(--font-tile);font-style:normal;font-weight:600}
+.mat{padding:12px 14px 14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.mat-l{font:500 11px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.frame{margin:2px 0 0;font-size:13px;color:var(--ink-2)}
+.frame .fr{font-size:15px;font-weight:600;color:var(--ink)}
+.arg{display:flex;flex-direction:column;gap:7px;padding:10px 0 4px;border-top:1px dashed var(--line)}
+.arg:first-of-type{border-top:0;padding-top:2px}
+.arg.off .chips{opacity:.5}
+.arg-h{display:flex;align-items:center;gap:8px}
+.rb{font:500 11px/1 var(--font-mono);padding:4px 7px;border-radius:5px;border:1.5px solid var(--c);background:var(--cb);color:var(--ci)}
+.arg-to{font-size:13px;color:var(--ink-2)}
+.arg-to b{font-size:16px;color:var(--ink)}
+
+/* explain panels */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.panel-h{margin-bottom:12px}
+.panel-h h2{margin:0 0 3px;font-family:var(--font-tile);font-size:21px;font-weight:700}
+.panel-h p{margin:0;font-size:13px;color:var(--ink-3)}
+.key{display:inline-flex;gap:10px;margin-left:6px}
+.ruler{display:grid;gap:6px}
+.bay{border:1.5px solid var(--c);border-radius:10px;padding:8px 7px;background:var(--surface);display:flex;flex-direction:column;gap:6px;min-width:0}
+.bay.lit{background:var(--cb)}
+.bay .num{font:500 10px/1 var(--font-mono);color:var(--c);letter-spacing:.06em}
+.bay .items{display:flex;flex-wrap:wrap;gap:2px 6px;font-family:var(--font-tile);font-size:16px;color:var(--ink-3)}
+.bay .items .on{color:var(--ci);font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.ruler-empty{margin:8px 0 0;font-size:13px;color:var(--ink-3)}
+.steps{display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:1fr;gap:3px;padding:10px 0;border-top:1px solid var(--line)}
+.step:first-child{border-top:0;padding-top:0}
+.step .lab{font:500 11px/1.3 var(--font-mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+.step .sen{font-family:var(--font-tile);font-size:19px;line-height:1.35}
+.step:last-child .sen{font-weight:600}
+.m-new{background:var(--hl);border-radius:3px;padding:0 2px;font-weight:700}
+.m-mov{text-decoration:underline dashed;text-decoration-thickness:2px;text-underline-offset:4px}
+.notes{list-style:none;padding:0;margin:0}
+.note{display:grid;grid-template-columns:1fr;gap:3px;padding:11px 0;border-top:1px solid var(--line);font-size:14.5px;line-height:1.5}
+.note:first-child{border-top:0;padding-top:0}
+.note .tag{font:500 10.5px/1.3 var(--font-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3)}
+.note i{font-style:normal;font-family:var(--font-tile);font-weight:600;color:var(--ink)}
+.note s{color:var(--ink-3)}
+.note b.c1,.note b.c2,.note b.c3,.note b.c4,.note b.c5{color:var(--c)}
+.badge{display:inline-block;font:500 10px/1 var(--font-mono);padding:3px 5px;border-radius:4px;border:1px solid;margin-right:6px;vertical-align:1px}
+.badge.b2{color:var(--s1);border-color:var(--s1)}
+.badge.informel{color:var(--ng);border-color:var(--ng)}
+@media (min-width:620px){
+  .step,.note{grid-template-columns:8.5em minmax(0,1fr);column-gap:14px}
+  .step .lab,.note .tag{padding-top:5px}
+}
+
+/* build */
+.build{display:flex;flex-direction:column;gap:14px;max-width:820px;padding-top:14px}
+.b-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.b-stats{font:500 12px var(--font-mono);color:var(--ink-3)}
+.b-base{font-family:var(--font-tile);font-size:22px;font-weight:600;margin:8px 0 10px}
+.todo{display:flex;flex-wrap:wrap;gap:6px}
+.todo span{font-size:13px;padding:6px 10px;border-radius:999px;background:var(--sunk);color:var(--ink)}
+.todo span.info{background:transparent;border:1px dashed var(--line-2);color:var(--ink-2)}
+.todo b{font-family:var(--font-tile);font-weight:600}
+.b-answer{min-height:78px;border:1.5px dashed var(--line-2);border-radius:14px;padding:12px 12px 2px;background:var(--surface)}
+.b-answer.done{border-style:solid;border-color:var(--ok)}
+.b-answer .tiles{min-height:52px}
+.b-empty{color:var(--ink-3);font-size:14px;padding:8px 2px 12px}
+.b-pool .tiles{row-gap:12px}
+.b-pool .tile{cursor:pointer;font:inherit;color:inherit}
+.b-pool .tile:not(.r-fin){color:var(--ink)}
+.b-pool .tile.r-s1{color:var(--s1-ink)} .b-pool .tile.r-s2{color:var(--s2-ink)} .b-pool .tile.r-s3{color:var(--s3-ink)} .b-pool .tile.r-s4{color:var(--s4-ink)} .b-pool .tile.r-s5{color:var(--s5-ink)} .b-pool .tile.r-neg{color:var(--ng-ink)} .b-pool .tile.r-fin{color:var(--surface)}
+.b-pool .tile.hy,.b-pool .tile.el{margin-right:10px}
+.b-pool .tile.hy::after{content:none}
+.b-pool .tile:disabled{visibility:hidden}
+.b-pool .tile:hover{transform:translateY(-1px)}
+.b-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.b-slips{font:500 12px var(--font-mono);color:var(--ink-3)}
+.b-result .ok{font-weight:600;color:var(--ok);background:var(--ok-bg);display:inline-block;padding:5px 10px;border-radius:7px;margin-bottom:10px}
+.b-result .final{font-family:var(--font-tile);font-size:22px;font-weight:600;margin:0 0 12px}
+.b-result .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="app">
+  <header class="top">
+    <div class="eyebrow-row">
+      <span class="eyebrow">TEF Canada · ordre des mots</span>
+      <span class="mnemo" aria-label="Pronoun order: me, le, lui, y, en"><b class="c1">me</b><i>›</i><b class="c2">le</b><i>›</i><b class="c3">lui</b><i>›</i><b class="c4">y</b><i>›</i><b class="c5">en</b></span>
+    </div>
+    <h1>Word Order Lab</h1>
+    <p class="lead">Pick a verb, then stack the layers that trip you up: pronouns, a second verb, compound tense, negation, se-verbs, questions. Each word slides to its slot, and the panels below show the order of operations and the rules in play.</p>
+    <div class="tabs" role="tablist" aria-label="Mode">
+      <button type="button" role="tab" id="tab-explore" data-act="tab" data-v="explore">Explore</button>
+      <button type="button" role="tab" id="tab-build" data-act="tab" data-v="build">Build it</button>
+    </div>
+  </header>
+
+  <main id="v-explore" class="explore">
+    <div class="play">
+      <section class="stage-wrap" aria-label="Current sentence">
+        <div class="stage">
+          <div class="stage-top">
+            <span class="kicker">La phrase</span>
+            <span class="reg" id="reg"></span>
+            <span class="spacer"></span>
+            <button type="button" class="ghost" data-act="random">Random</button>
+            <button type="button" class="ghost" data-act="reset">Clear layers</button>
+          </div>
+          <div class="tiles" id="tiles"></div>
+          <p class="sr" id="sr" aria-live="polite"></p>
+        </div>
+      </section>
+      <aside class="console" id="console"></aside>
+    </div>
+    <section class="explain">
+      <div class="panel">
+        <div class="panel-h"><h2>The pronoun block</h2><p id="ruler-sub"></p></div>
+        <div id="ruler"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>Layer by layer</h2><p>Each switched-on layer applied in turn. <span class="key"><span class="m-new">new or changed</span><span class="m-mov">moved</span></span></p></div>
+        <div id="steps" class="steps"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>Why this order</h2><p>Only the rules this sentence uses.</p></div>
+        <ul id="notes" class="notes"></ul>
+      </div>
+    </section>
+  </main>
+
+  <main id="v-build" class="build" hidden>
+    <div class="b-bar">
+      <div class="seg" id="b-level" aria-label="Difficulty"></div>
+      <label class="switch"><input type="checkbox" id="b-colors" data-act="colors"> colour hints</label>
+      <span class="b-stats" id="b-stats"></span>
+    </div>
+    <div class="panel">
+      <span class="kicker">Start from</span>
+      <p class="b-base" id="b-base"></p>
+      <div class="todo" id="b-todo"></div>
+    </div>
+    <div class="b-answer" id="b-answer"><div class="tiles" id="b-ans-tiles"></div></div>
+    <div class="b-pool" id="b-pool"><div class="tiles" id="b-pool-tiles"></div></div>
+    <div class="b-actions">
+      <button type="button" class="ghost" data-act="hint">Hint</button>
+      <button type="button" class="ghost" data-act="reveal">Show answer</button>
+      <span class="b-slips" id="b-slips"></span>
+      <span class="spacer"></span>
+      <button type="button" class="primary" data-act="next">Next sentence</button>
+    </div>
+    <div class="panel b-result" id="b-result" hidden></div>
+  </main>
+</div>
+
+<script>
+/*ENGINE-START*/
+const AVOIR=['ai','as','a','avons','avez','ont'];
+const ETRE=['suis','es','est','sommes','êtes','sont'];
+const ALLER=['vais','vas','va','allons','allez','vont'];
+const REFL=['me','te','se','nous','vous','se'];
+const VOWEL=/^[aeiouyhàâäéèêëîïôöûüœ]/i;
+
+const SUBJECTS=[
+  {id:'je',t:'je',p:0},{id:'tu',t:'tu',p:1},{id:'il',t:'il',p:2,g:'m'},{id:'elle',t:'elle',p:2,g:'f'},
+  {id:'nous',t:'nous',p:3},{id:'vous',t:'vous',p:4},{id:'ils',t:'ils',p:5,g:'m'},{id:'elles',t:'elles',p:5,g:'f'},
+  {id:'marie',t:'Marie',p:2,g:'f',noun:true,inv:'elle'},{id:'enfants',t:'les enfants',p:5,g:'m',noun:true,inv:'ils'}
+];
+const COI=[
+  {id:'marie',noun:'à Marie',pro:'lui',p:2},
+  {id:'voisins',noun:'aux voisins',pro:'leur',p:5},
+  {id:'moi',noun:'à moi',pro:'me',p:0,cl:true},
+  {id:'toi',noun:'à toi',pro:'te',p:1,cl:true},
+  {id:'nous',noun:'à nous',pro:'nous',p:3,cl:true},
+  {id:'vous',noun:'à vous',pro:'vous',p:4,cl:true}
+];
+const VERBS=[
+  {id:'donner',label:'donner',inf:'donner',gloss:'to give',frame:'qqch à qqn',aux:'avoir',
+   pres:['donne','donnes','donne','donnons','donnez','donnent'],imp:{1:'donne',3:'donnons',4:'donnez'},pp:'donné',
+   args:[{role:'cod',opt:false,def:true,opts:[{id:'livre',noun:'le livre',g:'m',n:'s',k:'def'},{id:'cle',noun:'la clé',g:'f',n:'s',k:'def'},{id:'conseils',noun:'des conseils',neg:'de conseils',k:'indef'}]},
+         {role:'coi',opt:true,def:true,opts:COI}]},
+  {id:'envoyer',label:'envoyer',inf:'envoyer',gloss:'to send',frame:'qqch à qqn',aux:'avoir',
+   pres:['envoie','envoies','envoie','envoyons','envoyez','envoient'],imp:{1:'envoie',3:'envoyons',4:'envoyez'},pp:'envoyé',
+   args:[{role:'cod',opt:false,def:true,opts:[{id:'lettre',noun:'la lettre',g:'f',n:'s',k:'def'},{id:'documents',noun:'les documents',g:'m',n:'p',k:'def'},{id:'photos',noun:'des photos',neg:'de photos',k:'indef'}]},
+         {role:'coi',opt:true,def:true,opts:COI}]},
+  {id:'montrer',label:'montrer',inf:'montrer',gloss:'to show',frame:'qqch à qqn',aux:'avoir',
+   pres:['montre','montres','montre','montrons','montrez','montrent'],imp:{1:'montre',3:'montrons',4:'montrez'},pp:'montré',
+   args:[{role:'cod',opt:false,def:true,opts:[{id:'photos',noun:'les photos',g:'f',n:'p',k:'def'},{id:'chemin',noun:'le chemin',g:'m',n:'s',k:'def'},{id:'maison',noun:'la maison',g:'f',n:'s',k:'def'}]},
+         {role:'coi',opt:true,def:true,opts:COI}]},
+  {id:'acheter',label:'acheter',inf:'acheter',gloss:'to buy',frame:'qqch (à qqn)',aux:'avoir',
+   pres:['achète','achètes','achète','achetons','achetez','achètent'],imp:{1:'achète',3:'achetons',4:'achetez'},pp:'acheté',
+   args:[{role:'cod',opt:false,def:true,opts:[{id:'fleurs',noun:'des fleurs',neg:'de fleurs',k:'indef'},{id:'billets',noun:'deux billets',qty:'deux',k:'qty'},{id:'gateau',noun:'le gâteau',g:'m',n:'s',k:'def'}]},
+         {role:'coi',opt:true,def:false,opts:COI}]},
+  {id:'mettre',label:'mettre',inf:'mettre',gloss:'to put',frame:'qqch quelque part',aux:'avoir',
+   pres:['mets','mets','met','mettons','mettez','mettent'],imp:{1:'mets',3:'mettons',4:'mettez'},pp:'mis',
+   args:[{role:'cod',opt:false,def:true,opts:[{id:'cles',noun:'les clés',g:'f',n:'p',k:'def'},{id:'veste',noun:'la veste',g:'f',n:'s',k:'def'},{id:'telephone',noun:'le téléphone',g:'m',n:'s',k:'def'}]},
+         {role:'loc',opt:true,def:true,opts:[{id:'sac',noun:'dans le sac'},{id:'table',noun:'sur la table'}]}]},
+  {id:'parler',label:'parler',inf:'parler',gloss:'to talk',frame:'à qqn de qqch',aux:'avoir',
+   pres:['parle','parles','parle','parlons','parlez','parlent'],imp:{1:'parle',3:'parlons',4:'parlez'},pp:'parlé',
+   args:[{role:'coi',opt:true,def:true,opts:COI},{role:'de',opt:true,def:true,opts:[{id:'projet',noun:'de son projet'},{id:'vacances',noun:'de ses vacances'}]}]},
+  {id:'aller',label:'aller',inf:'aller',gloss:'to go',frame:'quelque part',aux:'etre',
+   pres:['vais','vas','va','allons','allez','vont'],imp:{1:'va',3:'allons',4:'allez'},pp:'allé',
+   args:[{role:'loc',opt:false,def:true,opts:[{id:'gare',noun:'à la gare'},{id:'bureau',noun:'au bureau'},{id:'medecin',noun:'chez le médecin'}]}]},
+  {id:'laver',label:'se laver',inf:'laver',gloss:'to wash',frame:'(les mains)',aux:'etre',refl:true,
+   pres:['lave','laves','lave','lavons','lavez','lavent'],imp:{1:'lave',3:'lavons',4:'lavez'},pp:'lavé',
+   args:[{role:'cod',opt:true,def:true,opts:[{id:'mains',noun:'les mains',g:'f',n:'p',k:'def'},{id:'cheveux',noun:'les cheveux',g:'m',n:'p',k:'def'}]}]},
+  {id:'lever',label:'se lever',inf:'lever',gloss:'to get up',frame:'',aux:'etre',refl:true,
+   pres:['lève','lèves','lève','levons','levez','lèvent'],imp:{1:'lève',3:'levons',4:'levez'},pp:'levé',args:[]},
+  {id:'souvenir',label:'se souvenir',inf:'souvenir',gloss:'to remember',frame:'de qqch',aux:'etre',refl:true,
+   pres:['souviens','souviens','souvient','souvenons','souvenez','souviennent'],imp:{1:'souviens',3:'souvenons',4:'souvenez'},pp:'souvenu',
+   args:[{role:'de',opt:true,def:true,opts:[{id:'voyage',noun:'de ce voyage'},{id:'nom',noun:'de son nom'}]}]},
+  {id:'habituer',label:"s'habituer",inf:'habituer',gloss:'to get used to',frame:'à qqch',aux:'etre',refl:true,
+   pres:['habitue','habitues','habitue','habituons','habituez','habituent'],imp:{1:'habitue',3:'habituons',4:'habituez'},pp:'habitué',
+   args:[{role:'a',opt:true,def:true,opts:[{id:'hiver',noun:"à l'hiver"},{id:'froid',noun:'au froid'},{id:'ville',noun:'à cette ville'}]}]}
+];
+const MODALS={
+  pouvoir:{label:'pouvoir',inf:'pouvoir',pres:['peux','peux','peut','pouvons','pouvez','peuvent'],pp:'pu',jeInv:'puis',scope:true},
+  vouloir:{label:'vouloir',inf:'vouloir',pres:['veux','veux','veut','voulons','voulez','veulent'],pp:'voulu',scope:true},
+  devoir:{label:'devoir',inf:'devoir',pres:['dois','dois','doit','devons','devez','doivent'],pp:'dû',jeInv:'dois',scope:true},
+  essayer:{label:'essayer de',inf:'essayer',prep:'de',pres:['essaie','essaies','essaie','essayons','essayez','essaient'],pp:'essayé',scope:true},
+  venir:{label:'venir de',inf:'venir',prep:'de',pres:['viens','viens','vient','venons','venez','viennent'],presOnly:true},
+  faire:{label:'faire',inf:'faire',pres:['fais','fais','fait','faisons','faites','font'],pp:'fait',imp:{1:'fais',3:'faisons',4:'faites'},caus:true}
+};
+const MOD_IDS=['pouvoir','vouloir','devoir','essayer','venir','faire'];
+const causOK=V=>!V.refl&&V.id!=='aller';
+const ROLE_CAP={cod:'COD',coi:'COI',loc:'lieu',de:'de …',a:'à …'};
+const ROLE_LABEL={cod:'COD',coi:'COI',loc:'place',de:'de + thing',a:'à + thing'};
+const TYPE_LAB={inton:'+ intonation',estce:'+ est-ce que',inv:'+ inversion',imp:'+ impératif'};
+const NOTE_ORDER=['refl','motto','order','cross','qty','pcBlock','etre','agreeCod','codAfter','noAgreeEn','agreeSubj','reflAfter','reflBefore','fp','mod','modPrep','venirDe','caus','modPc','modAvoir','causPc','modFp','fpRefl','negWrap','negPc','negFp','negMod','negInf','negDe','negOral','inton','estce','inv','invT','invNoun','puisJe','invJe','invOral','impAff','impMoi','impS','impLy','impTy','impNeg','elision'];
+
+const getVerb=id=>VERBS.find(v=>v.id===id);
+const getSubj=id=>SUBJECTS.find(s=>s.id===id);
+function agree(pp,g,n){let s=pp;if(g==='f')s+='e';if(n==='p'&&!/s$/.test(s))s+='s';return s;}
+function codPro(o){if(o.k!=='def')return 'en';return o.n==='p'?'les':(o.g==='f'?'la':'le');}
+function slotOf(role,o){if(role==='cod')return o.k==='def'?2:5;if(role==='coi')return o.cl?1:3;if(role==='de')return 5;return 4;}
+function proOf(role,o){if(role==='cod')return o.k==='qty'?'en … '+o.qty:codPro(o);if(role==='coi')return o.pro;if(role==='de')return 'en';return 'y';}
+
+function compose(cfg){
+  const V=getVerb(cfg.verb), S=getSubj(cfg.subj);
+  const notes=[]; const N=(id,d)=>{ if(!notes.some(n=>n.id===id)) notes.push(Object.assign({id},d||{})); };
+  const type=cfg.type||'decl', imp=type==='imp';
+  const tense=imp?'pres':(cfg.tense||'pres');
+  const neg=cfg.neg||null;
+  const M=cfg.mod?MODALS[cfg.mod]:null, caus=!!(M&&M.caus);
+  const scopeInf=!!(neg&&M&&M.scope&&!imp&&cfg.negScope==='inf');
+  const oral=!!(neg&&cfg.oral&&!imp&&!scopeInf);
+  const p=S.p, sg=S.g||(cfg.fem?'f':'m'), sn=p>=3?'p':'s';
+  const pros=[], nouns=[]; let cod=null;
+
+  if(V.refl){ pros.push({k:'refl',t:REFL[p],slot:1,r:'s1',cap:'réfl.',kind:'refl'}); N('refl'); }
+  for(const a of V.args){
+    const st=(cfg.args||{})[a.role]; if(!st||st.f==='off') continue;
+    const o=a.opts.find(x=>x.id===st.o)||a.opts[0];
+    let f=st.f; if(a.role==='coi'&&o.cl) f='pro';
+    if(a.role==='cod') cod={o,f};
+    if(f==='pro'){
+      let t,slot;
+      if(a.role==='cod'){t=codPro(o);slot=o.k==='def'?2:5;}
+      else if(a.role==='coi'){t=o.pro;slot=o.cl?1:3;}
+      else if(a.role==='de'){t='en';slot=5;}
+      else {t='y';slot=4;}
+      pros.push({k:a.role,t,slot,r:'s'+slot,cap:o.noun,kind:a.role});
+      if(a.role==='cod'&&o.k==='qty'){ nouns.push({k:'qty',t:o.qty,r:'noun',cap:'quantité'}); N('qty'); }
+    } else {
+      let t=o.noun;
+      if(neg&&o.neg){ t=o.neg; N('negDe',{ex:o.neg,neg}); }
+      nouns.push({k:a.role,t,r:'noun',cap:ROLE_CAP[a.role]});
+    }
+  }
+  pros.sort((x,y)=>x.slot-y.slot);
+  const impAff=imp&&!neg;
+  if(pros.length&&!impAff){
+    N('order',{list:pros.map(x=>x.t)});
+    const sl=new Set(pros.map(x=>x.slot));
+    if((sl.has(1)&&sl.has(2))||(sl.has(2)&&sl.has(3))) N('cross');
+  }
+  if(V.id==='souvenir'&&!pros.some(x=>x.kind==='de')&&!nouns.some(x=>x.k==='de')) N('motto');
+
+  // the verb row: verbs[0] is the conjugated verb; the pronoun block goes in front of verbs[blockAt]
+  const T=(k,t,r,cap)=>({k,t,r,cap});
+  let verbs, blockAt=0;
+  if(imp){
+    verbs=[T(caus?'mod':'verb',(caus?M.imp:V.imp)[p],'fin','impératif')];
+    if(caus){ verbs.push(T('verb',V.inf,'nonfin','infinitif')); N('caus'); }
+  } else if(!M){
+    if(tense==='pres') verbs=[T('verb',V.pres[p],'fin','verbe')];
+    else if(tense==='pc'){
+      const etre=V.aux==='etre';
+      const codPre=!!(cod&&cod.f==='pro'&&cod.o.k==='def');
+      let g=null,n=null,src=null;
+      if(!etre){ if(codPre){g=cod.o.g;n=cod.o.n;src='s2';} }
+      else if(V.refl&&cod){ if(codPre){g=cod.o.g;n=cod.o.n;src='s2';} }
+      else { g=sg;n=sn;src='subj'; }
+      const full=g?agree(V.pp,g,n):V.pp;
+      verbs=[T('aux',(etre?ETRE:AVOIR)[p],'fin',etre?'être':'avoir'),Object.assign(T('verb',full,'nonfin','p. passé'),{end:full.slice(V.pp.length),endSrc:src})];
+      if(pros.length) N('pcBlock');
+      if(etre) N('etre');
+      if(!etre){
+        if(codPre) N('agreeCod',{pro:codPro(cod.o),noun:cod.o.noun,pp:full,plain:full===V.pp});
+        else if(cod&&cod.f==='pro') N('noAgreeEn');
+        else if(cod&&cod.f==='noun'&&cod.o.k==='def'){ const pr=codPro(cod.o); N('codAfter',{noun:cod.o.noun,withPro:(pr==='les'?'les ':"l'")+'a '+agree(V.pp,cod.o.g,cod.o.n)}); }
+      } else if(V.refl&&cod){
+        if(codPre) N('reflBefore',{noun:cod.o.noun,pp:full}); else N('reflAfter',{noun:cod.o.noun});
+      } else N('agreeSubj',{subj:S.t,pp:full,plain:full===V.pp,canFem:[0,1,3,4].includes(p)&&!cfg.fem});
+    } else {
+      verbs=[T('aux',ALLER[p],'fin','aller'),T('verb',V.inf,'nonfin','infinitif')]; blockAt=1;
+      if(pros.length) N('fp');
+    }
+  } else {
+    const inf=T('verb',V.inf,'nonfin','infinitif');
+    if(tense==='pres') verbs=[T('mod',M.pres[p],'fin',M.inf),inf];
+    else if(tense==='pc') verbs=[T('aux',AVOIR[p],'fin','avoir'),T('mod',M.pp,'nonfin','p. passé'),inf];
+    else verbs=[T('aux',ALLER[p],'fin','aller'),T('mod',M.inf,'nonfin','infinitif'),inf];
+    blockAt=caus?(tense==='fp'?1:0):verbs.length-1;
+    if(caus) N('caus'); else N('mod');
+    if(M.prep) N('modPrep');
+    if(cfg.mod==='venir') N('venirDe');
+    if(tense==='pc'){ if(caus){ if(pros.length) N('pcBlock'); N('causPc'); } else { N('modPc',{pp:M.pp}); if(V.aux==='etre') N('modAvoir'); } }
+    if(tense==='fp'){ if(caus){ if(pros.length) N('fp'); } else N('modFp'); }
+  }
+  if(V.refl&&blockAt>0&&!imp) N('fpRefl');
+
+  const ne=(neg&&!oral)?{k:'ne',t:'ne',r:'neg',cap:'nég.',el:true}:null;
+  const n2=neg?{k:'neg2',t:neg,r:'neg',cap:'nég.'}:null;
+  if(neg){
+    if(scopeInf) N('negInf',{neg,oral:!!cfg.oral});
+    else if(blockAt===0){ N('negWrap',{neg}); if(tense==='pc') N('negPc',{neg}); }
+    else if(!M) N('negFp',{neg});
+    else N('negMod',{neg,canScope:!!M.scope});
+    if(oral) N('negOral');
+  }
+
+  const subjTok={k:'subj',t:S.t,r:'subj',cap:'sujet',el:S.id==='je'};
+  const copy=x=>Object.assign({},x,{el:true});
+  const block=pros.map(copy);
+  const prep=M&&M.prep?{k:'prep',t:M.prep,r:'q',cap:'prép.',el:true}:null;
+  const P=x=>x?[x]:[];
+  let mode=type, seq=[], ruler=null;
+  if(mode==='inv'&&p===0&&tense==='pres'){
+    if(M&&M.jeInv){ verbs[0]=Object.assign({},verbs[0],{t:M.jeInv}); if(cfg.mod==='pouvoir') N('puisJe'); }
+    else { mode='estce'; N('invJe'); }
+  }
+  const row=inv=>{
+    const out=[];
+    if(ne&&!scopeInf) out.push(ne);
+    verbs.forEach((v,i)=>{
+      if(i===blockAt){ if(i>0&&prep) out.push(prep); if(scopeInf) out.push(ne,n2); out.push(...block); }
+      if(i===0){
+        if(inv){
+          const tNeed=p===2&&/[aec]$/.test(v.t);
+          out.push(Object.assign({},v,{glue:'-'}));
+          if(tNeed){ out.push({k:'t',t:'t',r:'tee',cap:'liaison',glue:'-'}); N('invT'); }
+          out.push(S.noun?{k:'inv',t:S.inv,r:'subj',cap:'reprise'}:Object.assign({},subjTok,{el:false}));
+        } else out.push(v);
+        if(n2&&!scopeInf) out.push(n2);
+      } else out.push(v);
+    });
+    return out;
+  };
+
+  if(mode==='decl'||mode==='inton'||mode==='estce'){
+    if(mode==='estce') seq.push({k:'estce',t:'est-ce que',r:'q',cap:'question',el:true});
+    seq.push(subjTok,...row(false),...nouns);
+    if(mode==='inton') N('inton');
+    if(mode==='estce') N('estce');
+  } else if(mode==='inv'){
+    if(S.noun) seq.push(subjTok);
+    seq.push(...row(true),...nouns);
+    N('inv',{fin:verbs[0].t}); if(S.noun) N('invNoun'); if(oral) N('invOral');
+  } else {
+    const fin=verbs[0], rest=verbs.slice(1);
+    if(neg){
+      seq.push(...P(ne),...block,fin,...P(n2),...rest,...nouns);
+      if(pros.length) N('impNeg');
+    } else {
+      const rank=x=>x.kind==='cod'&&x.slot===2?1:(x.kind==='refl'||x.kind==='coi')?2:x.t==='y'?3:4;
+      const chain=pros.map(x=>Object.assign({},x)).sort((a,b)=>rank(a)-rank(b));
+      let moi=false;
+      chain.forEach(x=>{ if(x.t==='me'){x.t='moi';moi=true;} else if(x.t==='te'){x.t='toi';moi=true;} x.b=x.t; });
+      ruler=chain.map(x=>x.b);
+      for(let i=0;i<chain.length-1;i++){
+        const x=chain[i], nx=chain[i+1];
+        if(nx.t!=='y'&&nx.t!=='en') continue;
+        if(x.t==='moi'){x.t="m'";x.glue='';}
+        else if(x.t==='toi'){x.t="t'";x.glue='';}
+        else if((x.t==='le'||x.t==='la')&&nx.t==='y'){x.t="l'";x.glue='';N('impLy');}
+      }
+      let vt=fin.t;
+      if(p===1&&chain.length&&(chain[0].t==='y'||chain[0].t==='en')&&(/e$/.test(vt)||vt==='va')){vt+='s';N('impS');}
+      seq.push(Object.assign({},fin,{t:vt,b:vt,glue:chain.length?'-':' '}));
+      chain.forEach((x,i)=>{ if(x.glue===undefined) x.glue=i<chain.length-1?'-':' '; x.el=false; });
+      seq.push(...chain,...rest,...nouns);
+      if(chain.length) N('impAff');
+      if(moi) N('impMoi');
+      if(V.id==='habituer'&&chain.some(x=>x.t==="t'")) N('impTy');
+    }
+  }
+
+  seq.forEach(x=>{ if(x.glue===undefined) x.glue=' '; if(x.b===undefined) x.b=x.t; });
+  const EL={je:"j'",me:"m'",te:"t'",se:"s'",le:"l'",la:"l'",ne:"n'",de:"d'",'est-ce que':"est-ce qu'"};
+  const elis=[];
+  for(let i=0;i<seq.length-1;i++){
+    const x=seq[i], nx=seq[i+1];
+    if(!x.el||x.glue!==' '||!EL[x.t]||!VOWEL.test(nx.t)) continue;
+    elis.push(x.t+' '+nx.t+' → '+EL[x.t]+nx.t);
+    x.t=EL[x.t]; x.glue='';
+  }
+  if(elis.length) N('elision',{list:elis});
+  notes.sort((a,b)=>NOTE_ORDER.indexOf(a.id)-NOTE_ORDER.indexOf(b.id));
+  const punct=mode==='decl'?'.':(mode==='imp'?'!':'?');
+  const register=oral?'familier':mode==='inv'?'formel':mode==='inton'?'courant':'standard';
+  return {tokens:seq,notes,punct,mode,tense,impAff,register,mod:cfg.mod||null,caus,blockAt,ruler:ruler||pros.map(x=>({slot:x.slot,t:x.t}))};
+}
+
+function normalize(c0){
+  const c=Object.assign({},c0);
+  const V=getVerb(c.verb)||VERBS[0]; c.verb=V.id;
+  if(!getSubj(c.subj)) c.subj='il';
+  if(!['decl','inton','estce','inv','imp'].includes(c.type)) c.type='decl';
+  if(!['pres','pc','fp'].includes(c.tense)) c.tense='pres';
+  if(!['pas','jamais','plus'].includes(c.neg)) c.neg=null;
+  if(c.type==='imp'){ if(![1,3,4].includes(getSubj(c.subj).p)) c.subj='tu'; c.tense='pres'; c.oral=false; }
+  if(!MOD_IDS.includes(c.mod)) c.mod=null;
+  if(c.mod==='faire'&&!causOK(V)) c.mod=null;
+  if(c.type==='imp'&&c.mod&&c.mod!=='faire') c.mod=null;
+  if(c.mod==='venir') c.tense='pres';
+  if(!c.neg||!c.mod||!MODALS[c.mod].scope||c.type==='imp'||c.negScope!=='inf') c.negScope='mod';
+  if(!c.neg) c.oral=false;
+  const sp=getSubj(c.subj).p, pref=c.proPref==='pro'?'pro':'noun';
+  const args={};
+  for(const a of V.args){
+    const prev=(c.args||{})[a.role];
+    let o=prev&&a.opts.some(x=>x.id===prev.o)?prev.o:a.opts[0].id;
+    let f=prev&&['noun','pro','off'].includes(prev.f)?prev.f:(a.def?pref:'off');
+    if(f==='off'&&!a.opt) f=pref;
+    const oo=a.opts.find(x=>x.id===o);
+    if(oo.cl&&oo.p===sp) o=a.opts[0].id;
+    args[a.role]={o,f};
+  }
+  c.args=args;
+  return c;
+}
+function proState(c){
+  const V=getVerb(c.verb); let pro=0,noun=0;
+  for(const a of V.args){
+    const st=c.args[a.role]; if(!st||st.f==='off') continue;
+    const o=a.opts.find(x=>x.id===st.o); if(a.role==='coi'&&o.cl) continue;
+    if(st.f==='pro') pro++; else noun++;
+  }
+  return pro&&noun?'mix':pro?'pro':noun?'noun':'none';
+}
+function baseOf(cfg){
+  const V=getVerb(cfg.verb), args={};
+  for(const a of V.args){ const st=cfg.args[a.role]; if(st) args[a.role]={o:st.o,f:st.f==='off'?'off':'noun'}; }
+  return Object.assign({},cfg,{tense:'pres',neg:null,oral:false,type:'decl',mod:null,negScope:'mod',args});
+}
+function realPros(cfg){
+  const V=getVerb(cfg.verb), out=[];
+  for(const a of V.args){ const st=cfg.args[a.role]; if(!st||st.f!=='pro') continue; const o=a.opts.find(x=>x.id===st.o); if(a.role==='coi'&&o.cl) continue; out.push(o.noun); }
+  return out;
+}
+function steps(cfg){
+  const V=getVerb(cfg.verb), imp=cfg.type==='imp';
+  let cur=baseOf(cfg);
+  const out=[{lab:V.refl?'base · se-verb':'base',cfg:cur}];
+  if(realPros(cfg).length){ cur=Object.assign({},cur,{args:cfg.args}); out.push({lab:'+ pronouns',cfg:cur}); }
+  else cur=Object.assign({},cur,{args:cfg.args});
+  if(cfg.mod){ cur=Object.assign({},cur,{mod:cfg.mod}); out.push({lab:cfg.mod==='faire'?'+ faire (causative)':'+ '+MODALS[cfg.mod].label+' + inf.',cfg:cur}); }
+  if(!imp&&cfg.tense!=='pres'){ cur=Object.assign({},cur,{tense:cfg.tense}); out.push({lab:cfg.tense==='pc'?'+ passé composé':'+ futur proche',cfg:cur}); }
+  if(cfg.neg){ const inf=cfg.negScope==='inf', o=cfg.oral&&!imp&&!inf; cur=Object.assign({},cur,{neg:cfg.neg,oral:o,negScope:cfg.negScope}); out.push({lab:inf?'+ ne '+cfg.neg+' on the infinitive':o?'+ … '+cfg.neg+' (no ne)':'+ ne … '+cfg.neg,cfg:cur}); }
+  if(cfg.type!=='decl'){ cur=Object.assign({},cur,{type:cfg.type}); out.push({lab:TYPE_LAB[cfg.type],cfg:cur}); }
+  return out.map(s=>Object.assign(s,{r:compose(s.cfg)}));
+}
+function lcsSet(a,b){
+  const m=a.length,n=b.length,dp=Array.from({length:m+1},()=>new Array(n+1).fill(0));
+  for(let i=m-1;i>=0;i--)for(let j=n-1;j>=0;j--)dp[i][j]=a[i]===b[j]?dp[i+1][j+1]+1:Math.max(dp[i+1][j],dp[i][j+1]);
+  const s=new Set();let i=0,j=0;
+  while(i<m&&j<n){ if(a[i]===b[j]){s.add(a[i]);i++;j++;} else if(dp[i+1][j]>=dp[i][j+1]) i++; else j++; }
+  return s;
+}
+function diffMarks(prev,next){
+  const pm=new Map(prev.map(t=>[t.k,t.b])), nm=new Map(next.map(t=>[t.k,t.b]));
+  const a=prev.filter(t=>nm.get(t.k)===t.b).map(t=>t.k), b=next.filter(t=>pm.get(t.k)===t.b).map(t=>t.k);
+  const keep=lcsSet(a,b);
+  return next.map(t=>!pm.has(t.k)||pm.get(t.k)!==t.b?'new':(keep.has(t.k)?'':'mov'));
+}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+function plainText(r){
+  let s=''; r.tokens.forEach((t,i)=>{ s+=i===0?cap(t.t):t.t; if(i<r.tokens.length-1) s+=t.glue===' '?' ':t.glue==='-'?'-':''; });
+  return s+(r.punct==='.'?'.':' '+r.punct);
+}
+function shuffle(a,rnd){ rnd=rnd||Math.random; for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function randomCfg(level,rnd){
+  rnd=rnd||Math.random;
+  const pick=a=>a[Math.floor(rnd()*a.length)];
+  const L=shuffle(['pro','tense','neg','pron','q','mod'],rnd).slice(0,level);
+  const has=x=>L.includes(x);
+  let pool=VERBS.filter(v=>has('pron')?v.refl:!v.refl);
+  if(has('pro')) pool=pool.filter(v=>v.args.length);
+  const V=pick(pool);
+  let type='decl';
+  if(has('q')) type=has('tense')?'inv':pick(['inv','inv','imp']);
+  let mod=null;
+  if(has('mod')){
+    if(type==='imp'&&!causOK(V)) type='inv';
+    let mo=type==='imp'?['faire']:['pouvoir','pouvoir','vouloir','devoir','devoir','essayer','venir'].concat(causOK(V)?['faire']:[]);
+    if(has('tense')) mo=mo.filter(m=>m!=='venir');
+    mod=pick(mo);
+  }
+  let sp=type==='imp'?['tu','tu','vous','nous']:['je','tu','il','elle','nous','vous','ils','elles','il','elle','marie','enfants'];
+  if(type==='inv'&&!has('tense')) sp=sp.filter(s=>s!=='je');
+  const subj=pick(sp), p=getSubj(subj).p;
+  const tense=has('tense')?pick(['pc','pc','fp']):'pres';
+  const neg=has('neg')?pick(['pas','pas','jamais','plus']):null;
+  const args={}; let real=0;
+  V.args.forEach(a=>{
+    const include=!a.opt||rnd()<(has('pro')?0.75:0.55);
+    const opts=a.opts.filter(o=>!(o.cl&&(o.p===p||!has('pro'))));
+    const o=pick(opts);
+    let f=include?(has('pro')?'pro':'noun'):'off';
+    if(f==='pro'&&V.args.length>1&&rnd()<0.2) f='noun';
+    args[a.role]={o:o.id,f};
+    if(f==='pro'&&!o.cl) real++;
+  });
+  if(has('pro')&&!real){
+    const a=V.args[0], cur=a.opts.find(x=>x.id===args[a.role].o);
+    args[a.role]={o:cur.cl?a.opts[0].id:cur.id,f:'pro'};
+  }
+  const negScope=neg&&mod&&MODALS[mod].scope&&rnd()<0.3?'inf':'mod';
+  const cfg=normalize({verb:V.id,subj,fem:rnd()<0.3,tense,neg,oral:false,type,mod,negScope,args,proPref:has('pro')?'pro':'noun'});
+  return {cfg,layers:L};
+}
+/*ENGINE-END*/
+
+/* ---------- notes ---------- */
+const NOTES={
+  refl:{tag:'reflexive',html:()=>`<i>se</i> is an object pronoun like the others. It sits in slot 1 and changes with the subject: je <i>me</i>, tu <i>te</i>, il <i>se</i>, nous <i>nous</i>, vous <i>vous</i>, ils <i>se</i>.`},
+  motto:{tag:'🇨🇦 aside',html:()=>`<i>Je me souviens</i> is Québec's motto, on every licence plate.`},
+  order:{tag:'pronouns',html:d=>`The block has a fixed order: <b class="c1">me te se nous vous</b> › <b class="c2">le la les</b> › <b class="c3">lui leur</b> › <b class="c4">y</b> › <b class="c5">en</b>. Here: <i>${d.list.join(' + ')}</i>.`},
+  cross:{tag:'pronouns',html:()=>`The trap: <b>me / te / nous / vous</b> come <em>before</em> le / la / les, but <b>lui / leur</b> come <em>after</em>. <i>Il me le donne</i> but <i>il le lui donne</i>.`},
+  qty:{tag:'pronouns',html:()=>`<b>en</b> replaces the noun but the number stays behind the verb: <i>j'en achète deux</i>, <i>j'en ai acheté deux</i>.`},
+  pcBlock:{tag:'compound tense',html:()=>`The pronoun block goes in front of the <b>auxiliary</b>, never the participle: <i>il le lui a donné</i>, not <s>il a le lui donné</s>.`},
+  etre:{tag:'compound tense',html:()=>`This verb takes <b>être</b>, like <i>aller</i> and every se-verb: <i>je suis allé</i>, <i>elle s'est levée</i>.`},
+  agreeCod:{tag:'agreement',html:d=>`With avoir, the participle agrees with a direct-object pronoun placed <em>before</em> it: <i>${d.pro}</i> (= ${d.noun}) → <i>${d.pp}</i>${d.plain?' (masculine singular, so no visible ending)':''}.`},
+  codAfter:{tag:'agreement',html:d=>`No agreement: the direct object (<i>${d.noun}</i>) comes after the verb. Make it a pronoun and the ending appears: <i>${d.withPro}</i>.`},
+  noAgreeEn:{tag:'agreement',html:()=>`<b>en</b> never makes the participle agree: <i>des fleurs → il en a acheté</i>, not <s>achetées</s>.`},
+  agreeSubj:{tag:'agreement',html:d=>`With être, the participle agrees with the subject: <i>${d.subj}</i> → <i>${d.pp}</i>${d.plain?' (masculine singular, so no ending)':''}.${d.canFem?' Switch on “feminine” under Subject to see the ending change.':''}`},
+  reflAfter:{tag:'agreement',lvl:'B2',html:d=>`Se-verb with a direct object <em>after</em> it: <i>se</i> is indirect here, so no agreement. <i>Elle s'est lavé ${d.noun}</i>.`},
+  reflBefore:{tag:'agreement',lvl:'B2',html:d=>`The direct object now sits <em>before</em> the verb as <i>les</i> (= ${d.noun}), so the participle agrees with it: <i>${d.pp}</i>. <i>Elle se les est ${d.pp}</i>.`},
+  fp:{tag:'futur proche',html:()=>`With aller + infinitive, the pronouns belong to the infinitive, so they sit after <i>aller</i>: <i>il va le lui donner</i>. Same with pouvoir, vouloir and devoir + infinitive.`},
+  fpRefl:{tag:'reflexive',html:()=>`In front of an infinitive, the se-pronoun still matches the subject: <i>je vais me lever</i>, <i>nous pouvons nous lever</i>, <i>tu dois t'y habituer</i>.`},
+  mod:{tag:'two verbs',html:()=>`The pronouns belong to the infinitive, so the block sits right in front of it: <i>il peut le lui donner</i>. The conjugated verb is the one that negation and inversion work on: <i>il ne peut pas le lui donner</i>, <i>peut-il le lui donner ?</i>`},
+  modPrep:{tag:'two verbs',html:()=>`A preposition changes nothing. <i>de</i> stays in front of the block and becomes <i>d'</i> before a vowel: <i>il essaie de le lui donner</i>, <i>il vient d'y aller</i>.`},
+  venirDe:{tag:'two verbs',html:()=>`<i>venir de</i> + infinitive is the passé récent, “just did”: <i>il vient de le lui donner</i>. It only works in the present (or imparfait), so the other tenses are switched off.`},
+  caus:{tag:'two verbs',lvl:'B2',html:()=>`The exception: with causative <i>faire</i> (“have something done”), the block jumps back in front of <i>faire</i>: <i>il le lui fait donner</i>, not <s>il fait le lui donner</s>. <i>Laisser</i>, <i>voir</i> and <i>entendre</i> + infinitive do the same: <i>je l'ai entendu chanter</i>.`},
+  modPc:{tag:'two verbs',html:d=>`Compound tense: the second verb's participle (<i>${d.pp}</i>) goes between the auxiliary and the infinitive. It never agrees, because the pronouns belong to the infinitive: <i>il a pu les y mettre</i>.`},
+  modAvoir:{tag:'two verbs',html:()=>`The auxiliary belongs to the first verb, so it's <b>avoir</b> even with an être verb: <i>elle a dû y aller</i>, <i>elle a pu se lever</i>.`},
+  causPc:{tag:'agreement',lvl:'B2',html:()=>`<i>fait</i> never agrees in a causative: <i>elle les a fait mettre</i>, not <s>faites</s>.`},
+  modFp:{tag:'two verbs',html:()=>`Futur proche + a second verb: <i>aller</i> conjugated, the second verb in the infinitive, then the block and the main verb: <i>il va pouvoir le lui donner</i>.`},
+  negMod:{tag:'negation',html:d=>`<b>ne … ${d.neg}</b> wraps the conjugated verb only; the block stays with the infinitive: <i>il ne peut ${d.neg} le lui donner</i>.${d.canScope?' Switch “negate” to the infinitive to see the other position.':''}`},
+  negInf:{tag:'negation',html:d=>`Negating the infinitive: <i>ne ${d.neg}</i> travel together in front of the block, and the meaning changes. <i>Il ne peut pas y aller</i> (he can't go) vs <i>il peut ne pas y aller</i> (he's allowed not to go). Very common with <i>essayer de</i>: <i>j'essaie de ne pas y penser</i>.${d.oral?' Here <i>ne</i> stays even in speech.':''}`},
+  puisJe:{tag:'inversion',html:()=>`With <i>je</i>, pouvoir inverts as <b>puis-je</b>, not <s>peux-je</s>. Handy in EO Section A: <i>Puis-je vous le demander ?</i>`},
+  negWrap:{tag:'negation',html:d=>`<b>ne … ${d.neg}</b> wraps the conjugated verb <em>together with</em> the pronoun block in front of it: ne + [pronouns + verb] + ${d.neg}.`},
+  negPc:{tag:'negation',html:d=>`Compound tense: <i>${d.neg}</i> goes right after the auxiliary, before the participle: <i>il ne l'a ${d.neg} vu</i>.`},
+  negFp:{tag:'negation',html:d=>`Futur proche: ne … ${d.neg} wraps <i>aller</i>, and the pronouns stay with the infinitive: <i>il ne va ${d.neg} y aller</i>.`},
+  negDe:{tag:'negation',html:d=>`After a negation, des / du / de la become <b>de</b>: <i>${d.neg} ${d.ex}</i>.`},
+  negOral:{tag:'negation',lvl:'informel',html:()=>`Spoken French drops <i>ne</i>: <i>j'y vais pas</i>, <i>je l'ai pas vu</i>. Fine with a friend (EO Section B). Keep <i>ne</i> in EO Section A and in EE. 🇨🇦 In Québec you'll also hear <i>pantoute</i> for “not at all”: <i>j'en veux pas pantoute</i>.`},
+  inton:{tag:'question',html:()=>`Intonation question: statement order, rising voice. The most common question in speech. 🇨🇦 Casual Québec French often tags <i>-tu</i> onto the verb: <i>Tu y vas-tu ?</i> <i>Il est-tu parti ?</i> Informal only.`},
+  estce:{tag:'question',html:()=>`<i>Est-ce que</i> + statement order: nothing moves. Neutral register, safe in EO Section A.`},
+  inv:{tag:'inversion',html:d=>`Only one word moves: the subject pronoun hops behind the conjugated verb (<i>${d.fin}</i>). <i>ne</i> and the pronoun block stay in front. Formal register: good for EO Section A and EE.`},
+  invT:{tag:'inversion',html:()=>`<b>-t-</b> fills the gap between a verb ending in a vowel and il / elle / on: <i>a-t-il</i>, <i>va-t-elle</i>, <i>donne-t-on</i>.`},
+  invNoun:{tag:'inversion',html:()=>`A noun subject can't hop. It stays in front and a matching pronoun goes behind the verb: <i>Marie le lui a-t-elle donné ?</i>`},
+  invJe:{tag:'inversion',html:()=>`Inversion with <i>je</i> survives only in a few forms: <i>ai-je, suis-je, vais-je, puis-je, dois-je</i>. In the present of most verbs, use <i>est-ce que</i> instead, as shown.`},
+  invOral:{tag:'register',lvl:'informel',html:()=>`Inversion is formal and dropping <i>ne</i> is casual, so together they clash. In speech, ask with intonation instead.`},
+  impAff:{tag:'imperative',html:()=>`Affirmative imperative: the pronouns move <em>after</em> the verb, joined by hyphens, with the direct object first: <i>donne-le-moi</i>, <i>mets-les-y</i>, <i>parle-lui-en</i>.`},
+  impMoi:{tag:'imperative',html:()=>`At the end, me / te become <b>moi / toi</b>: <i>donne-le-moi</i>, <i>lève-toi</i>. Before y or en they shrink back: <i>donne-m'en</i>, <i>souviens-t'en</i>.`},
+  impS:{tag:'imperative',html:()=>`The tu imperative of -er verbs (and <i>va</i>) has no -s, except right before y or en: <i>vas-y</i>, <i>achètes-en</i>, <i>parles-en</i>.`},
+  impLy:{tag:'imperative',html:()=>`<i>Mets-l'y</i> is correct but almost nobody says it. People rephrase: <i>mets-le dedans</i>.`},
+  impTy:{tag:'imperative',html:()=>`<i>Habitue-t'y</i> is correct but rare. In speech: <i>habitue-toi</i>.`},
+  impNeg:{tag:'imperative',html:()=>`Negative imperative: everything goes back to the normal order in front of the verb. <i>Ne me le donne pas</i>, <i>n'y va pas</i>, <i>ne t'en souviens pas</i>.`},
+  elision:{tag:'elision',html:d=>`Before a vowel or a mute h, the small words lose their vowel: ${d.list.map(x=>`<i>${x}</i>`).join(', ')}.`}
+};
+function notesHTML(list){
+  return list.map(n=>{ const N=NOTES[n.id]; if(!N) return ''; const badge=N.lvl?`<span class="badge ${N.lvl==='B2'?'b2':'informel'}">${N.lvl}</span>`:''; return `<li class="note"><span class="tag">${N.tag}</span><div>${badge}${N.html(n)}</div></li>`; }).join('');
+}
+
+/* ---------- state ---------- */
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+const DEFAULT={verb:'donner',subj:'il',fem:false,tense:'pc',neg:'pas',oral:false,type:'inv',mod:null,negScope:'mod',proPref:'pro',
+  args:{cod:{o:'livre',f:'pro'},coi:{o:'marie',f:'pro'}},lastSimple:'donner',lastPron:'souvenir',view:'explore',level:3,colors:true};
+let S=normalize(Object.assign({},DEFAULT,store.get('wol.state',{})));
+if(!getVerb(S.lastSimple)||getVerb(S.lastSimple).refl) S.lastSimple='donner';
+if(!getVerb(S.lastPron)||!getVerb(S.lastPron).refl) S.lastPron='souvenir';
+if(![2,3,4].includes(S.level)) S.level=3;
+let STATS=store.get('wol.stats',{done:0,clean:0});
+const save=()=>store.set('wol.state',S);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function sentenceHTML(tokens,punct,mk){
+  let s='';
+  tokens.forEach((t,i)=>{ const w=esc(i===0?cap(t.t):t.t); const m=mk&&mk[i]; s+=m?`<span class="m-${m}">${w}</span>`:w; if(i<tokens.length-1) s+=t.glue===' '?' ':t.glue==='-'?'-':''; });
+  return s+(punct==='.'?'.':' '+punct);
+}
+
+/* ---------- explore: stage ---------- */
+function tileInner(tok,first,caption){
+  const word=first?cap(tok.t):tok.t;
+  const w=tok.end?esc(word.slice(0,word.length-tok.end.length))+`<span class="end e-${tok.endSrc}">${esc(tok.end)}</span>`:esc(word);
+  return {w,c:caption?(tok.cap||''):''};
+}
+function renderStage(r){
+  const box=$('#tiles');
+  const first=new Map(), keep=new Map();
+  box.querySelectorAll('.tile').forEach(el=>{ first.set(el.dataset.k,el.getBoundingClientRect()); keep.set(el.dataset.k,el); });
+  const order=[], used=new Set();
+  r.tokens.forEach((tok,i)=>{
+    let el=keep.get(tok.k); const isNew=!el;
+    if(!el){ el=document.createElement('span'); el.dataset.k=tok.k; el.innerHTML='<span class="tw"></span><span class="tc"></span>'; }
+    used.add(tok.k);
+    el.className='tile r-'+tok.r+(tok.glue==='-'?' hy':tok.glue===''?' el':'');
+    const {w,c}=tileInner(tok,i===0,true);
+    const tw=el.querySelector('.tw');
+    el._changed=!isNew&&tw.innerHTML!==w; el._new=isNew;
+    tw.innerHTML=w; el.querySelector('.tc').textContent=c;
+    order.push(el);
+  });
+  keep.forEach((el,k)=>{ if(!used.has(k)) el.remove(); });
+  order.forEach(el=>box.appendChild(el));
+  let pu=box.querySelector('.punct'); if(!pu){ pu=document.createElement('span'); pu.className='punct'; }
+  pu.textContent=r.punct; box.appendChild(pu);
+  $('#sr').textContent=plainText(r);
+  const reg=$('#reg'); reg.textContent='registre : '+r.register; reg.className='reg '+r.register;
+  if(reduceMotion||!box.animate) return;
+  order.forEach(el=>{
+    const a=first.get(el.dataset.k);
+    if(a){
+      const b=el.getBoundingClientRect(), dx=a.left-b.left, dy=a.top-b.top;
+      if(Math.abs(dx)>.5||Math.abs(dy)>.5) el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:480,easing:'cubic-bezier(.2,.75,.2,1)'});
+      if(el._changed) el.querySelector('.tw').animate([{opacity:.15},{opacity:1}],{duration:420});
+    } else el.animate([{opacity:0,transform:'translateY(-14px) scale(.85)'},{opacity:1,transform:'none'}],{duration:380,delay:140,easing:'cubic-bezier(.2,.75,.2,1)',fill:'backwards'});
+  });
+}
+
+/* ---------- explore: console ---------- */
+function renderConsole(){
+  const V=getVerb(S.verb), su=getSubj(S.subj), imp=S.type==='imp', ps=proState(S);
+  const B=(act,v,label,pressed,dis,cls,role)=>`<button type="button"${cls?` class="${cls}"`:''} data-act="${act}" data-v="${v}"${role?` data-role="${role}"`:''} aria-pressed="${!!pressed}"${dis?' disabled':''}>${label}</button>`;
+  const L=(name,on,body,note)=>`<div class="layer${on?' on':''}"><div class="l-head"><span class="dot" aria-hidden="true"></span><span class="l-name">${name}</span>${note?`<span class="l-note">${note}</span>`:''}</div>${body}</div>`;
+  let h='<div class="box"><div class="box-h"><h3>Layers</h3><span>stack them one at a time</span></div>';
+  h+=L('Pronouns',ps==='pro'||ps==='mix',`<div class="seg">${B('pro','noun','nouns',ps==='noun',ps==='none')}${B('pro','pro','pronouns',ps==='pro',ps==='none')}</div>`,ps==='none'?'nothing to replace with this verb':ps==='mix'?'mixed: set each object below':'');
+  const venir=S.mod==='venir';
+  const modDis=m=>(imp&&m!=='faire')||(m==='venir'&&S.tense!=='pres')||(m==='faire'&&!causOK(V));
+  const modNote=S.mod==='faire'?'B2 exception: the block jumps in front of faire':venir?'passé récent, present only':imp?'imperative: only faire':!causOK(V)?'faire: not with this verb':'';
+  h+=L('Two verbs',!!S.mod,`<div class="seg">${B('mod','','none',!S.mod)}${MOD_IDS.map(m=>B('mod',m,MODALS[m].label,S.mod===m,modDis(m),'fr')).join('')}</div>`,modNote);
+  h+=L('Compound tense',!imp&&S.tense!=='pres',`<div class="seg">${B('tense','pres','présent',S.tense==='pres',imp,'fr')}${B('tense','pc','passé composé',S.tense==='pc',imp||venir,'fr')}${B('tense','fp','futur proche',S.tense==='fp',imp||venir,'fr')}</div>`,imp?'imperative uses the present here':venir?'venir de: present only':'');
+  const scopeOK=!!(S.neg&&S.mod&&MODALS[S.mod].scope&&!imp), infScope=scopeOK&&S.negScope==='inf';
+  h+=L('Negation',!!S.neg,`<div class="seg">${B('neg','','none',!S.neg)}${['pas','jamais','plus'].map(n=>B('neg',n,'ne … '+n,S.neg===n,false,'fr')).join('')}</div>${scopeOK?`<div class="seg sm"><span class="l-note">negate</span>${B('scope','mod','the first verb',!infScope)}${B('scope','inf','the infinitive',infScope)}</div>`:''}<label class="switch"><input type="checkbox" id="oral" data-act="oral"${S.oral&&S.neg&&!imp&&!infScope?' checked':''}${!S.neg||imp||infScope?' disabled':''}> spoken: drop <i>ne</i></label>`);
+  h+=L('Reflexive',!!V.refl,`<div class="seg">${B('pron','simple','off',!V.refl)}${B('pron','pron','se + verb',!!V.refl,false,'fr')}</div>`,V.refl?'':`switches to <span class="fr">${getVerb(S.lastPron).label}</span>`);
+  h+=L('Question / imperative',S.type!=='decl',`<div class="seg">${B('type','decl','statement',S.type==='decl')}${B('type','inton','intonation ?',S.type==='inton')}${B('type','estce','est-ce que',S.type==='estce',false,'fr')}${B('type','inv','inversion',S.type==='inv')}${B('type','imp','impératif',S.type==='imp',false,'fr')}</div>`,S.mod&&S.mod!=='faire'?'impératif switches the second verb off':'');
+  h+='</div>';
+  h+='<div class="box"><div class="box-h"><h3>Sentence</h3><span>verb, subject, objects</span></div>';
+  h+=`<div class="mat"><div class="mat-l">Verb</div><div class="chips">${VERBS.filter(v=>!v.refl).map(v=>B('verb',v.id,v.label,S.verb===v.id,false,'fr')).join('')}</div><div class="chips">${VERBS.filter(v=>v.refl).map(v=>B('verb',v.id,v.label,S.verb===v.id,false,'fr')).join('')}</div><p class="frame"><span class="fr">${V.label}</span>${V.frame?` <span class="fr">${V.frame}</span>`:''} · ${V.gloss} · aux. <span class="fr">${V.aux==='etre'?'être':'avoir'}</span></p></div>`;
+  h+=`<div class="mat"><div class="mat-l">Subject</div><div class="chips">${SUBJECTS.map(s=>B('subj',s.id,s.t,S.subj===s.id,imp&&![1,3,4].includes(s.p),'fr')).join('')}</div><label class="switch"><input type="checkbox" id="fem" data-act="fem"${S.fem?' checked':''}> feminine <span class="muted">(je, tu, nous, vous)</span></label></div>`;
+  h+=`<div class="mat"><div class="mat-l">Objects</div>${V.args.length?V.args.map(a=>argRow(a,su.p,B)).join(''):'<p class="frame muted">This verb takes no object here. The only pronoun is <span class="fr">se</span>.</p>'}</div>`;
+  h+='</div>';
+  $('#console').innerHTML=h;
+}
+function argRow(a,sp,B){
+  const st=S.args[a.role]; const o=a.opts.find(x=>x.id===st.o)||a.opts[0];
+  const forced=a.role==='coi'&&o.cl;
+  const f=st.f==='off'?'off':(forced?'pro':st.f);
+  const slot=slotOf(a.role,o);
+  return `<div class="arg${f==='off'?' off':''}"><div class="arg-h"><span class="rb c${slot}">${ROLE_LABEL[a.role]}</span><span class="arg-to">pronoun: <b class="fr">${proOf(a.role,o)}</b></span></div>
+  <div class="chips">${a.opts.map(x=>B('argo',x.id,x.noun,x.id===o.id,x.cl&&x.p===sp,'fr',a.role)).join('')}</div>
+  <div class="seg sm">${B('argf','noun','noun',f==='noun',forced,'',a.role)}${B('argf','pro','pronoun',f==='pro',false,'',a.role)}${a.opt?B('argf','off','leave out',f==='off',false,'',a.role):''}</div></div>`;
+}
+
+/* ---------- explore: explanations ---------- */
+function renderRuler(r){
+  const used=r.ruler;
+  let bays, sub;
+  if(r.impAff){
+    sub='Affirmative imperative only: after the verb, joined by hyphens.';
+    bays=[{n:1,items:['le','la','les'],c:2},{n:2,items:['moi','toi','nous','vous','lui','leur'],c:3},{n:3,items:['y'],c:4},{n:4,items:['en'],c:5}];
+    bays.forEach(b=>b.on=b.items.filter(it=>used.includes(it)));
+  } else {
+    sub=r.caus?'Causative faire: the block jumps back in front of faire, not the infinitive.':r.blockAt>0?'Two verbs: the block sits in front of the infinitive it belongs to. The order inside never changes.':'In front of the conjugated verb. Same order in statements, questions and negative imperatives.';
+    bays=[{n:1,items:['me','te','se','nous','vous'],c:1},{n:2,items:['le','la','les'],c:2},{n:3,items:['lui','leur'],c:3},{n:4,items:['y'],c:4},{n:5,items:['en'],c:5}];
+    bays.forEach(b=>b.on=b.items.filter(it=>used.some(u=>u.slot===b.n&&u.t===it)));
+  }
+  $('#ruler-sub').textContent=sub;
+  const cols=bays.length;
+  let h=`<div class="ruler" style="grid-template-columns:repeat(${cols},minmax(0,1fr))">`;
+  bays.forEach(b=>{ h+=`<div class="bay c${b.c}${b.on.length?' lit':''}"><span class="num">${b.n}</span><span class="items">${b.items.map(it=>`<span class="${b.on.includes(it)?'on':''}">${it}</span>`).join('')}</span></div>`; });
+  h+='</div>';
+  if(!used.length) h+='<p class="ruler-empty">No object pronouns yet. Switch the Pronouns layer on to fill the slots.</p>';
+  $('#ruler').innerHTML=h;
+}
+function renderSteps(){
+  const st=steps(S);
+  $('#steps').innerHTML=st.map((s,i)=>{ const mk=i?diffMarks(st[i-1].r.tokens,s.r.tokens):null; return `<div class="step"><span class="lab">${s.lab}</span><span class="sen">${sentenceHTML(s.r.tokens,s.r.punct,mk)}</span></div>`; }).join('');
+}
+function renderExplore(){
+  const r=compose(S);
+  renderStage(r); renderConsole(); renderRuler(r); renderSteps();
+  $('#notes').innerHTML=notesHTML(r.notes)||'<li class="note"><span class="tag">base</span><div>Plain statement. Switch a layer on to see what moves.</div></li>';
+}
+function rerender(){
+  const a=document.activeElement, sig=a&&a.dataset&&a.dataset.act?{act:a.dataset.act,v:a.dataset.v,role:a.dataset.role,id:a.id}:null;
+  S=normalize(S); save(); renderExplore();
+  if(sig){
+    const q=sig.id?'#'+sig.id:`[data-act="${sig.act}"]${sig.v!==undefined?`[data-v="${sig.v}"]`:''}${sig.role?`[data-role="${sig.role}"]`:''}`;
+    const el=document.querySelector(q); if(el&&!el.disabled) el.focus({preventScroll:true});
+  }
+}
+function setVerb(id){
+  const ps=proState(S); if(ps==='pro'||ps==='mix') S.proPref='pro'; else if(ps==='noun') S.proPref='noun';
+  S.verb=id; S.args={};
+  if(getVerb(id).refl) S.lastPron=id; else S.lastSimple=id;
+}
+
+/* ---------- build mode ---------- */
+let CH=null;
+function newChallenge(){
+  const {cfg,layers}=randomCfg(S.level);
+  const r=compose(cfg), base=compose(baseOf(cfg));
+  let pool;
+  for(let k=0;k<8;k++){ pool=shuffle(r.tokens.map((t,i)=>({id:i,t:t.t,r:t.r}))); if(pool.some((x,i)=>x.id!==i)) break; }
+  CH={cfg,layers,r,base,pool,pos:0,slips:0,hints:0,shown:false,done:false};
+  renderBuild();
+}
+function todoHTML(){
+  const c=CH.cfg, out=[];
+  if(CH.layers.includes('pron')) out.push(`<span class="info">se-verb: <b>se</b> is already in the base</span>`);
+  const rp=realPros(c); if(rp.length) out.push(`<span>pronouns for <b>${rp.join('</b>, <b>')}</b></span>`);
+  if(c.mod) out.push(c.mod==='faire'?`<span>causative <b>faire</b> + infinitive</span>`:`<span><b>${MODALS[c.mod].label}</b> + infinitive</span>`);
+  if(c.type!=='imp'&&c.tense!=='pres') out.push(`<span><b>${c.tense==='pc'?'passé composé':'futur proche'}</b></span>`);
+  if(c.neg) out.push(`<span><b>ne … ${c.neg}</b>${c.negScope==='inf'?' on the infinitive':''}</span>`);
+  if(c.type==='inv') out.push(`<span><b>inversion</b></span>`);
+  if(c.type==='imp') out.push(`<span><b>impératif</b> (${getSubj(c.subj).t})</span>`);
+  return out.join('');
+}
+function buildTilesHTML(tokens,n,colors,punct){
+  let h='';
+  for(let i=0;i<n;i++){ const t=tokens[i]; const {w}=tileInner(t,i===0,false); h+=`<span class="tile r-${colors?t.r:'plain'}${t.glue==='-'?' hy':t.glue===''?' el':''}"><span class="tw">${w}</span></span>`; }
+  if(punct) h+=`<span class="punct">${punct}</span>`;
+  return h;
+}
+function renderBuild(){
+  $('#b-level').innerHTML=[2,3,4].map(n=>`<button type="button" data-act="level" data-v="${n}" aria-pressed="${S.level===n}">${n} layers</button>`).join('');
+  $('#b-colors').checked=!!S.colors;
+  $('#b-stats').textContent=`${STATS.done} built · ${STATS.clean} clean`;
+  $('#b-base').textContent=plainText(CH.base);
+  $('#b-todo').innerHTML=todoHTML();
+  const ans=$('#b-ans-tiles');
+  ans.innerHTML=CH.pos?buildTilesHTML(CH.r.tokens,CH.pos,S.colors,CH.done?CH.r.punct:''):'<span class="b-empty">Tap the words below in order.</span>';
+  $('#b-answer').classList.toggle('done',CH.done);
+  $('#b-pool-tiles').innerHTML=CH.pool.map(x=>{ const label=x.r==='tee'?'-t-':x.t; return `<button type="button" class="tile r-${S.colors?x.r:'plain'}" data-act="pick" data-v="${x.id}"${x.used?' disabled':''}><span class="tw">${esc(label)}</span></button>`; }).join('');
+  $('#b-slips').textContent=CH.slips||CH.hints?`${CH.slips} slip${CH.slips===1?'':'s'} · ${CH.hints} hint${CH.hints===1?'':'s'}`:'';
+  const res=$('#b-result');
+  if(CH.done){
+    const msg=CH.shown?'Answer shown':(CH.slips||CH.hints)?`Built with ${CH.slips} slip${CH.slips===1?'':'s'} and ${CH.hints} hint${CH.hints===1?'':'s'}`:'Clean build, no slips';
+    res.innerHTML=`<span class="ok">${msg}</span><p class="final">${esc(plainText(CH.r))}</p><ul class="notes">${notesHTML(CH.r.notes)}</ul><div class="row"><button type="button" class="ghost" data-act="toexplore">Open in Explore</button><button type="button" class="primary" data-act="next">Next sentence</button></div>`;
+    res.hidden=false;
+  } else res.hidden=true;
+}
+function finishChallenge(){
+  CH.done=true; STATS.done++; if(!CH.slips&&!CH.hints&&!CH.shown) STATS.clean++; store.set('wol.stats',STATS);
+}
+function pick(btn){
+  if(!CH||CH.done) return;
+  const tile=CH.pool.find(x=>x.id===+btn.dataset.v); if(!tile||tile.used) return;
+  const want=CH.r.tokens[CH.pos];
+  if(tile.t.toLowerCase()===want.t.toLowerCase()){
+    tile.used=true; CH.pos++;
+    if(CH.pos===CH.r.tokens.length) finishChallenge();
+    renderBuild();
+  } else {
+    CH.slips++;
+    $('#b-slips').textContent=`${CH.slips} slip${CH.slips===1?'':'s'} · ${CH.hints} hint${CH.hints===1?'':'s'}`;
+    if(!reduceMotion&&btn.animate) btn.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(-4px)'},{transform:'translateX(0)'}],{duration:320});
+  }
+}
+function hint(){
+  if(!CH||CH.done) return;
+  const want=CH.r.tokens[CH.pos];
+  const tile=CH.pool.find(x=>!x.used&&x.t.toLowerCase()===want.t.toLowerCase()); if(!tile) return;
+  CH.hints++;
+  $('#b-slips').textContent=`${CH.slips} slip${CH.slips===1?'':'s'} · ${CH.hints} hint${CH.hints===1?'':'s'}`;
+  const el=document.querySelector(`#b-pool-tiles [data-v="${tile.id}"]`);
+  if(el&&el.animate) el.animate([{boxShadow:'0 0 0 0 var(--focus)'},{boxShadow:'0 0 0 4px var(--focus)'},{boxShadow:'0 0 0 0 var(--focus)'}],{duration:900,iterations:2});
+}
+
+/* ---------- views & events ---------- */
+function setView(v){
+  S.view=v; save();
+  $('#v-explore').hidden=v!=='explore'; $('#v-build').hidden=v!=='build';
+  $('#tab-explore').setAttribute('aria-selected',v==='explore'); $('#tab-build').setAttribute('aria-selected',v==='build');
+  if(v==='build'){ if(!CH) newChallenge(); else renderBuild(); } else renderExplore();
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button[data-act]'); if(!b||b.disabled) return;
+  const act=b.dataset.act, v=b.dataset.v, role=b.dataset.role;
+  switch(act){
+    case 'tab': setView(v); return;
+    case 'pro': { const V=getVerb(S.verb); V.args.forEach(a=>{ const st=S.args[a.role]; if(st&&st.f!=='off') st.f=v; }); S.proPref=v; break; }
+    case 'tense': S.tense=v; break;
+    case 'neg': S.neg=v||null; break;
+    case 'pron': setVerb(v==='pron'?S.lastPron:S.lastSimple); break;
+    case 'type': S.type=v; if(v==='imp'&&S.mod&&S.mod!=='faire') S.mod=null; break;
+    case 'mod': S.mod=v||null; break;
+    case 'scope': S.negScope=v; break;
+    case 'verb': if(v!==S.verb) setVerb(v); break;
+    case 'subj': S.subj=v; break;
+    case 'argo': { const st=S.args[role]; st.o=v; if(st.f==='off') st.f=S.proPref==='pro'?'pro':'noun'; break; }
+    case 'argf': S.args[role].f=v; if(v!=='off') S.proPref=v; break;
+    case 'random': { const {cfg}=randomCfg(2+Math.floor(Math.random()*3)); Object.assign(S,cfg); if(getVerb(S.verb).refl) S.lastPron=S.verb; else S.lastSimple=S.verb; break; }
+    case 'reset': { S.tense='pres'; S.neg=null; S.oral=false; S.type='decl'; S.mod=null; S.negScope='mod'; const V=getVerb(S.verb); V.args.forEach(a=>{ const st=S.args[a.role]; if(st&&st.f==='pro') st.f='noun'; }); S.proPref='noun'; if(V.refl) setVerb(S.lastSimple); break; }
+    case 'level': S.level=+v; save(); newChallenge(); return;
+    case 'next': newChallenge(); return;
+    case 'pick': pick(b); return;
+    case 'hint': hint(); return;
+    case 'reveal': if(CH&&!CH.done){ CH.shown=true; CH.pool.forEach(x=>x.used=true); CH.pos=CH.r.tokens.length; finishChallenge(); renderBuild(); } return;
+    case 'toexplore': if(CH){ Object.assign(S,CH.cfg); if(getVerb(S.verb).refl) S.lastPron=S.verb; else S.lastSimple=S.verb; S=normalize(S); setView('explore'); window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}); } return;
+    default: return;
+  }
+  rerender();
+});
+document.addEventListener('change',e=>{
+  const t=e.target; if(!t.dataset||!t.dataset.act) return;
+  if(t.dataset.act==='oral'){ S.oral=t.checked; rerender(); }
+  else if(t.dataset.act==='fem'){ S.fem=t.checked; rerender(); }
+  else if(t.dataset.act==='colors'){ S.colors=t.checked; save(); if(CH) renderBuild(); }
+});
+setView(S.view==='build'?'build':'explore');
+</script>
+
+</body></html>
